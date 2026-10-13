@@ -96,11 +96,18 @@ details.sub>summary{cursor:pointer;color:var(--water);font-weight:600}
 .chart svg{display:block;width:100%;height:auto}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--muted);margin-top:6px}
 .legend i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:5px;border-radius:2px}
-.tablewrap{overflow-x:auto;padding:10px 16px}
-table{width:100%;border-collapse:collapse;font-size:15px}
+.tablewrap{overflow-x:auto;padding:10px 16px;position:relative;scrollbar-width:thin}
+.tablewrap::after{content:"";position:sticky;right:0;top:0;display:block;width:0}
+.stack{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:13.5px;line-height:1.25}
+.stack small{font-size:11px;color:var(--muted);font-weight:400}
+.stack .lvl{font-size:15.5px;font-weight:600}
+.falta{align-items:flex-end}
+table{width:100%;border-collapse:collapse;font-size:15px;table-layout:auto}
 th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;text-align:right;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
 th:first-child,td:first-child{text-align:left;padding-left:0}
-td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
+td:first-child{white-space:normal;min-width:88px}
+@media (max-width:420px){.tablewrap{padding:6px 10px} table{font-size:13px} th{font-size:11px;padding:8px 4px} td{padding:9px 4px} .meter{width:48px} .falta span{font-size:12.5px} .stack{font-size:12.5px}}
 tr:last-child td{border-bottom:0} tr.here td{font-weight:600}
 .st{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
 .up{color:var(--alarm)} .down{color:var(--ok)}
@@ -129,3 +136,5 @@ footer ul.fuentes{margin:0;padding-left:20px;display:flex;flex-direction:column;
 .top>div:first-child{flex:1 1 320px;min-width:0}
 .tagline{margin-top:8px;font-size:15.5px;line-height:1.45;color:var(--muted);max-width:60ch;text-wrap:pretty}
 tr.here td{background:var(--water-soft)}
+
+@media (max-width:374px){.wrap{padding-inline:12px} table{font-size:12.5px} .stack{font-size:12px} .stack .lvl{font-size:14.5px} .meter{width:44px}}
