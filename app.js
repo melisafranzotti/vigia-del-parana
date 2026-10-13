@@ -95,10 +95,17 @@ function extendUpstream(uid, fromDate, k, depth){
   for(var j=0;j<n;j++){ st*=((D.modelo&&D.modelo.decay)||0.85); ext+=st; }
   return ext;
 }
+var PROJ_MEMO={};
 function projectStation(estId, depth){
   if(depth==null) depth=6;
+  if(PROJ_MEMO.hasOwnProperty(estId)) return PROJ_MEMO[estId];
+  PROJ_MEMO[estId]=null;   // corta ciclos mientras se calcula
+  var r=projectStationRaw(estId, depth);
+  PROJ_MEMO[estId]=r; return r;
+}
+function projectStationRaw(estId, depth){
   var M=D.modelo&&D.modelo.estaciones?D.modelo.estaciones[String(estId)]:null;
-  if(!M||!M.up) return null;
+  if(!M||!M.up||depth<0) return null;
   var d=serieMap(estId), u=serieMap(M.up); if(!d||!u) return null;
   var t=d.last, h0=d.m[t], src=u.m[addDays(t,-M.lag)]; if(h0==null||src==null) return null;
   var out=[], H=(D.modelo.horizonte||15);
@@ -247,7 +254,7 @@ function render(){
   var fc=(D.ctx&&D.ctx.pronosticos&&D.ctx.pronosticos[String(z.estacion)])||null;
   var today=todayStr();
   var fcFuture=(fc&&fc.puntos?fc.puntos:[]).filter(function(p){return p.fecha>=today;});
-  var proj=projectStation(z.estacion,6);
+  PROJ_MEMO={}; var proj=projectStation(z.estacion,6);
   var projPeak=proj?proj.reduce(function(m,p){return Math.max(m,p.central);},-Infinity):-Infinity;
   var peak=Math.max(proj?projPeak:h+Math.max(sl,0)*HORIZONTE, fcFuture.reduce(function(m,p){return Math.max(m,p.central);},-Infinity));
   var lvlOut=levelOf(peak,t);
@@ -261,7 +268,13 @@ function render(){
   var mg=$("margen");
   if(next){ var faltan=Math.round((next[1]-h)*100); mg.className="margen "+(lvlNow===0?"ok":lvlNow===1?"":"alarm"); mg.textContent="Faltan "+faltan+" cm para "+next[0].charAt(0).toUpperCase()+next[0].slice(1)+" en tu zona ("+fmt(next[1])+" m)"; }
   else { mg.className="margen crit"; mg.textContent="Superó el umbral de salida de tu zona ("+fmt(t.s)+" m)"; }
-  if(next){
+  if(next && proj){
+    var hit=null; proj.forEach(function(p){ if(!hit && p.central>=next[1]) hit=p; });
+    var hitMax=null; proj.forEach(function(p){ if(!hitMax && p.max!=null && p.max>=next[1]) hitMax=p; });
+    if(hit) lines.push("Sube unos "+Math.round(sl*100)+" cm por día. Según la proyección, llegaría al umbral de "+next[0]+" ("+fmt(next[1])+" m) alrededor del "+dateLabel(hit.fecha)+".");
+    else if(hitMax) lines.push("Sube unos "+Math.round(sl*100)+" cm por día. La proyección no llega al umbral de "+next[0]+" ("+fmt(next[1])+" m) en "+proj.length+" días, aunque en el escenario alto podría rozarlo hacia el "+dateLabel(hitMax.fecha)+".");
+    else lines.push((sl>0.003?"Sube unos "+Math.round(sl*100)+" cm por día. ":sl<-0.003?"Baja unos "+Math.abs(Math.round(sl*100))+" cm por día. ":"Está estable. ")+"La proyección a "+proj.length+" días no alcanza el umbral de "+next[0]+" ("+fmt(next[1])+" m).");
+  } else if(next){
     if(sl>0.003){ lines.push("Sube unos "+Math.round(sl*100)+" cm por día. Si sigue igual, llegaría al umbral de "+next[0]+" ("+fmt(next[1])+" m) en unos "+Math.round((next[1]-h)/sl)+" días."); }
     else if(sl<-0.003){ lines.push("Está bajando unos "+Math.abs(Math.round(sl*100))+" cm por día. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m)."); }
     else { lines.push("Está estable. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m), "+Math.round((next[1]-h)*100)+" cm más arriba."); }
