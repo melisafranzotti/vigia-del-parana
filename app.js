@@ -347,7 +347,12 @@ function renderDams(){
 }
 function renderFc(estId,e){
   var box=$("fc"); box.textContent=""; var fc=D.ctx&&D.ctx.pronosticos?D.ctx.pronosticos[String(estId)]:null;
-  if(!fc||!fc.puntos||!fc.puntos.length){ $("fcNote").textContent="El INA no publica un pronóstico puntual para "+e.nombre+" en esta app todavía. La línea de tendencia del gráfico es una estimación propia."; return; }
+  if(!fc||!fc.puntos||!fc.puntos.length){
+    var INA_FC=[19,20,23,24,26,29,30,34,32,14];
+    $("fcNote").textContent = INA_FC.indexOf(estId)>=0
+      ? "El INA publica pronóstico para "+e.nombre+" los martes y viernes; todavía no está cargado el último. Mientras tanto, guiate por la Proyección Vigía de arriba, que es una estimación propia y no oficial."
+      : "El INA no publica un pronóstico puntual para "+e.nombre+". La Proyección Vigía de arriba es una estimación propia y no oficial.";
+    return; }
   fc.puntos.forEach(function(p){
     var d=document.createElement("div"); d.className="day";
     var l=document.createElement("div"); l.className="eyebrow"; l.textContent=dateLabel(p.fecha); d.appendChild(l);
