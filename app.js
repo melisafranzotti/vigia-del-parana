@@ -205,7 +205,7 @@ function render(){
   var t={a:z.umbrales[0],p:z.umbrales[1],s:z.umbrales[2]};
   $("lblPuerto").textContent="Puerto de "+e.nombre+(z.generica?"":" · tu zona: "+z.nombre);
   if(!serie||!serie.length){
-    $("hNow").innerHTML="–<span>m</span>"; $("hDelta").textContent="Todavía no hay mediciones cargadas para este puerto.";
+    $("hNow").innerHTML="–<span>m</span>"; $("hDelta").textContent="Todavía no hay mediciones cargadas para este puerto."; $("margen").textContent="";
     $("estado").className="status"; $("lvlName").textContent="Sin datos"; $("lvlTag").textContent="";
     $("lines").textContent=""; $("gauge").textContent=""; $("chart").textContent=""; renderTodo(0,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews(); return;
   }
@@ -223,6 +223,9 @@ function render(){
   $("hDelta").textContent=cm(d1!=null?h-d1:null)+" en 24 h · "+cm(d7!=null?h-d7:null)+" en 7 días · dato del "+dateLabel(last[0]);
   var lines=[];
   var next=[["atención",t.a],["preparación",t.p],["salida",t.s]].filter(function(x){return x[1]>h;})[0];
+  var mg=$("margen");
+  if(next){ var faltan=Math.round((next[1]-h)*100); mg.className="margen "+(lvlNow===0?"ok":lvlNow===1?"":"alarm"); mg.textContent="Faltan "+faltan+" cm para "+next[0].charAt(0).toUpperCase()+next[0].slice(1)+" en tu zona ("+fmt(next[1])+" m)"; }
+  else { mg.className="margen crit"; mg.textContent="Superó el umbral de salida de tu zona ("+fmt(t.s)+" m)"; }
   if(next){
     if(sl>0.003){ lines.push("Sube unos "+Math.round(sl*100)+" cm por día. Si sigue igual, llegaría al umbral de "+next[0]+" ("+fmt(next[1])+" m) en unos "+Math.round((next[1]-h)/sl)+" días."); }
     else if(sl<-0.003){ lines.push("Está bajando unos "+Math.abs(Math.round(sl*100))+" cm por día. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m)."); }
