@@ -1,0 +1,34 @@
+name: Calibrar modelo de propagación
+
+on:
+  schedule:
+    # Lunes 03:10 hora Argentina
+    - cron: "10 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: datos
+  cancel-in-progress: false
+
+jobs:
+  modelo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Calibrar con 3 años de datos del INA
+        run: python scripts/ajustar_modelo.py
+      - name: Publicar
+        run: |
+          git config user.name "vigia-bot"
+          git config user.email "vigia-bot@users.noreply.github.com"
+          git add data/modelo.json
+          git diff --cached --quiet && echo "sin cambios" && exit 0
+          git commit -m "modelo: recalibrado $(date -u +'%Y-%m-%d')"
+          git pull --rebase origin main
+          git push
