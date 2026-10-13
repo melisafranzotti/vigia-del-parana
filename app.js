@@ -309,26 +309,21 @@ function chainLags(estId){
 }
 function renderUp(e){
   var tb=$("upTable"); tb.textContent="";
-  var lags=chainLags(e.id);
   var list=D.est.slice().sort(function(a,b){return a.orden-b.orden;});
   list.forEach(function(x){
     var s=serieOf(x.id), tr=document.createElement("tr"); if(x.id===e.id) tr.className="here";
-    tr.innerHTML="<td></td><td></td><td></td><td></td><td></td><td></td>"; var c=tr.children;
+    tr.innerHTML="<td></td><td></td><td></td><td></td><td></td>"; var c=tr.children;
     var nm=document.createElement("span"); nm.textContent=x.nombre; c[0].appendChild(nm);
     var sm=document.createElement("span"); sm.className="st"; c[0].appendChild(sm);
-    if(x.id===e.id){ c[1].textContent="tu ciudad"; c[1].className="st"; }
-    else if(x.orden>e.orden){ c[1].textContent="aguas abajo"; c[1].className="st"; c[1].title="Recibe el agua después que tu ciudad"; }
-    else if(lags[x.id]!=null){ c[1].textContent=lags[x.id]+(lags[x.id]===1?" día":" días"); }
-    else { c[1].textContent="–"; c[1].title="No está en la cadena de propagación de tu ciudad"; }
-    if(!s||!s.length){ sm.textContent="Sin datos todavía"; c[2].textContent="–"; tb.appendChild(tr); return; }
+    if(!s||!s.length){ sm.textContent="Sin datos todavía"; c[1].textContent="–"; tb.appendChild(tr); return; }
     var h=s[s.length-1][1], a1=valueDaysAgo(s,1), a7=valueDaysAgo(s,7), dd1=a1!=null?h-a1:null, dd7=a7!=null?h-a7:null, pct=Math.max(0,Math.min(1,h/x.alerta));
     var falta=x.alerta-h;
     sm.textContent = h>=x.evac?"Supera evacuación":h>=x.alerta?"Supera alerta":"Alerta en "+fmt(x.alerta)+" m";
-    c[2].textContent=fmt(h)+" m"; c[3].textContent=cm(dd1); c[3].className=dd1>0.005?"up":dd1<-0.005?"down":""; c[4].textContent=cm(dd7); c[4].className=dd7>0.005?"up":dd7<-0.005?"down":"";
+    c[1].textContent=fmt(h)+" m"; c[2].textContent=cm(dd1); c[2].className=dd1>0.005?"up":dd1<-0.005?"down":""; c[3].textContent=cm(dd7); c[3].className=dd7>0.005?"up":dd7<-0.005?"down":"";
     var wrap=document.createElement("div"); wrap.className="falta";
     var txt=document.createElement("span"); txt.className="num"; txt.textContent= falta>0 ? "falta "+fmt(falta)+" m" : "superó +"+fmt(-falta)+" m"; if(falta<=0.5) txt.classList.add("up"); wrap.appendChild(txt);
     var m=document.createElement("div"); m.className="meter"+(pct>=0.9?" hot":""); m.title=Math.round(pct*100)+"% del nivel de alerta"; var b=document.createElement("b"); b.style.width=(Math.min(1,pct)*100)+"%"; m.appendChild(b); wrap.appendChild(m);
-    c[5].appendChild(wrap);
+    c[4].appendChild(wrap);
     tb.appendChild(tr);
   });
 }
