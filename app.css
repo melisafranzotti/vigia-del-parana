@@ -87,13 +87,12 @@ details.sub>summary{cursor:pointer;color:var(--water);font-weight:600}
 .block{display:flex;flex-direction:column;gap:12px}
 .actuar{display:flex;flex-direction:column;gap:12px}
 .actuar-lead{font-size:17px;font-weight:500}
-.todo{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.todo li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start}
-.todo input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--water)}
-.todo label{cursor:pointer}
+.todo{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+.todo li{padding-left:4px}
+.todo li::marker{color:var(--water)}
 .vigilar{font-size:16px;background:var(--bg);border-radius:10px;padding:10px 12px}
-.urgent{background:var(--crit-bg);border-radius:10px;padding:12px;font-size:16px}
-.urgent b{color:var(--crit)} .tel{font-weight:700;font-size:18px}
+.contacto{font-size:15.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.tel{font-weight:700;font-size:17px;color:var(--ink)}
 .chart svg{display:block;width:100%;height:auto}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--muted);margin-top:6px}
 .legend i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:5px;border-radius:2px}

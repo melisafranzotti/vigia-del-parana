@@ -8,16 +8,16 @@ var HORIZONTE = 20;     // días de proyección de tendencia
 
 var LVL = [{id:"normal",nombre:"Normal"},{id:"atencion",nombre:"Atención"},{id:"preparacion",nombre:"Preparación"},{id:"salida",nombre:"Salida"}];
 var LEAD = {
-  normal:"El río está en niveles normales para tu zona. Es el mejor momento para dejar todo preparado sin apuro.",
-  atencion:"El río sube y se acerca a niveles que afectan a tu zona. Preparate ahora, con tiempo.",
-  preparacion:"El río está cerca del nivel de alerta de tu zona. Dejá todo listo para salir si hace falta.",
-  salida:"El río llegó al nivel de salida de tu zona. No esperes la evacuación oficial: salí ahora si tu casa está en zona baja."
+  normal:"El río está en niveles normales para tu zona. No hay nada que hacer con apuro: es un buen momento para tener algunas cosas resueltas con tranquilidad.",
+  atencion:"El río viene subiendo y se acerca a niveles que empiezan a importar en tu zona. Todavía hay tiempo de sobra; conviene ir preparando algunas cosas sin apuro.",
+  preparacion:"El río está cerca del nivel de alerta de tu zona. Es momento de dejar todo listo, con calma, para que si hace falta salir no haya que improvisar.",
+  salida:"El río llegó al nivel que en tu zona indica salir. Si tu casa está en un lugar bajo, lo más seguro es irte ahora, con calma, al lugar que ya tenías pensado."
 };
 var TODO = {
-  normal:["Mirá el nivel una vez por día en esta app.","Guardá documentos, títulos y recetas médicas en una bolsa hermética, en un lugar alto.","Definí a dónde irías y cómo (casa de un familiar, escuela, centro de evacuados) y por qué ruta.","Anotá los teléfonos de Defensa Civil de tu ciudad y de la vecinal."],
-  atencion:["Dejá un bolso armado: ropa, cargadores, documentos, medicamentos, agua.","Si vivís cerca de un terraplén o defensa, recorrelo: zanjas, partes hundidas, pozos o cuevas son señales de alerta.","Organizá dónde van los animales si hay que salir.","Avisá a vecinos mayores o que viven solos: que sepan que el río sube.","Sumate al grupo de WhatsApp de tu vecinal para recibir avisos."],
-  preparacion:["Subí electrodomésticos, colchones, papeles y cosas de valor a lugares altos.","Sacá el auto o la moto de las zonas bajas.","Confirmá el lugar al que vas y avisá a tu familia.","Dejá agua potable guardada y la garrafa o el gas cerrados si salís.","Revisá el terraplén todos los días; cualquier filtración, avisá al 103."],
-  salida:["Salí de la casa con tu bolso. No esperes a que el agua entre.","Cortá la luz y el gas antes de irte.","Avisá a la familia y a la vecinal que saliste y a dónde.","No cruces calles con agua en movimiento, ni a pie ni en auto.","Ayudá a vecinos mayores o con movilidad reducida a salir."]
+  normal:["Mirar el nivel una vez por día alcanza; esta app se actualiza a la mañana y a la tarde.","Tener documentos, títulos y recetas médicas juntos en una bolsa cerrada, en un lugar alto, ahorra apuros después.","Pensar a dónde irías si hiciera falta (un familiar, una escuela) y por qué camino, da tranquilidad.","Anotar el teléfono de la vecinal y de Defensa Civil de tu ciudad."],
+  atencion:["Un bolso con ropa, cargadores, documentos y medicamentos, listo en un lugar a mano.","Si vivís cerca de un terraplén, vale la pena recorrerlo de vez en cuando: zanjas, partes hundidas o pozos son cosas para avisar a la vecinal o al municipio.","Pensar dónde irían los animales si hubiera que salir.","Conversar con vecinos mayores o que viven solos, para que sepan que el río viene subiendo.","Sumarse al grupo de la vecinal es la mejor forma de enterarse de los avisos."],
+  preparacion:["Ir subiendo a lugares altos lo que se dañaría con agua: electrodomésticos, colchones, papeles, fotos.","Dejar el auto o la moto en un lugar alto.","Confirmar con la familia el lugar al que irían y cómo.","Tener agua potable guardada.","Mirar el terraplén más seguido; cualquier filtración se avisa al 103."],
+  salida:["Salir con el bolso que ya tenés armado, sin cargar de más.","Cortar la luz y el gas antes de irte.","Avisar a la familia y a la vecinal que saliste y a dónde.","Evitar cruzar calles con agua en movimiento, a pie o en auto.","Si tenés vecinos mayores o con movilidad reducida, acompañarlos a salir."]
 };
 
 var $ = function(id){ return document.getElementById(id); };
@@ -243,14 +243,10 @@ function render(){
 }
 function upstreamOf(e,n){ return D.est.filter(function(x){return x.orden<e.orden;}).sort(function(a,b){return b.orden-a.orden;}).slice(0,n); }
 function renderTodo(lvl,z){
-  var key=LVL[lvl].id, done=store.get("vigia.todo")||{};
+  var key=LVL[lvl].id;
   $("actuarLead").textContent=LEAD[key];
   var ul=$("todo"); ul.textContent="";
-  TODO[key].forEach(function(txt,i){
-    var id="todo-"+key+"-"+i, li=document.createElement("li"), cb=document.createElement("input"); cb.type="checkbox"; cb.id=id; cb.checked=!!done[id];
-    cb.addEventListener("change",function(){ var d=store.get("vigia.todo")||{}; d[id]=cb.checked; store.set("vigia.todo",d); });
-    var lb=document.createElement("label"); lb.htmlFor=id; lb.textContent=txt; li.appendChild(cb); li.appendChild(lb); ul.appendChild(li);
-  });
+  TODO[key].forEach(function(txt){ var li=document.createElement("li"); li.textContent=txt; ul.appendChild(li); });
   var vg=$("vigilar"); vg.textContent=""; var b=document.createElement("b"); b.textContent="En tu zona: "; vg.appendChild(b); vg.appendChild(document.createTextNode(z.vigilar));
 }
 function renderUp(e){
