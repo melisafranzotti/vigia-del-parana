@@ -104,6 +104,8 @@ td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right;font-va
 tr:last-child td{border-bottom:0} tr.here td{font-weight:600}
 .st{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
 .up{color:var(--alarm)} .down{color:var(--ok)}
+.falta{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.falta span{font-size:13.5px}
 .meter{position:relative;height:7px;border-radius:4px;background:var(--line);width:72px;margin-left:auto}
 .meter b{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--water)}.meter.hot b{background:var(--alarm)}
 .dams{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
