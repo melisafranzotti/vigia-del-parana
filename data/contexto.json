@@ -1,0 +1,91 @@
+{
+ "actualizado": "2026-10-13T10:12:00-03:00",
+ "resumen": "Itaipú sigue con el vertedero abierto y Yacyretá recibe unos 28.000 m³/s, así que la onda de crecida continúa bajando por Ituzaingó, Corrientes y Goya. En Santa Fe el último dato del INA sigue siendo 3,51 m (+2 cm en el día), lejos de la alerta; el pronóstico nuevo del INA todavía no salió y no hay novedades de daños en las defensas de la Costa.",
+ "represas": [
+  {
+   "detalle": "El embalse está en su máximo de seguridad y la represa funciona como usina de paso; prevén mantener el vertedero abierto toda la semana. Esperan lluvias hasta el jueves 15 y después una baja gradual del caudal.",
+   "estado": "Vertedero abierto",
+   "fecha": "2026-10-13",
+   "fuente": "ABC Color / Noticias de la Calle",
+   "nombre": "Itaipú",
+   "unidad": "m³/s",
+   "url": "https://www.abc.com.py/economia/2026/10/12/crecida-del-rio-parana-supero-la-capacidad-de-regulacion-de-itaipu-ya-nos-esta-sobrepasando/",
+   "valor": "18.000–19.000",
+   "valorNota": "Caudal con el que opera la represa (sale lo mismo que entra)"
+  },
+  {
+   "detalle": "Al aporte de Itaipú se sumó el Iguazú, que pasó de unos 1.500 a 9.000 m³/s; también vierte por Aña Cuá. El martes la EBY repitió que entran unos 28.000 m³/s y que el caudal seguiría subiendo; para Ayolas estimaba entre 4,3 y 5,1 m (alerta en 4,20 m).",
+   "estado": "Vertedero principal abierto",
+   "fecha": "2026-10-13",
+   "fuente": "EBY / La Tribuna",
+   "nombre": "Yacyretá",
+   "unidad": "m³/s",
+   "url": "https://www.eby.gov.py/alerta-hidrologico-n03-octubre/",
+   "valor": "≈ 28.000",
+   "valorNota": "Agua que llega al embalse, en aumento"
+  }
+ ],
+ "pronosticos": {
+  "30": {
+   "emitido": "2026-10-06",
+   "fuente": "INA",
+   "nota": "Es el pronóstico del 6/10, anterior a la apertura del vertedero principal de Yacyretá: a media mañana del martes 13 todavía no apareció la versión nueva del INA. El valor previsto para el 13/10 (3,48 m) se cumplió casi exacto; según el INA, si las lluvias siguen así el río podría acercarse a 4,80 m a comienzos de noviembre.",
+   "puntos": [
+    {
+     "central": 3.48,
+     "fecha": "2026-10-13",
+     "max": 3.9,
+     "min": 3.3
+    },
+    {
+     "central": 4.02,
+     "fecha": "2026-10-20",
+     "max": 4.6,
+     "min": null
+    }
+   ]
+  }
+ },
+ "noticias": [
+  {
+   "titulo": "Santa Fe sigue de cerca la cuenca mientras el río sube de a poco",
+   "fuente": "Radio Rafaela",
+   "fecha": "2026-10-13",
+   "url": "https://radiorafaela.com.ar/provinciales/el-rio-parana-crece-y-mantienen-el-seguimiento-de-la-cuenca-en-santa-fe",
+   "resumen": "El parte del INA del 12/10 marcó 3,51 m en el puerto, 2 cm más que el día anterior y todavía lejos de la alerta (5,30 m). Las proyecciones ubican al río por encima de 4 m en la segunda mitad de octubre."
+  },
+  {
+   "titulo": "Itaipú dejará el vertedero abierto toda la semana",
+   "fuente": "Noticias de la Calle",
+   "fecha": "2026-10-13",
+   "url": "https://www.noticiasdelacalle.com.ar/noticias/2026/10/13/200502-itaipu-mantendra-abiertas-sus-compuertas-durante-toda-la-semana-por-la-crecida-del-parana",
+   "resumen": "La represa trabaja con 18.000 a 19.000 m³/s, entre 6.000 y 7.000 más que hace una semana, y el embalse está en su tope de seguridad. En Ciudad del Este hay unas 66 familias evacuadas."
+  },
+  {
+   "fecha": "2026-10-12",
+   "fuente": "Aire de Santa Fe",
+   "resumen": "Evacuaron a nueve familias en la isla Apipé Grande y a más de 200 personas en Ciudad del Este. En el puerto de Santa Fe el río subió 76 cm en 20 días y se espera que pase los 4 m en la segunda mitad de octubre.",
+   "titulo": "El Paraná crece en el NEA y Paraguay: hay familias evacuadas y Yacyretá abrió sus compuertas",
+   "url": "https://airedesantafe.com.ar/actualidad/crece-el-rio-parana-el-noreste-argentino-y-paraguay-hay-evacuados-y-yacyreta-abrio-sus-compuertas-n673053"
+  },
+  {
+   "fecha": "2026-10-12",
+   "fuente": "ABC Color",
+   "resumen": "En la cuenca del Iguazú llovió cinco veces más de lo pronosticado. La EBY espera que el caudal siga subiendo en los próximos días.",
+   "titulo": "Yacyretá abrió su vertedero principal: al embalse llegan unos 28.000 m³/s",
+   "url": "https://www.abc.com.py/economia/2026/10/12/lluvias-cinco-veces-mayores-a-lo-previsto-yacyreta-abre-su-vertedero-y-espera-mas-caudal-del-parana/"
+  },
+  {
+   "fecha": "2026-10-12",
+   "fuente": "El Litoral",
+   "resumen": "La entidad binacional explicó que la maniobra busca amortiguar la crecida y no agravarla. Advierte que el caudal podría seguir creciendo.",
+   "titulo": "Yacyretá informó que recibe 28.000 m³/s tras abrir sus compuertas",
+   "url": "https://www.ellitoral.com.ar/sociedad/2026-10-12-19-28-0-yacyreta-recibe-28-000-m-s-el-comunicado-de-la-entidad-tras-abrir-sus-compuertas"
+  }
+ ],
+ "fuentes_consultadas": [
+  "https://alerta.ina.gob.ar/a5/diario/reporte_diario",
+  "https://www.eby.gov.py",
+  "https://www.itaipu.gov.py"
+ ]
+}

@@ -1,0 +1,615 @@
+{
+ "type": "FeatureCollection",
+ "nota": "Zonas del Gran Santa Fe. POLÍGONOS APROXIMADOS dibujados a partir de referencias públicas (Ruta 1, Ruta 168, toma de agua, terraplenes). Se ajustan en geojson.io con conocimiento local. Umbrales en metros de la regla del puerto de Santa Fe (estación INA 30).",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "colastine-norte-rio",
+    "barrio": "Colastiné Norte",
+    "nombre": "Lado río Colastiné",
+    "ref": "Entre la Ruta 1 y el río Colastiné, zona de la toma de agua",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.3
+    ],
+    "vigilar": "El terraplén Garello, junto a la toma de agua: la corriente del Colastiné lo erosiona. Si hay desmoronamientos o máquinas trabajando de urgencia, preparate para salir.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.602,
+        -31.636
+       ],
+       [
+        -60.586,
+        -31.636
+       ],
+       [
+        -60.586,
+        -31.598
+       ],
+       [
+        -60.602,
+        -31.598
+       ],
+       [
+        -60.602,
+        -31.636
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "colastine-norte-setubal",
+    "barrio": "Colastiné Norte",
+    "nombre": "Lado Setúbal",
+    "ref": "Entre la Ruta 1 y la laguna Setúbal",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.3
+    ],
+    "vigilar": "El terraplén oeste, sobre la Setúbal: con viento fuerte el oleaje lo golpea, y tuvo desgaste por tránsito y extracción de arena. Si se rompe el Garello, el agua también llega a este lado.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.624,
+        -31.636
+       ],
+       [
+        -60.602,
+        -31.636
+       ],
+       [
+        -60.602,
+        -31.598
+       ],
+       [
+        -60.624,
+        -31.598
+       ],
+       [
+        -60.624,
+        -31.636
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "colastine-norte-fuera",
+    "barrio": "Colastiné Norte",
+    "nombre": "Fuera del terraplén",
+    "ref": "Bañado o costa: entre tu casa y el agua no hay terraplén",
+    "umbrales": [
+     3.9,
+     4.1,
+     4.3
+    ],
+    "vigilar": "No te protege ningún terraplén. En crecidas anteriores se sacó a las familias del bañado con el río cerca de 4,50 m en el puerto.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.586,
+        -31.636
+       ],
+       [
+        -60.57,
+        -31.636
+       ],
+       [
+        -60.57,
+        -31.598
+       ],
+       [
+        -60.586,
+        -31.598
+       ],
+       [
+        -60.586,
+        -31.636
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -60.64,
+        -31.636
+       ],
+       [
+        -60.624,
+        -31.636
+       ],
+       [
+        -60.624,
+        -31.598
+       ],
+       [
+        -60.64,
+        -31.598
+       ],
+       [
+        -60.64,
+        -31.636
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "colastine-sur",
+    "barrio": "Colastiné Sur",
+    "nombre": "Dentro del terraplén",
+    "ref": "Al sur de la Ruta 168, protegido por el anillo",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.3
+    ],
+    "vigilar": "Zona baja. En crecidas anteriores hubo que levantar un muro de contención cerca del Club de Caza y Pesca.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.626,
+        -31.662
+       ],
+       [
+        -60.603,
+        -31.662
+       ],
+       [
+        -60.603,
+        -31.64
+       ],
+       [
+        -60.626,
+        -31.64
+       ],
+       [
+        -60.626,
+        -31.662
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "colastine-sur-fuera",
+    "barrio": "Colastiné Sur",
+    "nombre": "Fuera del terraplén",
+    "ref": "Casas sobre la costa del río Colastiné",
+    "umbrales": [
+     3.9,
+     4.1,
+     4.3
+    ],
+    "vigilar": "No te protege ningún terraplén. Con el río cerca de 4,50 m en el puerto ya hubo que sacar familias de esta costa.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.603,
+        -31.662
+       ],
+       [
+        -60.585,
+        -31.662
+       ],
+       [
+        -60.585,
+        -31.64
+       ],
+       [
+        -60.603,
+        -31.64
+       ],
+       [
+        -60.603,
+        -31.662
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "rincon",
+    "barrio": "San José del Rincón",
+    "nombre": "Dentro del anillo",
+    "ref": "Sector protegido por el anillo de la Costa",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.3
+    ],
+    "vigilar": "Compartís el anillo de defensa con Colastiné Norte: si falla el terraplén Garello, también te afecta.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.598,
+        -31.598
+       ],
+       [
+        -60.55,
+        -31.598
+       ],
+       [
+        -60.55,
+        -31.578
+       ],
+       [
+        -60.598,
+        -31.578
+       ],
+       [
+        -60.598,
+        -31.598
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "rincon-oeste",
+    "barrio": "San José del Rincón",
+    "nombre": "Rincón Norte, lado Setúbal",
+    "ref": "Oeste de Rincón Norte, sin terraplén",
+    "umbrales": [
+     3.9,
+     4.1,
+     4.3
+    ],
+    "vigilar": "No hay defensa sobre la Setúbal: la obra está licitada pero no construida. Es de las zonas que primero se complican.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.61,
+        -31.578
+       ],
+       [
+        -60.575,
+        -31.578
+       ],
+       [
+        -60.575,
+        -31.56
+       ],
+       [
+        -60.61,
+        -31.56
+       ],
+       [
+        -60.61,
+        -31.578
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "arroyo-leyes",
+    "barrio": "Arroyo Leyes",
+    "nombre": "Lado río",
+    "ref": "Entre la Ruta 1 y el río",
+    "umbrales": [
+     4.0,
+     4.5,
+     5.0
+    ],
+    "vigilar": "No tenemos datos firmes de las defensas de este sector. Seguí los avisos de la comuna.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.545,
+        -31.578
+       ],
+       [
+        -60.49,
+        -31.578
+       ],
+       [
+        -60.49,
+        -31.52
+       ],
+       [
+        -60.545,
+        -31.52
+       ],
+       [
+        -60.545,
+        -31.578
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "arroyo-leyes-oeste",
+    "barrio": "Arroyo Leyes",
+    "nombre": "Lado Setúbal",
+    "ref": "Entre la Ruta 1 y la laguna, sin terraplén",
+    "umbrales": [
+     3.9,
+     4.1,
+     4.3
+    ],
+    "vigilar": "No hay defensa oeste sobre la Setúbal: la obra está licitada pero no construida.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.575,
+        -31.56
+       ],
+       [
+        -60.545,
+        -31.56
+       ],
+       [
+        -60.545,
+        -31.52
+       ],
+       [
+        -60.575,
+        -31.52
+       ],
+       [
+        -60.575,
+        -31.56
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "la-guardia",
+    "barrio": "La Guardia",
+    "nombre": "La Guardia",
+    "ref": "Sobre la Ruta 168, al cruzar la Setúbal",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.3
+    ],
+    "vigilar": "Entre la Setúbal y el Colastiné. No tenemos datos detallados de las defensas de este sector: seguí los avisos del municipio.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.668,
+        -31.648
+       ],
+       [
+        -60.64,
+        -31.648
+       ],
+       [
+        -60.64,
+        -31.628
+       ],
+       [
+        -60.668,
+        -31.628
+       ],
+       [
+        -60.668,
+        -31.648
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "alto-verde",
+    "barrio": "Alto Verde",
+    "nombre": "Alto Verde",
+    "ref": "Isla frente al puerto de Santa Fe",
+    "umbrales": [
+     4.5,
+     5.0,
+     5.5
+    ],
+    "vigilar": "Isla con terraplén de defensa propio. Seguí los avisos del municipio.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.698,
+        -31.68
+       ],
+       [
+        -60.674,
+        -31.68
+       ],
+       [
+        -60.674,
+        -31.648
+       ],
+       [
+        -60.698,
+        -31.648
+       ],
+       [
+        -60.698,
+        -31.68
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "santa-fe-este",
+    "barrio": "Santa Fe (ciudad)",
+    "nombre": "Costanera y este",
+    "ref": "Barrios sobre la Setúbal: Guadalupe, Candioti, costanera, 7 Jefes",
+    "umbrales": [
+     4.8,
+     5.3,
+     5.7
+    ],
+    "vigilar": "El este de la ciudad está defendido por la costanera y terraplenes sobre la Setúbal. Con el río alto se cierran compuertas y las lluvias dependen de las bombas.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.7,
+        -31.66
+       ],
+       [
+        -60.67,
+        -31.66
+       ],
+       [
+        -60.67,
+        -31.58
+       ],
+       [
+        -60.7,
+        -31.58
+       ],
+       [
+        -60.7,
+        -31.66
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "santa-fe",
+    "barrio": "Santa Fe (ciudad)",
+    "nombre": "Resto de la ciudad",
+    "ref": "Centro, sur, norte y oeste",
+    "umbrales": [
+     4.8,
+     5.3,
+     5.7
+    ],
+    "vigilar": "El oeste de la ciudad depende del río Salado y del anillo de defensa oeste, que esta app todavía no sigue. Ante lluvias fuertes el riesgo es el anegamiento urbano.",
+    "estacion": 30
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -60.76,
+        -31.7
+       ],
+       [
+        -60.7,
+        -31.7
+       ],
+       [
+        -60.7,
+        -31.56
+       ],
+       [
+        -60.76,
+        -31.56
+       ],
+       [
+        -60.76,
+        -31.7
+       ]
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

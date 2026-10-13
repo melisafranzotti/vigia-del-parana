@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vigía del Paraná</title>
+<meta name="description" content="Estado de los ríos Paraná y Paraguay, pronóstico del INA y qué hacer hoy según tu ubicación. Herramienta comunitaria, no oficial.">
+<meta name="theme-color" content="#2C6B6E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icono.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icono-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#estado">Ir al estado</a>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Ríos Paraná y Paraguay · Argentina</div>
+      <h1>Vigía del Paraná</h1>
+    </div>
+    <div class="meta">
+      <span class="chip" id="fresh">Cargando…</span>
+      <button class="link" id="instalar" type="button" hidden>Instalar en el celular</button>
+    </div>
+  </header>
+
+  <!-- Ubicación -->
+  <section class="card ubic" id="ubic">
+    <div class="ubic-head" id="ubicHead">
+      <span class="eyebrow">Tu ubicación</span>
+      <strong id="ubicResumen">Elegí dónde estás para ver tu estado</strong>
+      <button class="link" id="cambiarUbic" type="button" hidden>Cambiar</button>
+    </div>
+    <div class="ubic-body" id="ubicBody">
+      <div class="bigbtns">
+        <button class="bigbtn" id="btnGps" type="button">
+          <span class="ico">◎</span><span><b>Usar mi ubicación</b><small>El celular pide permiso una vez</small></span>
+        </button>
+        <button class="bigbtn" id="btnMapa" type="button">
+          <span class="ico">▦</span><span><b>Marcar en el mapa</b><small>Tocá tu casa en el mapa</small></span>
+        </button>
+        <button class="bigbtn" id="btnTexto" type="button">
+          <span class="ico">✎</span><span><b>Escribir o pegar</b><small>Tu dirección, barrio o un link de Google Maps</small></span>
+        </button>
+      </div>
+      <div id="mapaBox" hidden>
+        <div id="mapa" aria-label="Mapa para marcar tu ubicación"></div>
+        <p class="hint">Movete con el dedo, acercá con dos dedos y tocá sobre tu casa. Después tocá <b>Confirmar</b>.</p>
+        <div class="row"><button class="btn" id="mapaOk" type="button" disabled>Confirmar este punto</button><span class="hint" id="mapaInfo"></span></div>
+      </div>
+      <div id="textoBox" hidden>
+        <label for="textoIn" class="lbl">Escribí tu dirección o barrio, o pegá lo que te da Google Maps al tocar «Compartir»</label>
+        <div class="row">
+          <input id="textoIn" type="text" placeholder="Ej.: Los Zorzales 1200, Colastiné Norte" autocomplete="street-address" inputmode="text">
+          <button class="btn" id="textoOk" type="button">Buscar</button>
+        </div>
+        <p class="msg" id="textoMsg" role="status"></p>
+      </div>
+      <p class="msg" id="ubicMsg" role="status"></p>
+      <details class="sub">
+        <summary>O elegí tu ciudad de una lista</summary>
+        <div class="zones" id="listaCiudades" role="radiogroup" aria-label="Ciudad"></div>
+      </details>
+    </div>
+    <div class="confirm" id="confirmBox" hidden>
+      <p><b>Zona estimada:</b> <span id="confirmZona"></span></p>
+      <p class="hint" id="confirmRef"></p>
+      <div class="row">
+        <button class="btn" id="confirmOk" type="button">Sí, es mi zona</button>
+        <button class="btn ghost" id="confirmNo" type="button">No, elegir otra</button>
+      </div>
+      <div class="zones" id="confirmAlt" hidden></div>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <!-- Estado -->
+    <section class="status" id="estado">
+      <div class="status-band"><span id="lvlName">Normal</span><small id="lvlTag"></small></div>
+      <div class="status-body">
+        <div class="gauge" id="gauge"></div>
+        <div class="facts">
+          <div>
+            <div class="eyebrow" id="lblPuerto">Puerto de Santa Fe</div>
+            <div class="big num" id="hNow">–<span>m</span></div>
+            <div class="muted num small" id="hDelta"></div>
+          </div>
+          <div class="lines" id="lines"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo actuar hoy -->
+    <section class="block">
+      <h2>Cómo actuar hoy</h2>
+      <div class="card actuar">
+        <p class="actuar-lead" id="actuarLead"></p>
+        <ul class="todo" id="todo"></ul>
+        <p class="vigilar" id="vigilar"></p>
+        <div class="urgent"><b>En cualquier nivel:</b> si ves agua brotando al pie de un terraplén, el suelo blando del lado de las casas o un desmoronamiento, salí y llamá a Defensa Civil: <span class="tel">103</span>. Emergencias: <span class="tel">911</span>.</div>
+      </div>
+    </section>
+
+    <!-- Gráfico -->
+    <section class="block">
+      <h2>Últimos días y próximas semanas</h2>
+      <div class="card chart"><div id="chart"></div><div class="legend" id="legend"></div>
+        <p class="hint" id="chartNote"></p></div>
+    </section>
+
+    <!-- Aguas arriba -->
+    <section class="block">
+      <h2>Aguas arriba de tu ciudad</h2>
+      <p class="hint">Ordenado como baja el agua. Lo que sube arriba llega a tu ciudad días o semanas después.</p>
+      <div class="card tablewrap">
+        <table><thead><tr><th>Puerto</th><th>Nivel</th><th>24 h</th><th>7 días</th><th>Hasta alerta</th></tr></thead>
+        <tbody id="upTable"></tbody></table>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Represas</h2>
+      <div class="dams" id="dams"></div>
+    </section>
+
+    <section class="block">
+      <h2>Pronóstico oficial del INA</h2>
+      <div class="card"><div class="fc" id="fc"></div><p class="hint" id="fcNote"></p></div>
+    </section>
+
+    <section class="block">
+      <h2>Noticias de la cuenca</h2>
+      <div class="card"><ul class="news" id="news"></ul></div>
+    </section>
+  </div>
+
+  <footer>
+    <p><strong>Vigía del Paraná no es una aplicación oficial.</strong> Es una herramienta comunitaria y gratuita, sin fines de lucro, que reúne información publicada por organismos oficiales. Ante una emergencia, seguí siempre las indicaciones de Defensa Civil (103) y de tu municipio.</p>
+    <p><b>De dónde salen los datos</b></p>
+    <ul class="fuentes">
+      <li>Alturas de los ríos y niveles de alerta y evacuación: <a href="https://alerta.ina.gob.ar/a5/diario/reporte_diario" target="_blank" rel="noopener">Instituto Nacional del Agua (INA), Alerta Hidrológico Cuenca del Plata</a>, con las escalas de <a href="https://contenidosweb.prefecturanaval.gob.ar/alturas/" target="_blank" rel="noopener">Prefectura Naval Argentina</a>. Dato diario de las 00 h.</li>
+      <li>Pronósticos: <a href="https://www.ina.gob.ar/alerta/" target="_blank" rel="noopener">INA</a> (tramo medio: martes a 7 y 14 días, viernes a 4 y 11 días).</li>
+      <li>Represas: <a href="https://www.eby.gov.py" target="_blank" rel="noopener">Entidad Binacional Yacyretá</a> y <a href="https://www.itaipu.gov.py" target="_blank" rel="noopener">Itaipú Binacional</a>.</li>
+      <li>Clima: <a href="https://www.smn.gob.ar" target="_blank" rel="noopener">Servicio Meteorológico Nacional</a>.</li>
+      <li>Noticias: medios de la región, resumidas con enlace a la nota original.</li>
+    </ul>
+    <p>La línea de <em>tendencia</em> en el gráfico y los «días hasta cada umbral» son una extrapolación de la última semana hecha por esta app; no son pronóstico oficial. Si arriba dice «Datos viejos», la actualización automática falló: no te guíes por esta página.</p>
+    <p id="resumenFoot"></p>
+    <p class="small">Código abierto: <a id="repoLink" href="#" target="_blank" rel="noopener">GitHub</a>. Hecho en Santa Fe, Argentina.</p>
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
+<script src="app.js"></script>
+</body>
+</html>
