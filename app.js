@@ -231,9 +231,10 @@ function render(){
   lines.push("Niveles oficiales en "+e.nombre+": alerta "+fmt(e.alerta)+" m · evacuación "+fmt(e.evac)+" m.");
   if(fcFuture.length){ var fp=fcFuture[fcFuture.length-1]; lines.push("Pronóstico del INA para el "+dateLabel(fp.fecha)+": "+fmt(fp.central)+" m"+(fp.max!=null?" (hasta "+fmt(fp.max)+" m)":"")+"."); }
   var box=$("lines"); box.textContent=""; lines.forEach(function(s){ var p=document.createElement("p"); p.textContent=s; box.appendChild(p); });
-  var up=upstreamOf(e,1)[0];
-  if(up){ var us=serieOf(up.id); if(us&&us.length>7){ var c7=us[us.length-1][1]-valueDaysAgo(us,7); var sig=document.createElement("p"); sig.className="signal"+(c7>=0.3?"":" calm");
-    sig.textContent = c7>=0.3 ? "Aguas arriba viene agua: "+up.nombre+" subió "+Math.round(c7*100)+" cm en 7 días." : "Aguas arriba sin cambios grandes: "+up.nombre+" varió "+cm(c7)+" en 7 días."; box.appendChild(sig); } }
+  var best=null,bc=-Infinity;
+  upstreamOf(e,8).forEach(function(up){ var us=serieOf(up.id); if(us&&us.length>7){ var c=us[us.length-1][1]-valueDaysAgo(us,7); if(c>bc){ bc=c; best=up; } } });
+  if(best){ var sig=document.createElement("p"); sig.className="signal"+(bc>=0.3?"":" calm");
+    sig.textContent = bc>=0.3 ? "Aguas arriba viene agua: "+best.nombre+" subió "+Math.round(bc*100)+" cm en 7 días. Ese pulso llega a tu ciudad días después." : "Aguas arriba sin cambios grandes: el puerto que más varió fue "+best.nombre+", "+cm(bc)+" en 7 días."; box.appendChild(sig); }
   drawGauge(h,t,e); drawChart(serie,fc,t,sl);
   renderTodo(lvlNow,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews();
 }
