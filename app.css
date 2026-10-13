@@ -126,3 +126,6 @@ footer{font-size:14.5px;color:var(--muted);display:flex;flex-direction:column;ga
 footer ul.fuentes{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 @media (prefers-reduced-motion: no-preference){.status-band{transition:background .3s}}
 .leaflet-container{font:inherit}
+.top>div:first-child{flex:1 1 320px;min-width:0}
+.tagline{margin-top:8px;font-size:15.5px;line-height:1.45;color:var(--muted);max-width:60ch;text-wrap:pretty}
+tr.here td{background:var(--water-soft)}

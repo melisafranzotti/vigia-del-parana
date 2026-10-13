@@ -310,13 +310,14 @@ function chainLags(estId){
 function renderUp(e){
   var tb=$("upTable"); tb.textContent="";
   var lags=chainLags(e.id);
-  var list=upstreamOf(e,8).reverse(); list.push(e);
+  var list=D.est.slice().sort(function(a,b){return a.orden-b.orden;});
   list.forEach(function(x){
     var s=serieOf(x.id), tr=document.createElement("tr"); if(x.id===e.id) tr.className="here";
     tr.innerHTML="<td></td><td></td><td></td><td></td><td></td><td></td>"; var c=tr.children;
     var nm=document.createElement("span"); nm.textContent=x.nombre; c[0].appendChild(nm);
     var sm=document.createElement("span"); sm.className="st"; c[0].appendChild(sm);
     if(x.id===e.id){ c[1].textContent="tu ciudad"; c[1].className="st"; }
+    else if(x.orden>e.orden){ c[1].textContent="aguas abajo"; c[1].className="st"; c[1].title="Recibe el agua después que tu ciudad"; }
     else if(lags[x.id]!=null){ c[1].textContent=lags[x.id]+(lags[x.id]===1?" día":" días"); }
     else { c[1].textContent="–"; c[1].title="No está en la cadena de propagación de tu ciudad"; }
     if(!s||!s.length){ sm.textContent="Sin datos todavía"; c[2].textContent="–"; tb.appendChild(tr); return; }
