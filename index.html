@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
-<link rel="stylesheet" href="app.css?v=ae868f00">
+<link rel="stylesheet" href="app.css?v=331b8d58">
 </head>
 <body>
 <a class="skip" href="#estado">Ir al estado</a>
@@ -151,12 +151,12 @@
       <li>Clima: <a href="https://www.smn.gob.ar" target="_blank" rel="noopener">Servicio Meteorológico Nacional</a>.</li>
       <li>Noticias: medios de la región, resumidas con enlace a la nota original.</li>
     </ul>
-    <p>La línea de <em>tendencia</em> en el gráfico y los «días hasta cada umbral» son una extrapolación de la última semana hecha por esta app; no son pronóstico oficial. Si arriba dice «Datos viejos», la actualización automática falló: no te guíes por esta página.</p>
+    <p id="como-proyecta"><b>* Cómo se calcula la Proyección Vigía.</b> No es un pronóstico oficial: es una estimación propia de esta app. La idea es simple: el agua que hoy pasa por un puerto de aguas arriba llega al tuyo unos días después. Para cada ciudad, la app revisó tres años de alturas del INA y encontró qué puerto de arriba y con cuántos días de retraso explica mejor sus subidas y bajadas (por ejemplo, Santa Fe sigue a Hernandarias con unos 2 días de diferencia). Con eso, la proyección toma lo que ya subió o bajó aguas arriba y lo traslada a tu puerto; para los días que todavía no tienen dato de arriba, prolonga la tendencia reciente, cada vez con menos peso. La banda de error no es un adorno: es el error real que ese mismo cálculo tuvo al ponerlo a prueba contra el pasado, a 1, 7 y 15 días. El modelo se recalibra solo cada lunes. No sabe de lluvias locales, del río Salado ni de maniobras nuevas en las represas, así que cuando hay pronóstico del INA, el del INA manda. Si arriba dice «Datos viejos», la actualización automática falló: no te guíes por esta página.</p>
     <p id="resumenFoot"></p>
     <p class="small">Código abierto: <a id="repoLink" href="#" target="_blank" rel="noopener">GitHub</a>. Hecho en Santa Fe, Argentina.</p>
   </footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
-<script src="app.js?v=ae868f00"></script>
+<script src="app.js?v=331b8d58"></script>
 </body>
 </html>
