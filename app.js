@@ -26,7 +26,7 @@ var store = {
   set:function(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
   del:function(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
-var D = { est:null, zonas:null, alturas:null, ctx:null };
+var D = { est:null, zonas:null, alturas:null, ctx:null, modelo:null };
 var state = { loc: store.get("vigia.loc"), zona:null, estacion:null };
 var map=null, marker=null, mapPoint=null;
 
@@ -79,6 +79,38 @@ function altZones(lat,lng){ // alternativas cercanas para "No, elegir otra"
   return alts;
 }
 
+/* ---------- proyección por propagación aguas arriba ---------- */
+function serieMap(id){ var s=serieOf(id); if(!s) return null; var m={}; s.forEach(function(p){ m[p[0]]=p[1]; }); return {m:m, last:s[s.length-1][0]}; }
+function addDays(d,k){ return isoD(new Date(parseD(d).getTime()+k*86400000)); }
+function extendUpstream(uid, fromDate, k, depth){
+  // valor de la estación uid el día fromDate+k, usando su propio modelo si k va más allá de lo medido
+  var u=serieMap(uid); if(!u) return null;
+  var target=addDays(fromDate,k);
+  if(u.m[target]!=null) return u.m[target];
+  var proj = depth>0 ? projectStation(uid, depth-1) : null;
+  if(proj){ for(var i=0;i<proj.length;i++){ if(proj[i].fecha===target) return proj[i].central; } }
+  // prolongación con pendiente reciente amortiguada
+  var lastV=u.m[u.last], prev=u.m[addDays(u.last,-5)]; if(lastV==null||prev==null) return null;
+  var slope=(lastV-prev)/5, ext=lastV, st=slope, n=daysBetween(u.last,target);
+  for(var j=0;j<n;j++){ st*=((D.modelo&&D.modelo.decay)||0.85); ext+=st; }
+  return ext;
+}
+function projectStation(estId, depth){
+  if(depth==null) depth=6;
+  var M=D.modelo&&D.modelo.estaciones?D.modelo.estaciones[String(estId)]:null;
+  if(!M||!M.up) return null;
+  var d=serieMap(estId), u=serieMap(M.up); if(!d||!u) return null;
+  var t=d.last, h0=d.m[t], src=u.m[addDays(t,-M.lag)]; if(h0==null||src==null) return null;
+  var out=[], H=(D.modelo.horizonte||15);
+  for(var k=1;k<=H;k++){
+    var hu = extendUpstream(M.up, addDays(t,-M.lag), k, depth);
+    if(hu==null) break;
+    var c=h0+M.b*(hu-src), e=(M.err&&M.err[k-1]!=null)?M.err[k-1]:null;
+    out.push({fecha:addDays(t,k), central:+c.toFixed(2), min:e!=null?+(c-e).toFixed(2):null, max:e!=null?+(c+e).toFixed(2):null, medido:k<=M.lag});
+  }
+  return out.length?out:null;
+}
+
 /* ---------- carga ---------- */
 function load(){
   var v="?v="+Math.floor(Date.now()/600000);
@@ -86,8 +118,9 @@ function load(){
     fetch("data/estaciones.json"+v).then(function(r){return r.json();}),
     fetch("data/zonas.geojson"+v).then(function(r){return r.json();}),
     fetch("data/alturas.json"+v).then(function(r){return r.json();}).catch(function(){return null;}),
-    fetch("data/contexto.json"+v).then(function(r){return r.json();}).catch(function(){return null;})
-  ]).then(function(r){ D.est=r[0].estaciones; D.zonas=r[1]; D.alturas=r[2]; D.ctx=r[3]; });
+    fetch("data/contexto.json"+v).then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch("data/modelo.json"+v).then(function(r){return r.json();}).catch(function(){return null;})
+  ]).then(function(r){ D.est=r[0].estaciones; D.zonas=r[1]; D.alturas=r[2]; D.ctx=r[3]; D.modelo=r[4]; });
 }
 
 /* ---------- ubicación ---------- */
@@ -214,7 +247,9 @@ function render(){
   var fc=(D.ctx&&D.ctx.pronosticos&&D.ctx.pronosticos[String(z.estacion)])||null;
   var today=todayStr();
   var fcFuture=(fc&&fc.puntos?fc.puntos:[]).filter(function(p){return p.fecha>=today;});
-  var peak=Math.max(h+Math.max(sl,0)*HORIZONTE, fcFuture.reduce(function(m,p){return Math.max(m,p.central);},-Infinity));
+  var proj=projectStation(z.estacion,6);
+  var projPeak=proj?proj.reduce(function(m,p){return Math.max(m,p.central);},-Infinity):-Infinity;
+  var peak=Math.max(proj?projPeak:h+Math.max(sl,0)*HORIZONTE, fcFuture.reduce(function(m,p){return Math.max(m,p.central);},-Infinity));
   var lvlOut=levelOf(peak,t);
   $("estado").className="status lvl-"+LVL[lvlNow].id;
   $("lvlName").textContent=LVL[lvlNow].nombre;
@@ -231,6 +266,8 @@ function render(){
     else if(sl<-0.003){ lines.push("Está bajando unos "+Math.abs(Math.round(sl*100))+" cm por día. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m)."); }
     else { lines.push("Está estable. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m), "+Math.round((next[1]-h)*100)+" cm más arriba."); }
   } else lines.push("El río superó el umbral de salida de tu zona ("+fmt(t.s)+" m).");
+  if(proj){ var M=D.modelo.estaciones[String(z.estacion)], pl=proj[proj.length-1], pk=proj.reduce(function(m,p){return p.central>m.central?p:m;},proj[0]);
+    lines.push("Proyección Vigía a "+proj.length+" días (según lo ya medido en "+M.up_nombre+", que llega en unos "+M.lag+" días): "+fmt(pk.central)+" m hacia el "+dateLabel(pk.fecha)+(pk.max!=null?" (entre "+fmt(pk.min)+" y "+fmt(pk.max)+")":"")+"."); }
   lines.push("Niveles oficiales en "+e.nombre+": alerta "+fmt(e.alerta)+" m · evacuación "+fmt(e.evac)+" m.");
   if(fcFuture.length){ var fp=fcFuture[fcFuture.length-1]; lines.push("Pronóstico del INA para el "+dateLabel(fp.fecha)+": "+fmt(fp.central)+" m"+(fp.max!=null?" (hasta "+fmt(fp.max)+" m)":"")+"."); }
   var box=$("lines"); box.textContent=""; lines.forEach(function(s){ var p=document.createElement("p"); p.textContent=s; box.appendChild(p); });
@@ -238,7 +275,7 @@ function render(){
   upstreamOf(e,8).forEach(function(up){ var us=serieOf(up.id); if(us&&us.length>7){ var c=us[us.length-1][1]-valueDaysAgo(us,7); if(c>bc){ bc=c; best=up; } } });
   if(best){ var sig=document.createElement("p"); sig.className="signal"+(bc>=0.3?"":" calm");
     sig.textContent = bc>=0.3 ? "Aguas arriba viene agua: "+best.nombre+" subió "+Math.round(bc*100)+" cm en 7 días. Ese pulso llega a tu ciudad días después." : "Aguas arriba sin cambios grandes: el puerto que más varió fue "+best.nombre+", "+cm(bc)+" en 7 días."; box.appendChild(sig); }
-  drawGauge(h,t,e); drawChart(serie,fc,t,sl);
+  drawGauge(h,t,e); drawChart(serie,fc,t,sl,proj);
   renderTodo(lvlNow,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews();
 }
 function upstreamOf(e,n){ return D.est.filter(function(x){return x.orden<e.orden;}).sort(function(a,b){return b.orden-a.orden;}).slice(0,n); }
@@ -321,14 +358,15 @@ function drawGauge(h,t,e){
   svg.appendChild(svgEl("line",{x1:x0-4,x2:x0+w+4,y1:y(h),y2:y(h),stroke:"var(--ink)","stroke-width":2}));
   var g=$("gauge"); g.textContent=""; g.appendChild(svg);
 }
-function drawChart(serie,fc,t,sl){
+function drawChart(serie,fc,t,sl,proj){
   var W=640,H=270,L=40,R=14,T=14,B=28, pts=serie.slice(-21), d0=pts[0][0], last=pts[pts.length-1];
   var fpts=(fc&&fc.puntos?fc.puntos:[]).filter(function(p){return p.fecha>d0;});
   var endD=new Date(parseD(last[0]).getTime()+HORIZONTE*86400000), dEnd=isoD(endD);
   fpts.forEach(function(p){ if(p.fecha>dEnd) dEnd=p.fecha; });
   var span=Math.max(daysBetween(d0,dEnd),1);
   var trendEnd=last[1]+sl*HORIZONTE;
-  var vals=pts.map(function(p){return p[1];}).concat([trendEnd]);
+  var vals=pts.map(function(p){return p[1];}).concat(proj?[]:[trendEnd]);
+  if(proj){ proj.forEach(function(p){ vals.push(p.central); if(p.max!=null) vals.push(p.max); if(p.min!=null) vals.push(p.min); if(p.fecha>dEnd) dEnd=p.fecha; }); span=Math.max(daysBetween(d0,dEnd),1); }
   fpts.forEach(function(p){ vals.push(p.central); if(p.max!=null) vals.push(p.max); if(p.min!=null) vals.push(p.min); });
   var lo=Math.floor((Math.min.apply(null,vals)-0.2)*2)/2, hi=Math.ceil((Math.max.apply(null,vals)+0.3)*2)/2;
   [t.a,t.p,t.s].forEach(function(v){ if(v>hi&&v<=hi+0.8) hi=Math.ceil((v+0.1)*2)/2; });
@@ -344,8 +382,18 @@ function drawChart(serie,fc,t,sl){
   svg.appendChild(svgEl("line",{x1:x(last[0]),x2:x(last[0]),y1:T,y2:H-B,stroke:"var(--line)","stroke-dasharray":"2 3"}));
   var area="M"+x(pts[0][0])+","+y(lo), line=""; pts.forEach(function(p,i){ area+=" L"+x(p[0])+","+y(p[1]); line+=(i?" L":"M")+x(p[0])+","+y(p[1]); }); area+=" L"+x(last[0])+","+y(lo)+" Z";
   svg.appendChild(svgEl("path",{d:area,fill:"var(--water-soft)"})); svg.appendChild(svgEl("path",{d:line,fill:"none",stroke:"var(--water)","stroke-width":2.5,"stroke-linejoin":"round"}));
-  // tendencia propia
-  svg.appendChild(svgEl("path",{d:"M"+x(last[0])+","+y(last[1])+" L"+x(isoD(endD))+","+y(Math.max(lo,Math.min(hi,trendEnd))),fill:"none",stroke:"var(--muted)","stroke-width":1.5,"stroke-dasharray":"2 4"}));
+  if(proj){
+    var band="M"+x(last[0])+","+y(last[1]); proj.forEach(function(p){ band+=" L"+x(p.fecha)+","+y(p.max!=null?p.max:p.central); });
+    for(var q=proj.length-1;q>=0;q--){ band+=" L"+x(proj[q].fecha)+","+y(proj[q].min!=null?proj[q].min:proj[q].central); } band+=" Z";
+    svg.appendChild(svgEl("path",{d:band,fill:"var(--water)",opacity:.12}));
+    var pl="M"+x(last[0])+","+y(last[1]); proj.forEach(function(p){ pl+=" L"+x(p.fecha)+","+y(p.central); });
+    svg.appendChild(svgEl("path",{d:pl,fill:"none",stroke:"var(--water)","stroke-width":2,"stroke-dasharray":"4 3"}));
+    var lastMed=null; proj.forEach(function(p){ if(p.medido) lastMed=p; });
+    if(lastMed){ svg.appendChild(svgEl("circle",{cx:x(lastMed.fecha),cy:y(lastMed.central),r:3.5,fill:"var(--water)"})); svg.appendChild(svgEl("text",{x:x(lastMed.fecha),y:y(lastMed.central)-9,"text-anchor":"middle","font-size":10.5,fill:"var(--water)","font-weight":600},"ya en camino")); }
+    var pe=proj[proj.length-1]; svg.appendChild(svgEl("text",{x:x(pe.fecha),y:y(pe.central)-9,"text-anchor":"end","font-size":11.5,fill:"var(--water)","font-weight":600},fmt(pe.central)));
+  } else {
+    svg.appendChild(svgEl("path",{d:"M"+x(last[0])+","+y(last[1])+" L"+x(isoD(endD))+","+y(Math.max(lo,Math.min(hi,trendEnd))),fill:"none",stroke:"var(--muted)","stroke-width":1.5,"stroke-dasharray":"2 4"}));
+  }
   if(fpts.length){ var fl="M"+x(last[0])+","+y(last[1]); fpts.forEach(function(p){ fl+=" L"+x(p.fecha)+","+y(p.central); });
     svg.appendChild(svgEl("path",{d:fl,fill:"none",stroke:"var(--silt)","stroke-width":2,"stroke-dasharray":"6 5"}));
     fpts.forEach(function(p){ var top=p.max!=null?p.max:p.central, bot=p.min!=null?p.min:p.central;
@@ -355,8 +403,9 @@ function drawChart(serie,fc,t,sl){
   svg.appendChild(svgEl("circle",{cx:x(last[0]),cy:y(last[1]),r:5,fill:"var(--water)"}));
   svg.appendChild(svgEl("text",{x:x(last[0])-8,y:y(last[1])-9,"text-anchor":"end","font-size":12,fill:"var(--ink)","font-weight":600},fmt(last[1])+" m"));
   var c=$("chart"); c.textContent=""; c.appendChild(svg);
-  $("legend").innerHTML='<span><i style="background:var(--water)"></i>Medido</span>'+(fpts.length?'<span><i style="background:var(--silt)"></i>Pronóstico INA (central y rango)</span>':'')+'<span><i style="background:var(--muted)"></i>Tendencia '+HORIZONTE+' días (estimación propia)</span>';
-  $("chartNote").textContent = "La tendencia prolonga el ritmo de la última semana; sirve para orientarse, no reemplaza al pronóstico del INA.";
+  $("legend").innerHTML='<span><i style="background:var(--water)"></i>Medido</span>'+(fpts.length?'<span><i style="background:var(--silt)"></i>Pronóstico INA (central y rango)</span>':'')+(proj?'<span><i style="background:var(--water);opacity:.6"></i>Proyección Vigía y banda de error</span>':'<span><i style="background:var(--muted)"></i>Tendencia '+HORIZONTE+' días (estimación propia)</span>');
+  if(proj){ var M=D.modelo.estaciones[String(state.loc.estacion)]; $("chartNote").textContent="La proyección Vigía usa lo que ya se midió en "+M.up_nombre+", que llega a este puerto unos "+M.lag+" días después (hasta \"ya en camino\" es dato medido aguas arriba; después, prolongación). La banda es el error real del método en los últimos "+(D.modelo.anios||3)+" años. Cuando el INA publica pronóstico, vale el INA."; }
+  else { $("chartNote").textContent="La tendencia prolonga el ritmo de la última semana; sirve para orientarse, no reemplaza al pronóstico del INA."; }
 }
 
 /* ---------- eventos ---------- */

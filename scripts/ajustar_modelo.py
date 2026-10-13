@@ -18,7 +18,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://alerta.ina.gob.ar/a5/getObservaciones"
 ANIOS = 3
 H = 15            # horizonte en días
-MAXLAG = 14
+MAXLAG = 10
 DECAY = 0.85      # amortiguación de la pendiente al prolongar aguas arriba
 
 def fetch(serie_id, start, end):
@@ -58,30 +58,44 @@ def daily(series, d0, d1):
             i += 1
     return vals
 
-def project(hd, hu, t, L, b, k):
-    """Proyección a k días desde el índice t usando solo datos hasta t."""
+CHAIN = {}      # id -> modelo elegido {"up","lag","b"}
+SERIES = {}     # id -> lista diaria
+MEMO = {}
+
+def upstream_value(uid, t, k):
+    """Valor (medido o proyectado en cadena) de la estación uid en t+k, usando datos hasta t."""
+    hu = SERIES[uid]
+    if k <= 0:
+        return hu[t + k] if t + k >= 0 else None
+    key = (uid, t, k)
+    if key in MEMO:
+        return MEMO[key]
+    val = None
+    m = CHAIN.get(uid)
+    if m:
+        val = project(hu, SERIES[m["up"]], m["up"], t, m["lag"], m["b"], k)
+    if val is None:
+        if hu[t] is not None and t - 5 >= 0 and hu[t - 5] is not None:
+            slope = (hu[t] - hu[t - 5]) / 5.0
+            ext, sl = hu[t], slope
+            for _ in range(k):
+                sl *= DECAY; ext += sl
+            val = ext
+    MEMO[key] = val
+    return val
+
+def project(hd, hu, uid, t, L, b, k):
+    """Proyección a k días desde el índice t usando solo datos hasta t (en cadena)."""
     base = hd[t]
     if base is None:
         return None
     src = t - L
     if src < 0 or hu[src] is None:
         return None
-    tgt = t + k - L
-    if tgt <= t:
-        v = hu[tgt]
-        if v is None:
-            return None
-        return base + b * (v - hu[src])
-    # prolongar aguas arriba con pendiente reciente amortiguada
-    if hu[t] is None or t - 5 < 0 or hu[t - 5] is None:
+    v = upstream_value(uid, t, k - L)
+    if v is None:
         return None
-    slope = (hu[t] - hu[t - 5]) / 5.0
-    ext = hu[t]
-    s = slope
-    for _ in range(tgt - t):
-        s *= DECAY
-        ext += s
-    return base + b * (ext - hu[src])
+    return base + b * (v - hu[src])
 
 def fit(hd, hu, L):
     """b por mínimos cuadrados sobre variaciones: Δh_d(t) ~ b · Δh_u(t−L)."""
@@ -100,11 +114,11 @@ def fit(hd, hu, L):
     r2 = (sxy * sxy) / (sxx * sy) if sy else 0
     return b, r2, len(xs)
 
-def backtest(hd, hu, L, b):
+def backtest(hd, hu, uid, L, b):
     errs = [[] for _ in range(H + 1)]
     for t in range(L + 7, len(hd) - H):
         for k in range(1, H + 1):
-            p = project(hd, hu, t, L, b, k)
+            p = project(hd, hu, uid, t, L, b, k)
             if p is None or hd[t + k] is None:
                 continue
             errs[k].append(p - hd[t + k])
@@ -138,11 +152,13 @@ def main():
             print("fallo", e["nombre"], ex, file=sys.stderr)
         time.sleep(0.4)
     modelo = {}
-    for e in est:
+    global SERIES
+    SERIES = series
+    for e in sorted(est, key=lambda x: x["orden"]):      # aguas arriba primero: la cadena ya está lista
         hd = series.get(e["id"])
         if not hd:
             continue
-        cands = [u for u in est if u["id"] in series and u["orden"] < e["orden"] and (e["orden"] - u["orden"]) <= 6]
+        cands = [u for u in est if u["id"] in series and u["orden"] < e["orden"] and (e["orden"] - u["orden"]) <= 5]
         best = None
         for u in cands:
             hu = series[u["id"]]
@@ -153,21 +169,25 @@ def main():
                 b, r2, n = f
                 if b <= 0:
                     continue
-                err = backtest(hd, hu, L, b)
-                score = sum(x for x in err[:10] if x is not None) / max(1, sum(1 for x in err[:10] if x is not None))
+                err = backtest(hd, hu, u["id"], L, b)
+                vals = [x for x in err[:10] if x is not None]
+                if len(vals) < 8:
+                    continue
+                score = sum(vals) / len(vals)
                 if best is None or score < best["score"]:
                     best = {"up": u["id"], "up_nombre": u["nombre"], "lag": L, "b": round(b, 3), "r2": round(r2, 3), "n": n, "err": err, "score": score}
         pers = persistence_error(hd)
-        if best and all(x is not None for x in best["err"][:7]) and sum(best["err"][:7]) < sum(x for x in pers[:7] if x is not None):
+        if best and sum(best["err"][:7]) < sum(x for x in pers[:7] if x is not None):
             best["persistencia"] = pers
             del best["score"]
             modelo[str(e["id"])] = best
-            print(f'{e["nombre"]:22s} <- {best["up_nombre"]:20s} lag {best["lag"]:2d}d b={best["b"]:.2f} r2={best["r2"]:.2f} err7={best["err"][6]:.2f} (pers {pers[6]:.2f})', file=sys.stderr)
+            CHAIN[e["id"]] = {"up": best["up"], "lag": best["lag"], "b": best["b"]}
+            print(f'{e["nombre"]:22s} <- {best["up_nombre"]:20s} lag {best["lag"]:2d}d b={best["b"]:.2f} r2={best["r2"]:.2f} err3={best["err"][2]:.2f} err7={best["err"][6]:.2f} err15={best["err"][14]} (pers7 {pers[6]:.2f})', file=sys.stderr)
         else:
             modelo[str(e["id"])] = {"persistencia": pers}
             print(f'{e["nombre"]:22s} sin modelo mejor que persistencia', file=sys.stderr)
     doc = {"ajustado": hoy.isoformat(), "anios": ANIOS, "horizonte": H, "decay": DECAY,
-           "nota": "Modelo de propagación por estación: upstream (up), retraso en días (lag), ganancia (b), y error RMSE medido en backtest para 1..15 días (err). 'persistencia' es el error de suponer que el río no cambia, como referencia.",
+           "cadena": True, "nota": "Modelo de propagación en cadena por estación: upstream (up), retraso en días (lag), ganancia (b), y error RMSE medido en backtest para 1..15 días (err). 'persistencia' es el error de suponer que el río no cambia, como referencia.",
            "estaciones": modelo}
     json.dump(doc, open(os.path.join(ROOT, "data/modelo.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("modelo.json escrito:", len(modelo), "estaciones", file=sys.stderr)
