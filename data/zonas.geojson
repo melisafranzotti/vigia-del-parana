@@ -1279,6 +1279,305 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "parana-bajada-grande",
+    "barrio": "Paraná",
+    "nombre": "Bajada Grande",
+    "ref": "Barrio ribereño del noroeste de la ciudad, al final de la avenida Estrada, sobre el río.",
+    "umbrales": [
+     4.2,
+     4.5,
+     4.7
+    ],
+    "vigilar": "Bajada Grande es el barrio de Paraná que primero siente la crecida. Referencia documentada: en noviembre de 2023, con el puerto en 4,78 m, el agua entraba en viviendas de la calle T y el municipio alojó a familias de forma preventiva. Por eso los umbrales de la app para esta zona están por debajo de la alerta oficial (4,70 m).",
+    "estacion": 29,
+    "estimada": true,
+    "fuentes": [
+     "https://www.parana.gob.ar/noticias/evacuan-en-forma-preventiva-a-siete-personas-por-la-crecida-del-rio-en-parana",
+     "https://www.unoentrerios.com.ar/la-provincia/mas-ciudades-entrerrianas-se-preparan-posibles-evacuaciones-n10098968.html"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.585,
+       -31.7
+      ],
+      [
+       -60.552,
+       -31.7
+      ],
+      [
+       -60.552,
+       -31.7085
+      ],
+      [
+       -60.56,
+       -31.7135
+      ],
+      [
+       -60.575,
+       -31.7165
+      ],
+      [
+       -60.585,
+       -31.714
+      ],
+      [
+       -60.585,
+       -31.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "parana-costanera-baja",
+    "barrio": "Paraná",
+    "nombre": "Costanera Baja y Puerto Nuevo",
+    "ref": "La franja baja entre el río y la barranca: avenida Laurencena, Patito Sirirí, San José de Puerto Nuevo.",
+    "umbrales": [
+     4.5,
+     4.8,
+     5.0
+    ],
+    "vigilar": "Esta franja está al pie de la barranca, a nivel del río. Referencia documentada: en la crecida de enero de 2016 (puerto en 6,10 m) se restringió el tránsito pesado por la Costanera Baja. El nivel de evacuación oficial de Paraná es 5,00 m; la app usa ese valor como umbral de salida.",
+    "estacion": 29,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lanacion.com.ar/sociedad/baja-el-rio-uruguay-en-concordia-pero-preocupa-la-crecida-del-parana-en-el-oeste-de-entre-rios-nid1858914/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.552,
+       -31.7085
+      ],
+      [
+       -60.545,
+       -31.7105
+      ],
+      [
+       -60.536,
+       -31.7135
+      ],
+      [
+       -60.528,
+       -31.7165
+      ],
+      [
+       -60.519,
+       -31.7185
+      ],
+      [
+       -60.519,
+       -31.7245
+      ],
+      [
+       -60.527,
+       -31.7245
+      ],
+      [
+       -60.54,
+       -31.7205
+      ],
+      [
+       -60.552,
+       -31.7175
+      ],
+      [
+       -60.552,
+       -31.7085
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "parana-puerto-sanchez",
+    "barrio": "Paraná",
+    "nombre": "Puerto Sánchez, Thompson y Los Arenales",
+    "ref": "Barrios ribereños al este de Puerto Nuevo: Puerto Sánchez, Thompson, Los Arenales, Villa Almendral.",
+    "umbrales": [
+     4.3,
+     4.6,
+     4.8
+    ],
+    "vigilar": "Defensa Civil de Paraná nombra a Puerto Sánchez y Los Arenales, junto con Bajada Grande, entre los sectores que primero se ven afectados por el río. Referencia documentada: en enero de 2016 (puerto en 6,10 m) hubo familias autoevacuadas de Puerto Sánchez, Los Arenales y Thompson. Los umbrales de la app para esta zona están entre la alerta (4,70 m) y la evacuación oficial (5,00 m).",
+    "estacion": 29,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lanacion.com.ar/sociedad/baja-el-rio-uruguay-en-concordia-pero-preocupa-la-crecida-del-parana-en-el-oeste-de-entre-rios-nid1858914/",
+     "https://www.unoentrerios.com.ar/la-provincia/mas-ciudades-entrerrianas-se-preparan-posibles-evacuaciones-n10098968.html"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.519,
+       -31.7085
+      ],
+      [
+       -60.5,
+       -31.7085
+      ],
+      [
+       -60.5,
+       -31.7245
+      ],
+      [
+       -60.519,
+       -31.7245
+      ],
+      [
+       -60.519,
+       -31.7085
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "parana-toma-nueva",
+    "barrio": "Paraná",
+    "nombre": "Toma Nueva, Toma Vieja y Puerto Viejo",
+    "ref": "Sector ribereño del noreste: Toma Nueva, camping Toma Vieja y la zona del Puerto Viejo.",
+    "umbrales": [
+     4.5,
+     4.8,
+     5.0
+    ],
+    "vigilar": "Sector costero del noreste de la ciudad. Defensa Civil de Paraná menciona a Puerto Viejo entre los lugares que se siguen de cerca cuando el río se acerca a la alerta. La app usa como umbral de salida el nivel de evacuación oficial (5,00 m). Para este sector no hay tantos registros publicados como para Bajada Grande; la Municipalidad es la mejor fuente.",
+    "estacion": 29,
+    "estimada": true,
+    "fuentes": [
+     "https://www.unoentrerios.com.ar/la-provincia/mas-ciudades-entrerrianas-se-preparan-posibles-evacuaciones-n10098968.html"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.5,
+       -31.698
+      ],
+      [
+       -60.47,
+       -31.698
+      ],
+      [
+       -60.47,
+       -31.712
+      ],
+      [
+       -60.485,
+       -31.7165
+      ],
+      [
+       -60.5,
+       -31.7165
+      ],
+      [
+       -60.5,
+       -31.698
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "parana-alta",
+    "barrio": "Paraná",
+    "nombre": "Barrancas y resto de la ciudad",
+    "ref": "El casco urbano y la mayor parte de los barrios, sobre la barranca, muy por encima del río.",
+    "umbrales": [
+     5.0,
+     5.5,
+     6.5
+    ],
+    "vigilar": "La mayor parte de Paraná está sobre la barranca, decenas de metros por encima del río: el Paraná no llega. Lo que sí se nota en estos barrios con lluvias fuertes son los arroyos entubados y a cielo abierto (Antoñico, Las Viejas, La Santiagueña), que esta app no sigue. Si vivís cerca de un arroyo, la referencia es la lluvia, no la altura del puerto.",
+    "estacion": 29,
+    "estimada": true,
+    "fuentes": []
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.585,
+       -31.714
+      ],
+      [
+       -60.575,
+       -31.7165
+      ],
+      [
+       -60.56,
+       -31.7135
+      ],
+      [
+       -60.552,
+       -31.7175
+      ],
+      [
+       -60.54,
+       -31.7205
+      ],
+      [
+       -60.527,
+       -31.7245
+      ],
+      [
+       -60.5,
+       -31.7245
+      ],
+      [
+       -60.485,
+       -31.7165
+      ],
+      [
+       -60.47,
+       -31.712
+      ],
+      [
+       -60.455,
+       -31.712
+      ],
+      [
+       -60.455,
+       -31.79
+      ],
+      [
+       -60.585,
+       -31.79
+      ],
+      [
+       -60.585,
+       -31.714
+      ]
+     ]
+    ]
+   }
   }
  ]
 }

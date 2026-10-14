@@ -142,7 +142,7 @@ function proposeZone(lat,lng,origen){
   }
   state.pending={lat:lat,lng:lng,zona:r.zona,origen:origen};
   $("confirmZona").textContent=zoneLabel(r.zona);
-  $("confirmRef").textContent=(r.zona.generica?"Estación más cercana a "+Math.round(r.km)+" km. ":"Zona estimada según el mapa de la Costa santafesina. ")+r.zona.ref;
+  $("confirmRef").textContent=(r.zona.generica?"Estación más cercana a "+Math.round(r.km)+" km. ":r.zona.estimada?"Zona estimada a partir de registros de crecidas anteriores, sin validación de vecinos todavía. ":"Zona estimada según el mapa de la Costa santafesina. ")+r.zona.ref;
   $("confirmAlt").hidden=true; $("confirmBox").hidden=false;
   $("confirmBox").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
@@ -297,7 +297,7 @@ function renderTodo(lvl,z){
   $("actuarLead").textContent=LEAD[key];
   var ul=$("todo"); ul.textContent="";
   TODO[key].forEach(function(txt){ var li=document.createElement("li"); li.textContent=txt; ul.appendChild(li); });
-  var vg=$("vigilar"); vg.textContent=""; var b=document.createElement("b"); b.textContent="Para conocer tu zona: "; vg.appendChild(b); vg.appendChild(document.createTextNode(z.vigilar));
+  var vg=$("vigilar"); vg.textContent=""; var b=document.createElement("b"); b.textContent="Para conocer tu zona: "; vg.appendChild(b); vg.appendChild(document.createTextNode(z.vigilar)); if(z.estimada){ var es=document.createElement("span"); es.className="muted small"; es.textContent=" Zona armada con registros públicos de crecidas anteriores; si conocés el barrio y algo no cierra, avisanos."; vg.appendChild(es); }
 }
 function chainLags(estId){
   var out={}, acc=0, id=estId, guard=0;

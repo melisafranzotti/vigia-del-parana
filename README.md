@@ -44,7 +44,7 @@ App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los rí
 
 ## Colaborar
 
-Correcciones de zonas, umbrales, referencias o textos: abrí un issue o un pull request. Si vivís en la Costa santafesina y conocés hasta dónde llegó el agua en crecidas anteriores, ese dato vale más que cualquier estimación.
+Correcciones de zonas, umbrales, referencias o textos: abrí un issue o un pull request. Si vivís en la Costa santafesina o en los barrios ribereños de Paraná y conocés hasta dónde llegó el agua en crecidas anteriores, ese dato vale más que cualquier estimación. Las zonas de Paraná se armaron con registros públicos (municipio, INA, prensa) y están marcadas como estimadas hasta que un vecino las valide.
 
 ## Licencia
 
