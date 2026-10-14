@@ -2,10 +2,10 @@ name: Actualizar alturas (INA)
 
 on:
   schedule:
-    # 07:20 y 19:20 hora Argentina (UTC-3), con un segundo intento 50 min después
-    # por si GitHub descarta o demora la corrida programada (pasa en horas pico).
-    - cron: "20 10,22 * * *"
-    - cron: "10 11,23 * * *"
+    # Cada hora, al minuto 17. GitHub demora u omite los crons en horas pico
+    # (ayer una corrida salió 3 h tarde), así que se corre seguido: si el INA no
+    # cambió nada, el script termina en "sin cambios" y no hay commit.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
