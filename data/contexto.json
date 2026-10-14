@@ -1,91 +1,157 @@
 {
- "actualizado": "2026-10-13T10:12:00-03:00",
- "resumen": "Itaipú sigue con el vertedero abierto y Yacyretá recibe unos 28.000 m³/s, así que la onda de crecida continúa bajando por Ituzaingó, Corrientes y Goya. En Santa Fe el último dato del INA sigue siendo 3,51 m (+2 cm en el día), lejos de la alerta; el pronóstico nuevo del INA todavía no salió y no hay novedades de daños en las defensas de la Costa.",
+ "actualizado": "2026-10-14T13:14:00-03:00",
+ "resumen": "La crecida ya es fuerte en el Alto Paraná: Puerto Iguazú marcó 32,20 m (el nivel de evacuación es 28 m), Puerto Libertador y Santa Ana también están por encima de evacuación, e Ituzaingó quedó en 4,41 m con el vertedero principal y el de Aña Cuá de Yacyretá abiertos (a la represa entran unos 34.000 m³/s y se esperan más). Corrientes, Barranqueras y Goya están a menos de un metro de la alerta y el INA prevé que la superen desde el jueves 15 y que pasen el nivel de evacuación hacia el sábado 17. En Santa Fe el puerto está en 3,57 m (+2 cm en el día) y el pronóstico nuevo del INA lo lleva a 4,05 m el 20/10 y 5,16 m el 27/10, muy cerca de la alerta de 5,30 m, por lo que la Provincia dice tener defensas y bombas en condiciones; no hay reportes de filtraciones ni obras de urgencia en la Costa.",
  "represas": [
   {
-   "detalle": "El embalse está en su máximo de seguridad y la represa funciona como usina de paso; prevén mantener el vertedero abierto toda la semana. Esperan lluvias hasta el jueves 15 y después una baja gradual del caudal.",
-   "estado": "Vertedero abierto",
-   "fecha": "2026-10-13",
-   "fuente": "ABC Color / Noticias de la Calle",
    "nombre": "Itaipú",
+   "estado": "Vertedero abierto",
+   "valor": "≈ 11.000",
    "unidad": "m³/s",
-   "url": "https://www.abc.com.py/economia/2026/10/12/crecida-del-rio-parana-supero-la-capacidad-de-regulacion-de-itaipu-ya-nos-esta-sobrepasando/",
-   "valor": "18.000–19.000",
-   "valorNota": "Caudal con el que opera la represa (sale lo mismo que entra)"
+   "valorNota": "Caudal vertido por el vertedero (martes 13 al mediodía), además de lo turbinado",
+   "detalle": "El martes 13 Itaipú abrió la segunda canaleta (la central) del vertedero: por la mañana vertía 10,7 millones de litros por segundo, un 17 % de la capacidad máxima del vertedero, y al mediodía llegó a 11,3 millones. La represa dice que la maniobra no agrava la crecida porque deja pasar lo mismo que entra; aguas abajo el Iguazú sigue aportando mucho más de lo normal.",
+   "fecha": "2026-10-14",
+   "fuente": "Noticias de la Calle / La Clave (Paraguay)",
+   "url": "https://www.noticiasdelacalle.com.ar/noticias/2026/10/14/200811-itaipu-abrio-una-segunda-compuerta-del-vertedero-y-aseguro-que-la-maniobra-no-agrava-las-inundaciones"
   },
   {
-   "detalle": "Al aporte de Itaipú se sumó el Iguazú, que pasó de unos 1.500 a 9.000 m³/s; también vierte por Aña Cuá. El martes la EBY repitió que entran unos 28.000 m³/s y que el caudal seguiría subiendo; para Ayolas estimaba entre 4,3 y 5,1 m (alerta en 4,20 m).",
-   "estado": "Vertedero principal abierto",
-   "fecha": "2026-10-13",
-   "fuente": "EBY / La Tribuna",
    "nombre": "Yacyretá",
+   "estado": "Vertedero principal y Aña Cuá abiertos",
+   "valor": "≈ 34.100",
    "unidad": "m³/s",
-   "url": "https://www.eby.gov.py/alerta-hidrologico-n03-octubre/",
-   "valor": "≈ 28.000",
-   "valorNota": "Agua que llega al embalse, en aumento"
+   "valorNota": "Agua que llega al embalse el martes 13; la EBY esperaba 35.200 para el miércoles",
+   "detalle": "El Resumen Ejecutivo de la EBY del 13/10 informa 34.100 m³/s de caudal afluente (en alza), con 11.700 m³/s vertidos por el brazo principal y 11.100 m³/s por Aña Cuá; el embalse está en cota 82,85 msnm. El río en Ayolas estaba en 5,00 m y en Ituzaingó ya superó el nivel de evacuación (4 m). Según el INA, por encima de 30.000 m³/s de aporte se entra en escenario de evacuación aguas abajo.",
+   "fecha": "2026-10-13",
+   "fuente": "EBY – Resumen Ejecutivo N° 6110",
+   "url": "https://www.eby.gov.py/cota-82-85-msnm-resumen-ejecutivo-n-6110-13-10-2026/"
   }
  ],
  "pronosticos": {
-  "30": {
-   "emitido": "2026-10-06",
+  "19": {
+   "emitido": "2026-10-13",
    "fuente": "INA",
-   "nota": "Es el pronóstico del 6/10, anterior a la apertura del vertedero principal de Yacyretá: a media mañana del martes 13 todavía no apareció la versión nueva del INA. El valor previsto para el 13/10 (3,48 m) se cumplió casi exacto; según el INA, si las lluvias siguen así el río podría acercarse a 4,80 m a comienzos de noviembre.",
    "puntos": [
-    {
-     "central": 3.48,
-     "fecha": "2026-10-13",
-     "max": 3.9,
-     "min": 3.3
-    },
-    {
-     "central": 4.02,
-     "fecha": "2026-10-20",
-     "max": 4.6,
-     "min": null
-    }
-   ]
+    {"fecha": "2026-10-15", "central": 6.5, "min": 6.5, "max": null},
+    {"fecha": "2026-10-17", "central": 7.0, "min": 7.0, "max": null},
+    {"fecha": "2026-10-21", "central": 7.35, "min": null, "max": null}
+   ],
+   "nota": "El INA no publicó la cifra puntual por día en texto: su reporte del 13/10 indica que Corrientes superaría el nivel de alerta (6,50 m) desde el 15/10 y el de evacuación (7,00 m) desde el 17/10; los dos primeros puntos son esos umbrales. El pico de 7,35 m para el martes 20 o miércoles 21 lo dio Juan Borús (INA) en una entrevista del 14/10. Se actualiza el viernes 16."
+  },
+  "20": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-15", "central": 6.0, "min": null, "max": null},
+    {"fecha": "2026-10-17", "central": 6.5, "min": 6.5, "max": null}
+   ],
+   "nota": "El INA prevé cerca de 6 m (nivel de alerta) para el jueves 15 y superar el nivel de evacuación (6,50 m) desde el sábado 17; el segundo punto es ese umbral, no una cifra puntual. Analistas locales no descartan un pico de 6 a 6,50 m la semana próxima. Se actualiza el viernes 16."
+  },
+  "23": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-15", "central": 5.2, "min": 5.2, "max": null},
+    {"fecha": "2026-10-17", "central": 5.7, "min": 5.7, "max": null}
+   ],
+   "nota": "El INA no publicó cifra puntual en texto: su reporte del 13/10 indica que Goya superaría la alerta (5,20 m) desde el 15/10 y la evacuación (5,70 m) desde el 17/10; los puntos son esos umbrales. La tabla anterior (9/10) preveía 5,50 m para el 20/10, ya superada por la evolución. Se actualiza el viernes 16."
+  },
+  "24": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-16", "central": 5.1, "min": 5.1, "max": null},
+    {"fecha": "2026-10-17", "central": 5.3, "min": 5.3, "max": null}
+   ],
+   "nota": "Sin cifra puntual publicada en texto: el INA indica que Reconquista superaría la alerta (5,10 m) desde el 16/10 y la evacuación (5,30 m) desde el 17/10; los puntos son esos umbrales. Se actualiza el viernes 16."
+  },
+  "26": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-17", "central": 5.8, "min": 5.8, "max": null},
+    {"fecha": "2026-10-19", "central": 6.15, "min": 6.15, "max": null}
+   ],
+   "nota": "Sin cifra puntual publicada en texto: el INA indica alta probabilidad de superar la alerta (5,80 m) desde el 17/10 y probabilidad de superar la evacuación (6,15 m) desde el 19/10; los puntos son esos umbrales. Se actualiza el viernes 16."
+  },
+  "29": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-27", "central": 5.12, "min": null, "max": null}
+   ],
+   "nota": "Pronóstico del martes 13: cerca de 4 m para el 20/10 (sin cifra exacta publicada) y 5,12 m para el 27/10, 42 cm sobre la alerta (4,70 m) y 12 cm sobre la evacuación (5,00 m). Borús (INA) habló de un máximo de 5,40 a 5,50 m en 15 a 18 días. Se actualiza el viernes 16."
+  },
+  "30": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-20", "central": 4.05, "min": null, "max": null},
+    {"fecha": "2026-10-27", "central": 5.16, "min": null, "max": null}
+   ],
+   "nota": "Pronóstico nuevo del martes 13: 4,05 m el 20/10 y 5,16 m el 27/10, a 14 cm de la alerta (5,30 m). Es una suba de 1,60 m en menos de dos semanas y depende de las lluvias en la alta cuenca. El INA lo actualiza el viernes 16."
+  },
+  "34": {
+   "emitido": "2026-10-13",
+   "fuente": "INA",
+   "puntos": [
+    {"fecha": "2026-10-28", "central": 5.0, "min": null, "max": null},
+    {"fecha": "2026-10-31", "central": 5.25, "min": 5.2, "max": 5.3}
+   ],
+   "nota": "Valores dados por Juan Borús (INA) en entrevistas del 13 y 14/10, no de la tabla publicada: Rosario llegaría a la alerta (5,00 m) hacia el 28/10 y terminaría octubre entre 5,20 y 5,30 m, con un pico cercano a 5,50 m en los primeros diez días de noviembre (evacuación: 5,25 m). Se actualiza el viernes 16."
   }
  },
  "noticias": [
   {
-   "titulo": "Santa Fe sigue de cerca la cuenca mientras el río sube de a poco",
-   "fuente": "Radio Rafaela",
-   "fecha": "2026-10-13",
-   "url": "https://radiorafaela.com.ar/provinciales/el-rio-parana-crece-y-mantienen-el-seguimiento-de-la-cuenca-en-santa-fe",
-   "resumen": "El parte del INA del 12/10 marcó 3,51 m en el puerto, 2 cm más que el día anterior y todavía lejos de la alerta (5,30 m). Las proyecciones ubican al río por encima de 4 m en la segunda mitad de octubre."
+   "titulo": "Ituzaingó superó el nivel de evacuación y en la isla Apipé ya reubicaron a 57 personas",
+   "fuente": "Infobae",
+   "fecha": "2026-10-14",
+   "url": "https://www.infobae.com/sociedad/2026/10/14/el-nino-el-rio-parana-sigue-creciendo-y-provoca-mas-evacuaciones-y-aislamiento-de-localidades/",
+   "resumen": "Con Yacyretá vertiendo, el Paraná pasó los 4 m en Ituzaingó y el municipio de Apipé calcula que deberán salir entre 30 y 50 familias más; están sacando el ganado de las islas. Defensa Civil de Corrientes espera que el río supere la evacuación en la capital entre el 20 y el 21 de octubre, e Itatí declaró la emergencia."
   },
   {
-   "titulo": "Itaipú dejará el vertedero abierto toda la semana",
+   "titulo": "Ruta 12 cortada en Misiones: los arroyos taparon dos puentes entre El Alcázar y Eldorado",
+   "fuente": "Primera Edición",
+   "fecha": "2026-10-14",
+   "url": "https://www.primeraedicion.com.ar/nota/101150992/crecidas-misiones-ruta-12-cortada-puentes-pasos-fronterizos/",
+   "resumen": "Vialidad cerró los puentes sobre los arroyos Paranay y Piray Guazú y habilitó un desvío largo por las rutas 11, 14, 20 y 17; Montecarlo, Caraguatay y Puerto Piray quedan con acceso restringido. El paso a Paraguay por Puerto Maní (Corpus) está cerrado con el Paraná en 8,46 m y subiendo."
+  },
+  {
+   "titulo": "Barranqueras llegó a 5,40 m y el Chaco ya asiste a 71 personas fuera de sus casas",
+   "fuente": "EsChaco",
+   "fecha": "2026-10-14",
+   "url": "https://www.eschaco.com/vernota.asp?id_noticia=133786",
+   "resumen": "El río subió 9 cm en medio día y quedó a 60 cm de la alerta; el INA espera que roce los 6 m el jueves. En Barranqueras trasladaron a 21 familias y en Isla del Cerrito activaron un plan de contingencia porque el acceso terrestre podría quedar bajo agua entre jueves y viernes."
+  },
+  {
+   "titulo": "Itaipú abrió una segunda canaleta del vertedero y vierte unos 11.000 m³/s",
    "fuente": "Noticias de la Calle",
+   "fecha": "2026-10-14",
+   "url": "https://www.noticiasdelacalle.com.ar/noticias/2026/10/14/200811-itaipu-abrio-una-segunda-compuerta-del-vertedero-y-aseguro-que-la-maniobra-no-agrava-las-inundaciones",
+   "resumen": "La binacional sostiene que la maniobra solo deja pasar el agua que ya llega al embalse y no agrava la inundación aguas abajo. El vertido equivale a un 17 % de la capacidad máxima del vertedero."
+  },
+  {
+   "titulo": "Yacyretá recibe 34.100 m³/s y vierte por los dos brazos",
+   "fuente": "EBY",
    "fecha": "2026-10-13",
-   "url": "https://www.noticiasdelacalle.com.ar/noticias/2026/10/13/200502-itaipu-mantendra-abiertas-sus-compuertas-durante-toda-la-semana-por-la-crecida-del-parana",
-   "resumen": "La represa trabaja con 18.000 a 19.000 m³/s, entre 6.000 y 7.000 más que hace una semana, y el embalse está en su tope de seguridad. En Ciudad del Este hay unas 66 familias evacuadas."
+   "url": "https://www.eby.gov.py/cota-82-85-msnm-resumen-ejecutivo-n-6110-13-10-2026/",
+   "resumen": "El parte diario de la entidad muestra el embalse en cota 82,85 y 11.700 m³/s saliendo por el vertedero principal más 11.100 por Aña Cuá, con un aporte previsto de 35.200 m³/s para el miércoles. El puente Ayolas–Ituzaingó sigue cerrado al menos hasta el sábado 17."
   },
   {
-   "fecha": "2026-10-12",
-   "fuente": "Aire de Santa Fe",
-   "resumen": "Evacuaron a nueve familias en la isla Apipé Grande y a más de 200 personas en Ciudad del Este. En el puerto de Santa Fe el río subió 76 cm en 20 días y se espera que pase los 4 m en la segunda mitad de octubre.",
-   "titulo": "El Paraná crece en el NEA y Paraguay: hay familias evacuadas y Yacyretá abrió sus compuertas",
-   "url": "https://airedesantafe.com.ar/actualidad/crece-el-rio-parana-el-noreste-argentino-y-paraguay-hay-evacuados-y-yacyreta-abrio-sus-compuertas-n673053"
-  },
-  {
-   "fecha": "2026-10-12",
-   "fuente": "ABC Color",
-   "resumen": "En la cuenca del Iguazú llovió cinco veces más de lo pronosticado. La EBY espera que el caudal siga subiendo en los próximos días.",
-   "titulo": "Yacyretá abrió su vertedero principal: al embalse llegan unos 28.000 m³/s",
-   "url": "https://www.abc.com.py/economia/2026/10/12/lluvias-cinco-veces-mayores-a-lo-previsto-yacyreta-abre-su-vertedero-y-espera-mas-caudal-del-parana/"
-  },
-  {
-   "fecha": "2026-10-12",
-   "fuente": "El Litoral",
-   "resumen": "La entidad binacional explicó que la maniobra busca amortiguar la crecida y no agravarla. Advierte que el caudal podría seguir creciendo.",
-   "titulo": "Yacyretá informó que recibe 28.000 m³/s tras abrir sus compuertas",
-   "url": "https://www.ellitoral.com.ar/sociedad/2026-10-12-19-28-0-yacyreta-recibe-28-000-m-s-el-comunicado-de-la-entidad-tras-abrir-sus-compuertas"
+   "titulo": "Santa Fe: el INA proyecta 5,16 m para el 27 de octubre y la Provincia revisa defensas y bombas",
+   "fuente": "Radio Rafaela",
+   "fecha": "2026-10-14",
+   "url": "https://radiorafaela.com.ar/provinciales/el-rio-parana-podria-llegar-a-los-516-metros-en-santa-fe-la-provincia-sigue-de-cerca-la-crecida",
+   "resumen": "El pronóstico del martes deja al puerto a 14 cm de la alerta (5,30 m) a fin de mes. Recursos Hídricos dice que readecuó terraplenes, limpió canales y recuperó estaciones de bombeo, y Protección Civil arma planes de contingencia con los municipios de la Costa, sin reportes de filtraciones ni obras de urgencia por ahora."
   }
  ],
  "fuentes_consultadas": [
   "https://alerta.ina.gob.ar/a5/diario/reporte_diario",
-  "https://www.eby.gov.py",
-  "https://www.itaipu.gov.py"
+  "https://alerta.ina.gob.ar/a5/diario/pdf/reporte_diario_2026-10-13.pdf",
+  "https://www.ina.gob.ar/alerta/index.php",
+  "https://www.ina.gob.ar/archivos/alerta/TabProno20261013.pdf",
+  "https://www.eby.gov.py/cota-82-85-msnm-resumen-ejecutivo-n-6110-13-10-2026/",
+  "https://www.elonce.com/parana/rio-parana-cuando-podria-superar-los-cinco-metros.htm",
+  "https://www.lt9.com.ar/se-intensifica-la-crecida-del-rio-en-santa-fe-y-se-espera-que-supere-los-5-metros-antes-de-fin-de-mes/",
+  "https://lt3.com.ar/2026/10/14/proyectan-un-pico-de-crecida-de-550-metros-del-rio-parana-en-rosario-para-los-primeros-dias-de-noviembre/",
+  "https://www.eschaco.com/vernota.asp?id_noticia=133786"
  ]
 }
