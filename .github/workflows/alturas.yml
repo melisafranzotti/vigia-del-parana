@@ -2,8 +2,10 @@ name: Actualizar alturas (INA)
 
 on:
   schedule:
-    # 07:20 y 19:20 hora Argentina (UTC-3)
+    # 07:20 y 19:20 hora Argentina (UTC-3), con un segundo intento 50 min después
+    # por si GitHub descarta o demora la corrida programada (pasa en horas pico).
     - cron: "20 10,22 * * *"
+    - cron: "10 11,23 * * *"
   workflow_dispatch:
 
 permissions:
