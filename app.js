@@ -1,7 +1,7 @@
 /* Vigía del Paraná — app comunitaria, no oficial. Código abierto. */
 (function(){
 "use strict";
-var REPO = "https://github.com/melisafranzotti/vigia-del-parana";
+var REPO = "https://github.com/vigia-del-parana/vigia-del-parana.github.io";
 var RESOLVER_URL = ""; // opcional: servicio que resuelve links cortos maps.app.goo.gl (ver README)
 var COBERTURA_KM = 45;  // distancia máxima a una estación para considerar la ubicación cubierta
 var HORIZONTE = 20;     // días de proyección de tendencia
@@ -310,6 +310,11 @@ function chainLags(estId){
 function renderUp(e){
   var tb=$("upTable"); tb.textContent="";
   var list=D.est.slice().sort(function(a,b){return a.orden-b.orden;});
+  var nAlerta=0, nEvac=0, nSube=0;
+  list.forEach(function(x){ var s0=serieOf(x.id); if(!s0||!s0.length) return; var h0=s0[s0.length-1][1]; if(h0>=x.evac) nEvac++; else if(h0>=x.alerta) nAlerta++; var a7=valueDaysAgo(s0,7); if(a7!=null&&h0-a7>=0.3) nSube++; });
+  var partes=[]; if(nEvac) partes.push(nEvac+(nEvac===1?" supera evacuación":" superan evacuación")); if(nAlerta) partes.push(nAlerta+(nAlerta===1?" supera alerta":" superan alerta")); if(nSube) partes.push(nSube+(nSube===1?" subió":" subieron")+" más de 30 cm en la semana");
+  var cr=$("cuencaResumen"); if(cr) cr.textContent = partes.length ? partes.join(" · ") : "Sin puertos en alerta";
+  var sumMain=document.querySelector("#cuencaBox .sum-main"); if(sumMain) sumMain.textContent="Ver los "+list.length+" puertos";
   list.forEach(function(x){
     var s=serieOf(x.id), tr=document.createElement("tr"); if(x.id===e.id) tr.className="here";
     tr.innerHTML="<td></td><td></td><td></td>"; var c=tr.children;
