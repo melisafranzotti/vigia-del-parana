@@ -297,7 +297,7 @@ function renderTodo(lvl,z){
   $("actuarLead").textContent=LEAD[key];
   var ul=$("todo"); ul.textContent="";
   TODO[key].forEach(function(txt){ var li=document.createElement("li"); li.textContent=txt; ul.appendChild(li); });
-  var vg=$("vigilar"); vg.textContent=""; var b=document.createElement("b"); b.textContent="En tu zona: "; vg.appendChild(b); vg.appendChild(document.createTextNode(z.vigilar));
+  var vg=$("vigilar"); vg.textContent=""; var b=document.createElement("b"); b.textContent="Para conocer tu zona: "; vg.appendChild(b); vg.appendChild(document.createTextNode(z.vigilar));
 }
 function chainLags(estId){
   var out={}, acc=0, id=estId, guard=0;
