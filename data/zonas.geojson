@@ -1809,24 +1809,24 @@
     "coordinates": [
      [
       [
-       -58.7,
-       -27.36
+       -58.67,
+       -27.325
       ],
       [
-       -58.54,
-       -27.36
+       -58.598,
+       -27.325
       ],
       [
-       -58.54,
-       -27.24
+       -58.598,
+       -27.255
       ],
       [
-       -58.7,
-       -27.24
+       -58.67,
+       -27.255
       ],
       [
-       -58.7,
-       -27.36
+       -58.67,
+       -27.325
       ]
      ]
     ]
@@ -2381,6 +2381,55 @@
       [
        -58.285,
        -27.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "paso-de-la-patria",
+    "barrio": "Paso de la Patria",
+    "nombre": "Paso de la Patria",
+    "ref": "El pueblo y su costa sobre el Paraná, frente a la confluencia con el Paraguay.",
+    "umbrales": [
+     5.7,
+     6.0,
+     6.5
+    ],
+    "vigilar": "Según el municipio, con unos 6,00 m empieza a entrar agua por los desagües en la zona costera, y los barrios más expuestos son La Isla, Señorans (junto al arroyo, entre Ceibo y Guyaibí), Rincón (zona García de Cossio), Campo de Capara (detrás de la barrera de contención) y Pescadores (de la avenida Pirayiné Niveiro a calle Amarillo). Hay unas 50 familias relevadas en riesgo y tres refugios preparados. Si el río supera los 8,20 m, el sector del arroyo Huajó puede complicar el acceso por tierra. La app marca Salida en la alerta oficial (6,50 m).",
+    "estacion": 18,
+    "estimada": true,
+    "fuentes": [
+     "https://www.diarioellibertador.com.ar/creciente-rio-parana-paso-de-la-patria-chino-garcia-alerta-barrios-afectados/",
+     "https://examedia.com.ar/portada/post/88053783",
+     "https://www.perfil.com/noticias/nea/crecida-del-rio-parana-los-cuatro-municipios-de-corrientes-que-estan-en-alerta-por-niveles-de-evacuacion.phtml"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.594,
+       -27.37
+      ],
+      [
+       -58.53,
+       -27.37
+      ],
+      [
+       -58.53,
+       -27.295
+      ],
+      [
+       -58.594,
+       -27.295
+      ],
+      [
+       -58.594,
+       -27.37
       ]
      ]
     ]
