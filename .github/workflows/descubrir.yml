@@ -2,12 +2,16 @@ name: descubrir-estaciones
 on:
   push:
     branches: [descubrir]
+permissions:
+  contents: write
 jobs:
   d:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Consultar API INA
         run: |
+          exec > descubrir.txt 2>&1
           B=https://alerta.ina.gob.ar/a5
           for u in "obs/puntual/estaciones?format=json" "obs/puntual/series?var_id=2&format=json" "getEstaciones" ; do
             echo "=== $u"; curl -s -m 90 "$B/$u" -o out.txt -w "%{http_code} %{size_download}\n"; head -c 1500 out.txt; echo
@@ -26,3 +30,9 @@ jobs:
               s=json.dumps(it,ensure_ascii=False)
               if pat.search(s): print(s[:600])
           PY
+      - name: Guardar
+        if: always()
+        run: |
+          git config user.name vigia-bot; git config user.email vigia-bot@users.noreply.github.com
+          git add descubrir.txt series.json || true
+          git commit -m "resultado descubrir [skip ci]" && git push origin descubrir
