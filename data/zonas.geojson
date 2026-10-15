@@ -1676,6 +1676,151 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "barranqueras-costa",
+    "barrio": "Barranqueras",
+    "nombre": "Costa del riacho, fuera de la defensa",
+    "ref": "La franja entre la defensa de Barranqueras y el riacho: zona del puerto, Club Náutico, La Hormiga y la costa hacia el Paraná.",
+    "umbrales": [
+     5.0,
+     5.4,
+     6.0
+    ],
+    "vigilar": "Es el sector del Gran Resistencia que queda afuera del anillo de defensa, a la altura del riacho. Referencias documentadas: en octubre de 2026, con el puerto entre 5,30 y 5,40 m, el municipio ya trasladó de forma preventiva a 21 familias (71 personas) de la costa, entre ellas la zona del Club Náutico; en diciembre de 2015, con 7,23 m, hubo que desalojar sectores de Barranqueras. Barranqueras preparó 70 módulos para la asistencia. La app marca Salida en la alerta oficial (6,00 m).",
+    "estacion": 20,
+    "estimada": true,
+    "fuentes": [
+     "https://www.eschaco.com/vernota.asp?id_noticia=133786",
+     "https://www.diarionorte.com/334699-barranqueras-prepara-70-refugios-ante-la-crecida-del-rio-y-ya-hay-evacuados-preventivos",
+     "https://www.infobae.com/2015/12/24/1778710-ya-son-mas-20-mil-los-evacuados-el-litoral-las-inundaciones-y-la-crecida/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.94,
+       -27.43
+      ],
+      [
+       -58.88,
+       -27.43
+      ],
+      [
+       -58.88,
+       -27.53
+      ],
+      [
+       -58.94,
+       -27.53
+      ],
+      [
+       -58.94,
+       -27.43
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "gran-resistencia-anillo",
+    "barrio": "Gran Resistencia",
+    "nombre": "Dentro del anillo de defensa",
+    "ref": "Resistencia, Barranqueras, Puerto Vilelas y Fontana dentro de los terraplenes perimetrales.",
+    "umbrales": [
+     6.5,
+     7.5,
+     8.5
+    ],
+    "vigilar": "El Gran Resistencia está rodeado por un anillo de terraplenes con compuertas y estaciones de bombeo, diseñado para resistir el riacho Barranqueras hasta unos 9,50 m. Como referencia: la crecida de 1983, la mayor registrada, llegó a 8,60 m en el puerto. Con el río alto se cierran las compuertas y la lluvia sale por bombeo, así que dentro del anillo lo que más se nota son las lluvias fuertes; los barrios más bajos (Barranqueras, Vilelas y parte de Resistencia) son los primeros en anegarse. La app usa la evacuación oficial (6,50 m) como primer umbral.",
+    "estacion": 20,
+    "estimada": true,
+    "fuentes": [
+     "https://repositorio.unne.edu.ar/bitstream/handle/123456789/30774/RIUNNE_FAU_AC_Roces_C.pdf",
+     "https://www.infobae.com/2015/12/24/1778710-ya-son-mas-20-mil-los-evacuados-el-litoral-las-inundaciones-y-la-crecida/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.08,
+       -27.39
+      ],
+      [
+       -58.94,
+       -27.39
+      ],
+      [
+       -58.94,
+       -27.54
+      ],
+      [
+       -59.08,
+       -27.54
+      ],
+      [
+       -59.08,
+       -27.39
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "isla-del-cerrito",
+    "barrio": "Isla del Cerrito",
+    "nombre": "Isla del Cerrito",
+    "ref": "La localidad en la confluencia del Paraná y el Paraguay, al noreste de Resistencia.",
+    "umbrales": [
+     5.4,
+     5.8,
+     6.0
+    ],
+    "vigilar": "En Isla del Cerrito el primer efecto de la crecida no es el agua en las casas sino el camino: con el puerto de Barranqueras cerca de 6 m, el acceso principal por tierra puede quedar cubierto y la isla aislada. El municipio activa un plan con provisiones, traslado de emergencia y atención médica, y Prefectura dispone lanchas. Conviene tener provisiones para varios días y sacar vehículos y animales a tiempo.",
+    "estacion": 20,
+    "estimada": true,
+    "fuentes": [
+     "https://www.eschaco.com/vernota.asp?id_noticia=133786",
+     "https://www.perfil.com/noticias/nea/crecida-del-parana-en-chaco-hay-evacuados-y-la-isla-del-cerrito-podria-quedar-sin-acceso-terrestre.phtml"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.7,
+       -27.36
+      ],
+      [
+       -58.54,
+       -27.36
+      ],
+      [
+       -58.54,
+       -27.24
+      ],
+      [
+       -58.7,
+       -27.24
+      ],
+      [
+       -58.7,
+       -27.36
+      ]
+     ]
+    ]
+   }
   }
  ]
 }
