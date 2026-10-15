@@ -1821,6 +1821,110 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "corrientes-costa",
+    "barrio": "Corrientes",
+    "nombre": "Barrios costeros",
+    "ref": "La franja sobre el río fuera de la defensa costera: Molina Punta, Quinta Ferré, Caridi, Itatí, Seminario, Santa Marta, Galván, Costa Esperanza, La Tosquera y otros barrios ribereños.",
+    "umbrales": [
+     6.0,
+     6.5,
+     7.0
+    ],
+    "vigilar": "Los barrios ribereños de Corrientes son los primeros en recibir el agua. Referencias documentadas: en julio de 2013, con el puerto en 7,19 m, la Municipalidad informó trece barrios costeros afectados (Itatí, Seminario, Quinta Ferré, Sol de Mayo, Virgen de los Dolores, Quilmes, Molina Punta, Costa Esperanza, Santa Marta, Galván, Caridi, Río Paraná y La Tosquera); en diciembre de 2015, justo en 7,00 m, se trasladó a familias de Pujol, Quinta Ferré, Itatí, Molina Punta, Caridi y La Tosquera. Por eso la app marca Salida para esta zona en la evacuación oficial (7,00 m).",
+    "estacion": 19,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lanueva.com/nota/2013-7-2-11-44-0-corrientes-la-crecida-del-rio-parana-afecta-a-10-barrios-de-la-ciudad",
+     "https://www.lanacion.com.ar/sociedad/la-crecida-del-rio-parana-no-da-tregua-nid1597465/",
+     "https://www.diariodecuyo.com.ar/noticias/una-crecida-en-el-rio-parana-obligo-a-evacuar-miles-de-personas-611114.html"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.74,
+       -27.44
+      ],
+      [
+       -58.74,
+       -27.468
+      ],
+      [
+       -58.845,
+       -27.468
+      ],
+      [
+       -58.845,
+       -27.56
+      ],
+      [
+       -58.87,
+       -27.56
+      ],
+      [
+       -58.87,
+       -27.44
+      ],
+      [
+       -58.74,
+       -27.44
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "corrientes-ciudad",
+    "barrio": "Corrientes",
+    "nombre": "Ciudad",
+    "ref": "El centro, protegido por la defensa costera y la costanera, y los barrios altos hacia el sur y el este.",
+    "umbrales": [
+     7.0,
+     7.5,
+     8.0
+    ],
+    "vigilar": "El centro de Corrientes está protegido por la defensa costera de la costanera y la mayor parte de la ciudad está más alta que el río. En las crecidas de 2013 y 2015, con 7 m o más, los afectados fueron los barrios costeros, no el centro. Con el río alto, lo que más se nota en estos barrios son las lluvias fuertes, porque los desagües drenan con más dificultad. La app usa la evacuación oficial (7,00 m) como primer umbral.",
+    "estacion": 19,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lanueva.com/nota/2013-7-2-11-44-0-corrientes-la-crecida-del-rio-parana-afecta-a-10-barrios-de-la-ciudad"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.845,
+       -27.468
+      ],
+      [
+       -58.7,
+       -27.468
+      ],
+      [
+       -58.7,
+       -27.56
+      ],
+      [
+       -58.845,
+       -27.56
+      ],
+      [
+       -58.845,
+       -27.468
+      ]
+     ]
+    ]
+   }
   }
  ]
 }
