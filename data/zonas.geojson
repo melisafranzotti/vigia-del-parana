@@ -595,8 +595,12 @@
      4.8,
      5.3
     ],
-    "vigilar": "Zona dentro del terraplén de Colastiné Sur, con sectores bajos. En crecidas anteriores el municipio reforzó la defensa cerca del Club de Caza y Pesca; es el punto que conviene conocer.",
-    "estacion": 30
+    "vigilar": "Zona dentro del terraplén de Colastiné Sur, con sectores bajos y una defensa menos consolidada que la del anillo de Colastiné Norte; con el río alto mucho tiempo, el agua puede aflorar por filtración. Referencia: en la crecida de enero de 2016, con el puerto entre 6,0 y 6,6 m, Colastiné Sur fue de los sectores más afectados de la ciudad y hubo que evacuar a más de cien personas. En crecidas anteriores el municipio reforzó la defensa cerca del Club de Caza y Pesca.",
+    "estacion": 30,
+    "fuentes": [
+     "https://www.ellitoral.com/area-metropolitana/puntos-vulnerables-ciudad-frente-crecida_0_efYZwuSJvq.html",
+     "https://www.pausa.com.ar/2016/01/crecida-santa-fe-evacuados/"
+    ]
    },
    "geometry": {
     "type": "MultiPolygon",
@@ -914,8 +918,11 @@
      4.1,
      4.3
     ],
-    "vigilar": "Esta zona da a la laguna Setúbal y la defensa de ese lado está proyectada pero todavía no construida. Por eso los umbrales de la app para tu zona son más bajos: la idea es que tengas más tiempo.",
-    "estacion": 30
+    "vigilar": "Esta zona da a la laguna Setúbal y la defensa de ese lado está proyectada pero todavía no construida. Por eso los umbrales de la app para tu zona son más bajos: la idea es que tengas más tiempo. Referencia: en enero de 2016, con el puerto de Santa Fe en 6,59 m, hubo 125 evacuados en Arroyo Leyes.",
+    "estacion": 30,
+    "fuentes": [
+     "https://www.pausa.com.ar/2016/01/crecida-santa-fe-evacuados/"
+    ]
    },
    "geometry": {
     "type": "MultiPolygon",
@@ -1011,8 +1018,11 @@
      4.5,
      5.0
     ],
-    "vigilar": "Para este sector no tenemos datos firmes sobre las defensas, así que la app usa umbrales prudentes. La comuna de Arroyo Leyes es la mejor fuente sobre el estado de la costa.",
-    "estacion": 30
+    "vigilar": "Para este sector no tenemos datos firmes sobre las defensas, así que la app usa umbrales prudentes. La comuna de Arroyo Leyes es la mejor fuente sobre el estado de la costa. Referencia: en enero de 2016, con el puerto de Santa Fe en 6,59 m, hubo 125 evacuados en Arroyo Leyes.",
+    "estacion": 30,
+    "fuentes": [
+     "https://www.pausa.com.ar/2016/01/crecida-santa-fe-evacuados/"
+    ]
    },
    "geometry": {
     "type": "MultiPolygon",
@@ -1112,7 +1122,7 @@
      4.8,
      5.3
     ],
-    "vigilar": "Entre la Setúbal y el Colastiné. Para este sector no tenemos datos detallados sobre las defensas, así que la app usa umbrales prudentes. El municipio es la mejor fuente sobre el estado de la zona.",
+    "vigilar": "La Guardia está dentro del anillo de defensa de la Costa, entre la Setúbal y el Colastiné. El anillo de defensa de la Costa (unos 21 km de terraplén, construido a mediados de los 90) se pensó para crecidas extraordinarias como la de 1905, que llegó a 7,72 m en el puerto, y resistió la de 1998 (7,26 m). El municipio informa el estado del terraplén y de las estaciones de bombeo.",
     "estacion": 30
    },
    "geometry": {
@@ -1157,7 +1167,7 @@
      5.0,
      5.5
     ],
-    "vigilar": "Isla con terraplén de defensa propio, mantenido por el municipio. Las crecidas grandes se siguen de cerca desde la ciudad; el municipio informa el estado de la defensa.",
+    "vigilar": "Alto Verde está protegido por terraplén, como parte del sistema de defensa de la Costa. El anillo de defensa de la Costa (unos 21 km de terraplén, construido a mediados de los 90) se pensó para crecidas extraordinarias como la de 1905, que llegó a 7,72 m en el puerto, y resistió la de 1998 (7,26 m). El municipio informa el estado de la defensa.",
     "estacion": 30
    },
    "geometry": {
@@ -1247,7 +1257,7 @@
      5.3,
      5.7
     ],
-    "vigilar": "El oeste y el centro de la ciudad dependen del río Salado y del anillo de defensa oeste, que esta app todavía no sigue. En estos barrios lo que más se nota son las lluvias fuertes, no el Paraná.",
+    "vigilar": "El oeste y el centro de la ciudad están protegidos del río Salado por la defensa oeste, construida después de 2003 para una crecida de cien años, y la mayor parte de la ciudad está más alta que el Paraná. En estos barrios lo que más se nota son las lluvias fuertes. El Salado tiene su propia escala (en Santo Tomé) que esta app todavía no sigue.",
     "estacion": 30
    },
    "geometry": {
@@ -2084,6 +2094,244 @@
       [
        -59.72,
        -29.19
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "vuelta-del-paraguayo",
+    "barrio": "Santa Fe (ciudad)",
+    "nombre": "Vuelta del Paraguayo",
+    "ref": "Sobre el riacho Santa Fe y la Ruta 168, entre el puente y La Guardia, fuera del anillo de defensa.",
+    "umbrales": [
+     4.3,
+     4.7,
+     5.0
+    ],
+    "vigilar": "La Vuelta del Paraguayo queda fuera del anillo de defensa. Referencias documentadas: según el municipio, con el puerto por encima de 5,00 m hay que evacuar este barrio; en enero de 2016, con 6,03 m, unas 300 personas estaban en refugios municipales y fue, junto con Colastiné Sur, el sector más crítico de la ciudad. Por eso la app marca Salida en 5,00 m. También quedan expuestas las familias que viven sobre la Ruta 168 fuera del terraplén.",
+    "estacion": 30,
+    "estimada": true,
+    "fuentes": [
+     "https://www.ellitoral.com/area-metropolitana/puntos-vulnerables-ciudad-frente-crecida_0_efYZwuSJvq.html",
+     "https://www.pausa.com.ar/2016/01/crecida-santa-fe-evacuados/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.674,
+       -31.668
+      ],
+      [
+       -60.645,
+       -31.668
+      ],
+      [
+       -60.645,
+       -31.65
+      ],
+      [
+       -60.674,
+       -31.65
+      ],
+      [
+       -60.674,
+       -31.668
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "santo-tome-sauce-viejo",
+    "barrio": "Santo Tomé y Sauce Viejo",
+    "nombre": "Santo Tomé y Sauce Viejo",
+    "ref": "Santo Tomé, sobre el Salado, y Sauce Viejo, sobre el río Coronda.",
+    "umbrales": [
+     4.8,
+     5.3,
+     5.7
+    ],
+    "vigilar": "Acá el Paraná se siente a través del río Coronda (Sauce Viejo) y empuja al Salado (Santo Tomé). La app usa como referencia el puerto de Santa Fe, que es el más cercano sobre el mismo sistema. Pero en Santo Tomé el río que más pesa es el Salado, que tiene su propia escala: el nivel de alerta en Santo Tomé es 4,70 m, y esta app todavía no la sigue. En Sauce Viejo, con el río alto, el problema conocido es el desmoronamiento de la barranca sobre el Coronda.",
+    "estacion": 30,
+    "estimada": true,
+    "fuentes": [
+     "https://www.ellitoral.com/area-metropolitana/riosalado-santotome-crecida-lluvias-alerta_0_vnLN74cdD4.html",
+     "https://www.airedesantafe.com.ar/santa-fe/sauce-viejo-continuan-los-desmoronamientos-el-rio-coronda-n207520"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.88,
+       -31.82
+      ],
+      [
+       -60.76,
+       -31.82
+      ],
+      [
+       -60.76,
+       -31.63
+      ],
+      [
+       -60.88,
+       -31.63
+      ],
+      [
+       -60.88,
+       -31.82
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "coronda",
+    "barrio": "Coronda",
+    "nombre": "Coronda",
+    "ref": "La ciudad de Coronda y su costa sobre el río Coronda.",
+    "umbrales": [
+     4.8,
+     5.3,
+     5.7
+    ],
+    "vigilar": "Coronda no tiene una escala del INA propia en esta app. Usamos el puerto de Santa Fe porque está sobre el mismo brazo (el río Coronda nace frente a Santa Fe) y no el de Diamante, que está sobre el cauce principal en Entre Ríos. La ciudad está sobre la barranca; lo primero que se afecta con el río alto son la costa, el balneario y las islas. Los umbrales son los niveles oficiales de Santa Fe; la Municipalidad de Coronda es la mejor fuente para la costa local.",
+    "estacion": 30,
+    "estimada": true,
+    "fuentes": []
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.99,
+       -32.04
+      ],
+      [
+       -60.85,
+       -32.04
+      ],
+      [
+       -60.85,
+       -31.91
+      ],
+      [
+       -60.99,
+       -31.91
+      ],
+      [
+       -60.99,
+       -32.04
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "santa-rosa-de-calchines",
+    "barrio": "Santa Rosa de Calchines",
+    "nombre": "Santa Rosa de Calchines",
+    "ref": "La localidad y el paraje Los Zapallos, sobre el río San Javier.",
+    "umbrales": [
+     4.5,
+     5.0,
+     5.5
+    ],
+    "vigilar": "Santa Rosa de Calchines y Los Zapallos tienen defensas sobre el riacho, reforzadas en varias crecidas, y hay una defensa costera nueva de 3,2 km proyectada. Referencia documentada: en enero de 2016, con el puerto de Santa Fe en 6,59 m, el departamento Garay tuvo 412 evacuados, la cifra más alta de la provincia después de la capital. No hay escala del INA en el San Javier en esta app: usamos el puerto de Santa Fe como referencia, con umbrales algo por debajo de los oficiales para dar margen.",
+    "estacion": 30,
+    "estimada": true,
+    "fuentes": [
+     "https://www.pausa.com.ar/2016/01/crecida-santa-fe-evacuados/",
+     "https://www.santafe.gob.ar/noticias/noticia/258354/",
+     "https://www.airesdelinterior.com/articulo-5894-santa-rosa-de-calchines-contara-con-una-defensa-costera.html"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.39,
+       -31.47
+      ],
+      [
+       -60.27,
+       -31.47
+      ],
+      [
+       -60.27,
+       -31.36
+      ],
+      [
+       -60.39,
+       -31.36
+      ],
+      [
+       -60.39,
+       -31.47
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "cayasta-helvecia",
+    "barrio": "Cayastá y Helvecia",
+    "nombre": "Cayastá y Helvecia",
+    "ref": "Las localidades de la costa sobre el río San Javier, al norte de Santa Rosa de Calchines.",
+    "umbrales": [
+     4.5,
+     5.0,
+     5.5
+    ],
+    "vigilar": "Cayastá tiene una defensa que la provincia mantiene y repara después de cada crecida. Junto con Helvecia, siguen el río San Javier, que no tiene escala del INA en esta app: usamos el puerto de Santa Fe como referencia, con umbrales algo por debajo de los oficiales para dar margen. Los primeros afectados suelen ser las islas, los caminos rurales y los campos bajos; los productores ya están sacando hacienda. La comuna informa el estado de la defensa.",
+    "estacion": 30,
+    "estimada": true,
+    "fuentes": [
+     "https://www.santafe.gob.ar/noticias/noticia/258354/",
+     "https://www.vecinosdelacosta.com/2026/10/14/crecida-del-rio-san-javier-expectativas-para-los-proximos-dias-cuando-se-preven-los-meses-mas-criticos/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -60.23,
+       -31.26
+      ],
+      [
+       -60.03,
+       -31.26
+      ],
+      [
+       -60.03,
+       -31.04
+      ],
+      [
+       -60.23,
+       -31.04
+      ],
+      [
+       -60.23,
+       -31.26
       ]
      ]
     ]
