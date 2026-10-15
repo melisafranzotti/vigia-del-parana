@@ -63,11 +63,24 @@ function cityZone(e){ // zona genérica de una ciudad a partir de niveles oficia
     umbrales:[+(a-1.0).toFixed(2), +(a-0.5).toFixed(2), a], generica:true,
     vigilar:"Esta app usa los niveles oficiales de alerta ("+fmt(a)+" m) y evacuación ("+fmt(ev)+" m) del puerto de "+e.nombre+". Tu municipio y Defensa Civil definen qué barrios se afectan primero: seguí sus avisos."};
 }
+// Línea aproximada del cauce principal del Paraná, de la confluencia con el Paraguay al delta [lng,lat].
+// Sirve para no asignar a alguien un puerto de la otra orilla (por ejemplo, Coronda → Diamante).
+var CAUCE=[[-58.62,-27.30],[-58.87,-27.47],[-58.90,-27.95],[-59.12,-28.50],[-59.40,-29.15],[-59.62,-30.00],[-59.75,-30.74],[-60.05,-31.20],[-60.15,-31.42],[-60.42,-31.56],[-60.55,-31.71],[-60.67,-32.05],[-60.72,-32.40],[-60.69,-32.75],[-60.61,-32.95],[-60.26,-33.24],[-60.17,-33.33],[-59.98,-33.48],[-59.62,-33.67],[-59.45,-33.80],[-59.20,-34.00]];
+function orilla(lat,lng){ // "izq" (Corrientes, Entre Ríos) o "der" (Chaco, Santa Fe, Buenos Aires); null al norte de la confluencia
+  if(lat>-27.30) return null;
+  var best=Infinity, cr=0;
+  for(var i=0;i<CAUCE.length-1;i++){ var ax=CAUCE[i][0], ay=CAUCE[i][1], dx=CAUCE[i+1][0]-ax, dy=CAUCE[i+1][1]-ay;
+    var t=Math.max(0,Math.min(1,((lng-ax)*dx+(lat-ay)*dy)/(dx*dx+dy*dy))), px=ax+t*dx, py=ay+t*dy, d2=(lng-px)*(lng-px)+(lat-py)*(lat-py);
+    if(d2<best){ best=d2; cr=dx*(lat-ay)-dy*(lng-ax); } }
+  return cr>0?"izq":"der";
+}
 function resolveZone(lat,lng){
   var fs=D.zonas.features;
   for(var i=0;i<fs.length;i++){ if(pointInFeature(lng,lat,fs[i])) return {zona:Object.assign({},fs[i].properties), km:0}; }
-  var best=null,bd=Infinity;
-  D.est.forEach(function(e){ var d=km([lat,lng],[e.lat,e.lng]); if(d<bd){ bd=d; best=e; } });
+  var lado=orilla(lat,lng), best=null, bd=Infinity, bestS=null, bdS=Infinity;
+  D.est.forEach(function(e){ var d=km([lat,lng],[e.lat,e.lng]); if(d<bd){ bd=d; best=e; }
+    if(lado && orilla(e.lat,e.lng)===lado && d<bdS){ bdS=d; bestS=e; } });
+  if(bestS && bdS<=COBERTURA_KM){ best=bestS; bd=bdS; } // preferir el puerto de la misma orilla
   if(bd>COBERTURA_KM) return {zona:null, km:bd, est:best};
   return {zona:cityZone(best), km:bd, est:best};
 }
