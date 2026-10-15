@@ -2336,6 +2336,55 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "itati",
+    "barrio": "Itatí",
+    "nombre": "Itatí",
+    "ref": "El pueblo y su costa sobre el Paraná.",
+    "umbrales": [
+     6.0,
+     6.4,
+     6.8
+    ],
+    "vigilar": "En Itatí el río avanza primero sobre la costa y los bajos. Lo que se vio esta crecida: con 6,07 m el agua cortó un tramo de la Costanera del IV Centenario y cubrió las playas y los paradores; con unos 6,46 m ya había unas 70 personas autoevacuadas; con 6,80 m (la alerta oficial) se anegan los sectores más bajos del barrio Ibiray. El municipio declaró la emergencia hídrica. Salida, en esta app, aplica a la costa y los bajos; las partes altas del pueblo se guían por la evacuación oficial (7,50 m). Como referencia histórica, la gran crecida es la de 1992.",
+    "estacion": 17,
+    "estimada": true,
+    "fuentes": [
+     "https://elmonterizo.com/itati-el-rio-ya-se-comio-un-tramo-de-la-costanera-y-el-pico-que-llega-el-fin-de-semana-preocupa-a-todos",
+     "https://www.diarioepoca.com/1392565-el-rio-parana-llego-a-los-646-metros-en-itati-y-hay-70-personas-autoevacuadas",
+     "https://examedia.com.ar/portada/post/88056761"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -58.285,
+       -27.3
+      ],
+      [
+       -58.2,
+       -27.3
+      ],
+      [
+       -58.2,
+       -27.24
+      ],
+      [
+       -58.285,
+       -27.24
+      ],
+      [
+       -58.285,
+       -27.3
+      ]
+     ]
+    ]
+   }
   }
  ]
 }
