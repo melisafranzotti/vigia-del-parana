@@ -9,30 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Consultar API INA
+      - name: Probar series
         run: |
-          exec > descubrir.txt 2>&1
-          B=https://alerta.ina.gob.ar/a5
-          for u in "obs/puntual/estaciones?format=json" "obs/puntual/series?var_id=2&format=json" "getEstaciones" ; do
-            echo "=== $u"; curl -s -m 90 "$B/$u" -o out.txt -w "%{http_code} %{size_download}\n"; head -c 1500 out.txt; echo
+          exec > descubrir2.txt 2>&1
+          for s in 39 40 41 42 49 52 53 54 85 26202 29580; do
+            echo "=== $s"; curl -s -m 60 "https://alerta.ina.gob.ar/a5/getObservaciones?tipo=puntual&series_id=$s&timestart=2026-10-05&timeend=2026-10-17&format=csvless&no_id=true" | tail -n 12
           done
-          curl -s -m 120 "$B/obs/puntual/series?var_id=2&format=json" -o series.json || true
-          python3 - <<'PY'
-          import json,re
-          try:
-              d=json.load(open('series.json'))
-          except Exception as e:
-              print('no json',e); raise SystemExit
-          items=d if isinstance(d,list) else d.get('rows') or d.get('data') or d
-          print('n',len(items))
-          pat=re.compile(r'(z[aá]rate|campana|escobar|fernando|tigre|isidro|olivos|buenos aires|dock|baradero|palermo|riachuelo|dársena|darsena|lujan|luj[aá]n|oyarvide|guazu|palmas|atalaya|nueva palmira|brazo largo|paran[aá] mini|ibicuy|san pedro|ramallo)',re.I)
-          for it in items:
-              s=json.dumps(it,ensure_ascii=False)
-              if pat.search(s): print(s[:600])
-          PY
+          echo "=== largo 85"; curl -s -m 90 "https://alerta.ina.gob.ar/a5/getObservaciones?tipo=puntual&series_id=85&timestart=2023-01-01&timeend=2026-10-17&format=csvless&no_id=true" | wc -l
       - name: Guardar
         if: always()
         run: |
           git config user.name vigia-bot; git config user.email vigia-bot@users.noreply.github.com
-          git add descubrir.txt series.json || true
-          git commit -m "resultado descubrir [skip ci]" && git push origin descubrir
+          git rm -q --cached series.json descubrir.txt || true
+          git add descubrir2.txt && git commit -m "resultado 2 [skip ci]" && git push origin descubrir
