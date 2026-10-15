@@ -1925,6 +1925,169 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "reconquista-puerto-anillo",
+    "barrio": "Puerto Reconquista",
+    "nombre": "Dentro de la defensa",
+    "ref": "El área poblada de Puerto Reconquista protegida por el anillo de defensa con bombeo.",
+    "umbrales": [
+     5.3,
+     6.0,
+     6.8
+    ],
+    "vigilar": "Puerto Reconquista tiene un anillo de defensa alrededor de la zona habitada, con estaciones de bombeo. Referencia: en la crecida de 1998 el río llegó a 7,09 m. Esta semana el municipio anunció que va a elevar la defensa unos 80 cm, reacondicionar las bombas y profundizar los canales, porque los pronósticos se acercan a los valores del 98. La app usa la evacuación oficial (5,30 m) como primer umbral; el municipio informa el avance de las obras.",
+    "estacion": 24,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lt9.com.ar/reconquista-refuerza-las-defensas-ante-la-crecida-del-parana-podemos-tener-cifras-superiores-a-las-del-98/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.597,
+       -29.252
+      ],
+      [
+       -59.567,
+       -29.252
+      ],
+      [
+       -59.567,
+       -29.226
+      ],
+      [
+       -59.597,
+       -29.226
+      ],
+      [
+       -59.597,
+       -29.252
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "reconquista-puerto-fuera",
+    "barrio": "Puerto Reconquista",
+    "nombre": "Fuera de la defensa",
+    "ref": "Los sectores de Puerto Reconquista que quedan fuera del anillo: zona norte de las areneras, El Arenal, el camino a El Correntoso y las islas.",
+    "umbrales": [
+     4.3,
+     4.8,
+     5.1
+    ],
+    "vigilar": "Son los sectores que primero siente el río. Referencia documentada: esta semana, con el puerto en 4,46 m, el agua ya pasaba por encima del camino a El Correntoso, y el municipio relevó unas 45 familias (150 personas) en situación vulnerable en la zona norte, cerca de las areneras, y junto a El Arenal. La app marca Salida para estos sectores en la alerta oficial (5,10 m).",
+    "estacion": 24,
+    "estimada": true,
+    "fuentes": [
+     "https://radioamanecer.com.ar/puerto-reconquista-se-prepara-ante-la-crecida-del-rio-parana-unas-45-familias-estan-en-situacion-de-vulnerabilidad/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.64,
+       -29.29
+      ],
+      [
+       -59.52,
+       -29.29
+      ],
+      [
+       -59.52,
+       -29.19
+      ],
+      [
+       -59.64,
+       -29.19
+      ],
+      [
+       -59.64,
+       -29.29
+      ]
+     ],
+     [
+      [
+       -59.597,
+       -29.252
+      ],
+      [
+       -59.567,
+       -29.252
+      ],
+      [
+       -59.567,
+       -29.226
+      ],
+      [
+       -59.597,
+       -29.226
+      ],
+      [
+       -59.597,
+       -29.252
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "reconquista-ciudad",
+    "barrio": "Reconquista y Avellaneda",
+    "nombre": "Ciudad",
+    "ref": "Las ciudades de Reconquista y Avellaneda, unos 10 km al oeste del puerto.",
+    "umbrales": [
+     6.0,
+     6.8,
+     7.5
+    ],
+    "vigilar": "Las ciudades de Reconquista y Avellaneda están lejos del río y más altas que el puerto. El sector más expuesto del área urbana es el Callejón de la Cortada, un valle de inundación donde, junto con Puerto Reconquista, viven unas 5.000 personas según el municipio. Si vivís ahí, seguí los avisos municipales con más atención que el número del puerto. En el resto de la ciudad, con el río alto, lo que más se nota es la lluvia.",
+    "estacion": 24,
+    "estimada": true,
+    "fuentes": [
+     "https://www.lt9.com.ar/reconquista-refuerza-las-defensas-ante-la-crecida-del-parana-podemos-tener-cifras-superiores-a-las-del-98/"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.72,
+       -29.19
+      ],
+      [
+       -59.64,
+       -29.19
+      ],
+      [
+       -59.64,
+       -29.09
+      ],
+      [
+       -59.72,
+       -29.09
+      ],
+      [
+       -59.72,
+       -29.19
+      ]
+     ]
+    ]
+   }
   }
  ]
 }
