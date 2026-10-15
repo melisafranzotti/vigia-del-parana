@@ -144,6 +144,7 @@ def main():
     hoy = dt.date.today()
     d0, d1 = hoy - dt.timedelta(days=365 * ANIOS), hoy
     series = {}
+    est = [e for e in est if not e.get("marea")]   # Delta inferior y Río de la Plata: manda la marea, no se modela
     for e in est:
         try:
             series[e["id"]] = daily(fetch(e["serie_id"], d0.isoformat(), (d1 + dt.timedelta(days=1)).isoformat()), d0, d1)

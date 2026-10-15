@@ -65,7 +65,7 @@ function cityZone(e){ // zona genérica de una ciudad a partir de niveles oficia
 }
 // Línea aproximada del cauce principal del Paraná, de la confluencia con el Paraguay al delta [lng,lat].
 // Sirve para no asignar a alguien un puerto de la otra orilla (por ejemplo, Coronda → Diamante).
-var CAUCE=[[-58.62,-27.30],[-58.87,-27.47],[-58.90,-27.95],[-59.12,-28.50],[-59.40,-29.15],[-59.62,-30.00],[-59.75,-30.74],[-60.05,-31.20],[-60.15,-31.42],[-60.42,-31.56],[-60.55,-31.71],[-60.67,-32.05],[-60.72,-32.40],[-60.69,-32.75],[-60.61,-32.95],[-60.26,-33.24],[-60.17,-33.33],[-59.98,-33.48],[-59.62,-33.67],[-59.45,-33.80],[-59.20,-34.00]];
+var CAUCE=[[-58.62,-27.30],[-58.87,-27.47],[-58.90,-27.95],[-59.12,-28.50],[-59.40,-29.15],[-59.62,-30.00],[-59.75,-30.74],[-60.05,-31.20],[-60.15,-31.42],[-60.42,-31.56],[-60.55,-31.71],[-60.67,-32.05],[-60.72,-32.40],[-60.69,-32.75],[-60.61,-32.95],[-60.26,-33.24],[-60.17,-33.33],[-59.98,-33.48],[-59.62,-33.67],[-59.45,-33.80],[-59.20,-34.00],[-59.005,-34.090],[-58.950,-34.148],[-58.840,-34.230],[-58.733,-34.293],[-58.600,-34.296],[-58.544,-34.300],[-58.440,-34.320]];
 function orilla(lat,lng){ // "izq" (Corrientes, Entre Ríos) o "der" (Chaco, Santa Fe, Buenos Aires); null al norte de la confluencia
   if(lat>-27.30) return null;
   var best=Infinity, cr=0;
@@ -267,7 +267,8 @@ function render(){
   var fc=(D.ctx&&D.ctx.pronosticos&&D.ctx.pronosticos[String(z.estacion)])||null;
   var today=todayStr();
   var fcFuture=(fc&&fc.puntos?fc.puntos:[]).filter(function(p){return p.fecha>=today;});
-  PROJ_MEMO={}; var proj=projectStation(z.estacion,6);
+  PROJ_MEMO={}; var proj=e.marea?null:projectStation(z.estacion,6);
+  if(e.marea) sl=0;   // Delta inferior y Río de la Plata: la altura sigue a la marea y al viento, no a una tendencia
   var projPeak=proj?proj.reduce(function(m,p){return Math.max(m,p.central);},-Infinity):-Infinity;
   var peak=Math.max(proj?projPeak:h+Math.max(sl,0)*HORIZONTE, fcFuture.reduce(function(m,p){return Math.max(m,p.central);},-Infinity));
   var lvlOut=levelOf(peak,t);
@@ -287,6 +288,8 @@ function render(){
     if(hit) lines.push("Sube unos "+Math.round(sl*100)+" cm por día. Según la proyección, llegaría al umbral de "+next[0]+" ("+fmt(next[1])+" m) alrededor del "+dateLabel(hit.fecha)+".");
     else if(hitMax) lines.push("Sube unos "+Math.round(sl*100)+" cm por día. La proyección no llega al umbral de "+next[0]+" ("+fmt(next[1])+" m) en "+proj.length+" días, aunque en el escenario alto podría rozarlo hacia el "+dateLabel(hitMax.fecha)+".");
     else lines.push((sl>0.003?"Sube unos "+Math.round(sl*100)+" cm por día. ":sl<-0.003?"Baja unos "+Math.abs(Math.round(sl*100))+" cm por día. ":"Está estable. ")+"La proyección a "+proj.length+" días no alcanza el umbral de "+next[0]+" ("+fmt(next[1])+" m).");
+  } else if(next && e.marea){
+    lines.push("En este puerto la altura depende sobre todo de la marea del Río de la Plata y del viento: con sudestada puede subir más de un metro en pocas horas. Por eso acá no se calcula tendencia ni Proyección Vigía. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m), "+Math.round((next[1]-h)*100)+" cm más arriba.");
   } else if(next){
     if(sl>0.003){ lines.push("Sube unos "+Math.round(sl*100)+" cm por día. Si sigue igual, llegaría al umbral de "+next[0]+" ("+fmt(next[1])+" m) en unos "+Math.round((next[1]-h)/sl)+" días."); }
     else if(sl<-0.003){ lines.push("Está bajando unos "+Math.abs(Math.round(sl*100))+" cm por día. El próximo umbral es "+next[0]+" ("+fmt(next[1])+" m)."); }
@@ -299,9 +302,9 @@ function render(){
   var box=$("lines"); box.textContent=""; lines.forEach(function(s){ var p=document.createElement("p"); p.textContent=s; box.appendChild(p); });
   var best=null,bc=-Infinity;
   upstreamOf(e,8).forEach(function(up){ var us=serieOf(up.id); if(us&&us.length>7){ var c=us[us.length-1][1]-valueDaysAgo(us,7); if(c>bc){ bc=c; best=up; } } });
-  if(best){ var sig=document.createElement("p"); sig.className="signal"+(bc>=0.3?"":" calm");
+  if(best && !e.marea){ var sig=document.createElement("p"); sig.className="signal"+(bc>=0.3?"":" calm");
     sig.textContent = bc>=0.3 ? "Aguas arriba viene agua: "+best.nombre+" subió "+Math.round(bc*100)+" cm en 7 días. Ese pulso llega a tu ciudad días después." : "Aguas arriba sin cambios grandes: el puerto que más varió fue "+best.nombre+", "+cm(bc)+" en 7 días."; box.appendChild(sig); }
-  drawGauge(h,t,e); drawChart(serie,fc,t,sl,proj);
+  drawGauge(h,t,e); drawChart(serie,fc,t,e.marea?null:sl,proj);
   renderTodo(lvlNow,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews();
 }
 function upstreamOf(e,n){ return D.est.filter(function(x){return x.orden<e.orden;}).sort(function(a,b){return b.orden-a.orden;}).slice(0,n); }
@@ -367,7 +370,9 @@ function renderFc(estId,e){
   var box=$("fc"); box.textContent=""; var fc=D.ctx&&D.ctx.pronosticos?D.ctx.pronosticos[String(estId)]:null;
   if(!fc||!fc.puntos||!fc.puntos.length){
     var INA_FC=[19,20,23,24,26,29,30,34,32,14];
-    $("fcNote").textContent = INA_FC.indexOf(estId)>=0
+    $("fcNote").textContent = e.marea
+      ? "Para el Delta inferior y el Río de la Plata, el pronóstico de alturas lo elaboran el INA (sistema de pronóstico del Delta) y el Servicio de Hidrografía Naval, que emite los avisos de sudestada. Consultalos en sus sitios oficiales."
+      : INA_FC.indexOf(estId)>=0
       ? "El INA publica pronóstico para "+e.nombre+" los martes y viernes; todavía no está cargado el último. Mientras tanto, guiate por la Proyección Vigía de arriba, que es una estimación propia y no oficial."
       : "El INA no publica un pronóstico puntual para "+e.nombre+". La Proyección Vigía de arriba es una estimación propia y no oficial.";
     return; }
@@ -415,7 +420,7 @@ function drawChart(serie,fc,t,sl,proj){
   var endD=new Date(parseD(last[0]).getTime()+HORIZONTE*86400000), dEnd=isoD(endD);
   fpts.forEach(function(p){ if(p.fecha>dEnd) dEnd=p.fecha; });
   var span=Math.max(daysBetween(d0,dEnd),1);
-  var trendEnd=last[1]+sl*HORIZONTE;
+  var trendEnd=sl==null?last[1]:last[1]+sl*HORIZONTE;
   var vals=pts.map(function(p){return p[1];}).concat(proj?[]:[trendEnd]);
   if(proj){ proj.forEach(function(p){ vals.push(p.central); if(p.max!=null) vals.push(p.max); if(p.min!=null) vals.push(p.min); if(p.fecha>dEnd) dEnd=p.fecha; }); span=Math.max(daysBetween(d0,dEnd),1); }
   fpts.forEach(function(p){ vals.push(p.central); if(p.max!=null) vals.push(p.max); if(p.min!=null) vals.push(p.min); });
@@ -442,7 +447,7 @@ function drawChart(serie,fc,t,sl,proj){
     var lastMed=null; proj.forEach(function(p){ if(p.medido) lastMed=p; });
     if(lastMed){ svg.appendChild(svgEl("circle",{cx:x(lastMed.fecha),cy:y(lastMed.central),r:3.5,fill:"var(--water)"})); svg.appendChild(svgEl("text",{x:x(lastMed.fecha),y:y(lastMed.central)-9,"text-anchor":"middle","font-size":10.5,fill:"var(--water)","font-weight":600},"ya en camino")); }
     var pe=proj[proj.length-1]; svg.appendChild(svgEl("text",{x:x(pe.fecha),y:y(pe.central)-9,"text-anchor":"end","font-size":11.5,fill:"var(--water)","font-weight":600},fmt(pe.central)));
-  } else {
+  } else if(sl!=null){
     svg.appendChild(svgEl("path",{d:"M"+x(last[0])+","+y(last[1])+" L"+x(isoD(endD))+","+y(Math.max(lo,Math.min(hi,trendEnd))),fill:"none",stroke:"var(--muted)","stroke-width":1.5,"stroke-dasharray":"2 4"}));
   }
   if(fpts.length){ var fl="M"+x(last[0])+","+y(last[1]); fpts.forEach(function(p){ fl+=" L"+x(p.fecha)+","+y(p.central); });
@@ -454,8 +459,9 @@ function drawChart(serie,fc,t,sl,proj){
   svg.appendChild(svgEl("circle",{cx:x(last[0]),cy:y(last[1]),r:5,fill:"var(--water)"}));
   svg.appendChild(svgEl("text",{x:x(last[0])-8,y:y(last[1])-9,"text-anchor":"end","font-size":12,fill:"var(--ink)","font-weight":600},fmt(last[1])+" m"));
   var c=$("chart"); c.textContent=""; c.appendChild(svg);
-  $("legend").innerHTML='<span><i style="background:var(--water)"></i>Medido</span>'+(fpts.length?'<span><i style="background:var(--silt)"></i>Pronóstico INA (central y rango)</span>':'')+(proj?'<span><i style="background:var(--water);opacity:.6"></i>Proyección Vigía y banda de error <a href="#como-proyecta" class="ast" title="Cómo se calcula">*</a></span>':'<span><i style="background:var(--muted)"></i>Tendencia '+HORIZONTE+' días (estimación propia)</span>');
+  $("legend").innerHTML='<span><i style="background:var(--water)"></i>Medido</span>'+(fpts.length?'<span><i style="background:var(--silt)"></i>Pronóstico INA (central y rango)</span>':'')+(proj?'<span><i style="background:var(--water);opacity:.6"></i>Proyección Vigía y banda de error <a href="#como-proyecta" class="ast" title="Cómo se calcula">*</a></span>':sl==null?'':'<span><i style="background:var(--muted)"></i>Tendencia '+HORIZONTE+' días (estimación propia)</span>');
   if(proj){ var M=D.modelo.estaciones[String(state.loc.estacion)]; $("chartNote").textContent="La proyección Vigía usa lo que ya se midió en "+M.up_nombre+", que llega a este puerto unos "+M.lag+" días después (hasta \"ya en camino\" es dato medido aguas arriba; después, prolongación). La banda es el error real del método en los últimos "+(D.modelo.anios||3)+" años. Cuando el INA publica pronóstico, vale el INA."; }
+  else if(sl==null){ $("chartNote").textContent="En el Delta inferior y el Río de la Plata cada punto es la altura más alta registrada ese día. Acá manda la marea y el viento (sudestada), así que no se dibuja tendencia: para lo que viene, seguí los avisos del INA y del Servicio de Hidrografía Naval."; }
   else { $("chartNote").textContent="La tendencia prolonga el ritmo de la última semana; sirve para orientarse, no reemplaza al pronóstico del INA."; }
 }
 

@@ -16,7 +16,7 @@ App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los rí
 
 | Dato | Fuente |
 |---|---|
-| Alturas diarias de 33 puertos, niveles de alerta y evacuación | [INA, Alerta Hidrológico Cuenca del Plata](https://alerta.ina.gob.ar/a5/diario/reporte_diario) (API `getObservaciones`), escalas de [Prefectura Naval Argentina](https://contenidosweb.prefecturanaval.gob.ar/alturas/) |
+| Alturas diarias de 41 puertos, niveles de alerta y evacuación | [INA, Alerta Hidrológico Cuenca del Plata](https://alerta.ina.gob.ar/a5/diario/reporte_diario) (API `getObservaciones`), escalas de [Prefectura Naval Argentina](https://contenidosweb.prefecturanaval.gob.ar/alturas/) |
 | Pronósticos (tramo medio: martes a 7 y 14 días, viernes a 4 y 11) | [INA](https://www.ina.gob.ar/alerta/) |
 | Represas | [Entidad Binacional Yacyretá](https://www.eby.gov.py), [Itaipú Binacional](https://www.itaipu.gov.py) |
 | Clima | [Servicio Meteorológico Nacional](https://www.smn.gob.ar) |

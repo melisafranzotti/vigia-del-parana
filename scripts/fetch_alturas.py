@@ -11,7 +11,7 @@ BASE = "https://alerta.ina.gob.ar/a5/getObservaciones"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIAS = 35
 
-def fetch(serie_id, start, end):
+def fetch(serie_id, start, end, marea=False):
     q = urllib.parse.urlencode({"tipo": "puntual", "series_id": serie_id, "timestart": start,
                                 "timeend": end, "format": "csvless", "no_id": "true"})
     req = urllib.request.Request(BASE + "?" + q, headers={"User-Agent": "VigiaDelParana/1.0 (app comunitaria; github.com)"})
@@ -28,7 +28,10 @@ def fetch(serie_id, start, end):
             continue
         # Los registros de las 03:00Z corresponden a las 00 h de Argentina
         fecha = (dt.datetime.fromisoformat(parts[0].replace("Z", "+00:00")) - dt.timedelta(hours=3)).date().isoformat()
-        serie[fecha] = v
+        if marea and fecha in serie:
+            serie[fecha] = max(serie[fecha], v)   # puertos con marea: la lectura más alta del día
+        else:
+            serie[fecha] = v
     return sorted(serie.items())
 
 def main():
@@ -45,7 +48,7 @@ def main():
     out, fallos = [], []
     for e in est:
         try:
-            serie = fetch(e["serie_id"], start, end)
+            serie = fetch(e["serie_id"], start, end, e.get("marea", False))
             if not serie:
                 raise RuntimeError("sin datos")
             out.append({"id": e["id"], "serie": serie, "ok": True})
