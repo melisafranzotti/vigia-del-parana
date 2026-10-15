@@ -1578,6 +1578,104 @@
      ]
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "goya-costa",
+    "barrio": "Goya",
+    "nombre": "Costa del riacho, Puerto Boca y Puerto Exterior",
+    "ref": "La franja sobre el riacho Goya, la zona del Puerto Exterior y Puerto Boca, y las islas hacia el Paraná.",
+    "umbrales": [
+     4.7,
+     5.0,
+     5.2
+    ],
+    "vigilar": "Es el sector de Goya que primero siente la crecida. Referencias documentadas: en noviembre de 2023, con el Puerto Exterior en 5,16 m (apenas debajo de la alerta de 5,20 m), la zona del Puerto Exterior fue la primera afectada y hubo familias al sur del puerto rodeadas de agua; en diciembre de 2015, con 5,75 m, se trasladó a unas 20 familias de Puerto Boca. Por eso la app marca Salida para este sector en la alerta oficial (5,20 m). El municipio usa Puerto Boca como punto de encuentro para la asistencia.",
+    "estacion": 23,
+    "estimada": true,
+    "fuentes": [
+     "https://www.powernoticias.com/v5/?show=111804",
+     "https://www.diariodecuyo.com.ar/noticias/una-crecida-en-el-rio-parana-obligo-a-evacuar-miles-de-personas-611114.html",
+     "https://elmonterizo.com/el-rio-parana-amenaza-a-goya-la-maquina-que-ya-trabaja-en-el-puerto-exterior"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.33,
+       -29.1
+      ],
+      [
+       -59.268,
+       -29.1
+      ],
+      [
+       -59.268,
+       -29.2
+      ],
+      [
+       -59.33,
+       -29.2
+      ],
+      [
+       -59.33,
+       -29.1
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "goya-ciudad",
+    "barrio": "Goya",
+    "nombre": "Ciudad",
+    "ref": "El casco urbano y los barrios al este del riacho Goya.",
+    "umbrales": [
+     5.7,
+     6.0,
+     6.5
+    ],
+    "vigilar": "La ciudad está más alta que la costa del riacho y tiene defensas construidas por el municipio desde 2008; la costanera nueva tiene su paseo bajo a 6 m de la escala local y el alto a 8 m. Referencia: en la gran crecida de diciembre de 2015 hubo cientos de evacuados en Goya, sobre todo de los sectores bajos. La app usa la evacuación oficial (5,70 m) como primer umbral para la ciudad; el programa municipal Prodego informa el estado de las defensas.",
+    "estacion": 23,
+    "estimada": true,
+    "fuentes": [
+     "https://goyaciudad.com/obras-publicas/gustavo-gabiassi-destaco-la-proteccion-que-brindara-la-nueva-costanera-de-goya/",
+     "https://www.pagina12.com.ar/diario/sociedad/3-289041-2015-12-26.html",
+     "https://es.wikipedia.org/wiki/Goya_(Corrientes)"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -59.268,
+       -29.1
+      ],
+      [
+       -59.215,
+       -29.1
+      ],
+      [
+       -59.215,
+       -29.2
+      ],
+      [
+       -59.268,
+       -29.2
+      ],
+      [
+       -59.268,
+       -29.1
+      ]
+     ]
+    ]
+   }
   }
  ]
 }
