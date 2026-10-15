@@ -1,0 +1,28 @@
+name: descubrir-estaciones
+on:
+  push:
+    branches: [descubrir]
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consultar API INA
+        run: |
+          B=https://alerta.ina.gob.ar/a5
+          for u in "obs/puntual/estaciones?format=json" "obs/puntual/series?var_id=2&format=json" "getEstaciones" ; do
+            echo "=== $u"; curl -s -m 90 "$B/$u" -o out.txt -w "%{http_code} %{size_download}\n"; head -c 1500 out.txt; echo
+          done
+          curl -s -m 120 "$B/obs/puntual/series?var_id=2&format=json" -o series.json || true
+          python3 - <<'PY'
+          import json,re
+          try:
+              d=json.load(open('series.json'))
+          except Exception as e:
+              print('no json',e); raise SystemExit
+          items=d if isinstance(d,list) else d.get('rows') or d.get('data') or d
+          print('n',len(items))
+          pat=re.compile(r'(z[aá]rate|campana|escobar|fernando|tigre|isidro|olivos|buenos aires|dock|baradero|palermo|riachuelo|dársena|darsena|lujan|luj[aá]n|oyarvide|guazu|palmas|atalaya|nueva palmira|brazo largo|paran[aá] mini|ibicuy|san pedro|ramallo)',re.I)
+          for it in items:
+              s=json.dumps(it,ensure_ascii=False)
+              if pat.search(s): print(s[:600])
+          PY
