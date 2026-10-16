@@ -90,7 +90,9 @@ function doGet(e) {
   var dLat = CELDA_M / 111320;
   for (var i = 1; i < datos.length; i++) {
     var r = datos[i];
-    var lat = Number(r[2]), lng = Number(r[3]), resp = r[5], est = r[6], h = Number(r[7]), dia = String(r[1]), did = String(r[9]), prueba = r[10];
+    var lat = Number(r[2]), lng = Number(r[3]), resp = r[5], est = r[6], h = Number(r[7]), did = String(r[9]), prueba = r[10];
+    // Sheets convierte "2026-10-16" en fecha: se normaliza de vuelta a texto AAAA-MM-DD
+    var dia = r[1] instanceof Date ? Utilities.formatDate(r[1], "America/Argentina/Buenos_Aires", "yyyy-MM-dd") : String(r[1]);
     if (prueba || RESPUESTAS.indexOf(resp) < 0 || isNaN(lat) || isNaN(lng)) continue;
     var cy = Math.floor(lat / dLat), latc = (cy + 0.5) * dLat;
     var dLng = CELDA_M / (111320 * Math.cos(latc * Math.PI / 180));
