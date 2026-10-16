@@ -2,6 +2,7 @@
 (function(){
 "use strict";
 var REPO = "https://github.com/vigia-del-parana/vigia-del-parana.github.io";
+var APORTES_URL = ""; // aplicación web de Google Apps Script que recibe los aportes de vecinos (ver aportes/)
 var RESOLVER_URL = ""; // opcional: servicio que resuelve links cortos maps.app.goo.gl (ver README)
 var COBERTURA_KM = 45;  // distancia máxima a una estación para considerar la ubicación cubierta
 var HORIZONTE = 20;     // días de proyección de tendencia
@@ -160,8 +161,8 @@ function proposeZone(lat,lng,origen){
   $("confirmBox").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function zoneLabel(z){ return z.generica?z.nombre:(z.barrio===z.nombre?z.barrio:z.barrio+" · "+z.nombre); }
-function commitZone(z,lat,lng){
-  setLoc({lat:lat,lng:lng,zonaId:z.id,estacion:z.estacion,zona:z});
+function commitZone(z,lat,lng,origen){
+  setLoc({lat:lat,lng:lng,zonaId:z.id,estacion:z.estacion,zona:z,origen:origen||null});
   $("confirmBox").hidden=true; $("ubicBody").hidden=true; $("cambiarUbic").hidden=false;
   render();
   $("estado").scrollIntoView({behavior:"smooth",block:"start"});
@@ -260,7 +261,7 @@ function render(){
   if(!serie||!serie.length){
     $("hNow").innerHTML="–<span>m</span>"; $("hDelta").textContent="Todavía no hay mediciones cargadas para este puerto."; $("margen").textContent="";
     $("estado").className="status"; $("lvlName").textContent="Sin datos"; $("lvlTag").textContent="";
-    $("lines").textContent=""; $("gauge").textContent=""; $("chart").textContent=""; renderTodo(0,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews(); return;
+    $("lines").textContent=""; $("gauge").textContent=""; $("chart").textContent=""; renderTodo(0,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews(); renderAportes(z,e,null,null); return;
   }
   var last=serie[serie.length-1], h=last[1], sl=slope(serie,8), d1=valueDaysAgo(serie,1), d7=valueDaysAgo(serie,7);
   var lvlNow=levelOf(h,t);
@@ -305,7 +306,7 @@ function render(){
   if(best && !e.marea){ var sig=document.createElement("p"); sig.className="signal"+(bc>=0.3?"":" calm");
     sig.textContent = bc>=0.3 ? "Aguas arriba viene agua: "+best.nombre+" subió "+Math.round(bc*100)+" cm en 7 días. Ese pulso llega a tu ciudad días después." : "Aguas arriba sin cambios grandes: el puerto que más varió fue "+best.nombre+", "+cm(bc)+" en 7 días."; box.appendChild(sig); }
   drawGauge(h,t,e); drawChart(serie,fc,t,e.marea?null:sl,proj);
-  renderTodo(lvlNow,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews();
+  renderTodo(lvlNow,z); renderUp(e); renderDams(); renderFc(z.estacion,e); renderNews(); renderAportes(z,e,h,last[0]);
 }
 function upstreamOf(e,n){ return D.est.filter(function(x){return x.orden<e.orden;}).sort(function(a,b){return b.orden-a.orden;}).slice(0,n); }
 function renderTodo(lvl,z){
@@ -465,20 +466,116 @@ function drawChart(serie,fc,t,sl,proj){
   else { $("chartNote").textContent="La tendencia prolonga el ritmo de la última semana; sirve para orientarse, no reemplaza al pronóstico del INA."; }
 }
 
+/* ---------- aportes de vecinos ---------- */
+var PRUEBA_APORTE = /[?&]aportar=prueba\b/.test(location.search);  // modo de prueba: muestra el botón aunque el río no esté en alerta
+var OPCIONES = [["no","No llegó"],["calle","Llegó a la calle"],["terreno","Entró al terreno"],["casa","Entró a la casa o al local"]];
+var COLOR_RESP = {no:"var(--ok)",calle:"var(--warn)",terreno:"var(--alarm)",casa:"var(--crit)"};
+var TXT_RESP = {no:"el agua no llegó",calle:"el agua llegó a la calle",terreno:"el agua entró a los terrenos",casa:"el agua entró a las casas"};
+var aporteCtx=null, vecinosMap=null, vecinosCapa=null, vecinosData=null, vecinosPedido=false;
+function hoyLocal(){ var d=new Date(Date.now()-3*3600000); return d.toISOString().slice(0,10); }
+function celularId(){
+  var id=store.get("vigia.cel");
+  if(!id){ id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("c"+Math.random().toString(36).slice(2)+Date.now().toString(36)); store.set("vigia.cel",id); }
+  return id;
+}
+function renderAportes(z,e,h,fechaDato){
+  var box=$("aporteBox");
+  var activo = !!APORTES_URL || PRUEBA_APORTE;
+  var conGps = state.loc && state.loc.origen==="gps";
+  var enAlerta = h!=null && h>=e.alerta;
+  box.hidden = !(activo && conGps && h!=null && (enAlerta || PRUEBA_APORTE));
+  if(!box.hidden){
+    aporteCtx={est:e, h:h, fecha:fechaDato};
+    if(store.get("vigia.aporte")===hoyLocal() && !PRUEBA_APORTE){ $("aporteBtn").hidden=true; $("aportePaso").hidden=true; $("aporteMsg").className="msg ok"; $("aporteMsg").textContent="Ya aportaste hoy desde este celular. ¡Gracias! Mañana podés volver a contar cómo sigue."; }
+  }
+  $("privAportes").hidden=!activo;
+  renderVecinos();
+}
+function pedirAporte(){
+  var msg=$("aporteMsg"); msg.className="msg"; msg.textContent="Buscando tu ubicación…";
+  $("aportePaso").hidden=true;
+  if(!navigator.geolocation){ msg.className="msg err"; msg.textContent="Este celular no permite usar la ubicación."; return; }
+  navigator.geolocation.getCurrentPosition(function(p){
+    var acc=Math.round(p.coords.accuracy||9999);
+    if(acc>50){ msg.className="msg err"; msg.textContent="Tu celular marca la ubicación con un margen de "+acc+" m. Para que el dato sirva hace falta más precisión: probá al aire libre, con el GPS activado, y tocá de nuevo el botón."; return; }
+    aporteCtx.lat=p.coords.latitude; aporteCtx.lng=p.coords.longitude; aporteCtx.acc=acc;
+    msg.textContent="";
+    $("aporteQ").textContent="En tu ubicación y según la altura actual del río ("+fmt(aporteCtx.h)+" m en el puerto de "+aporteCtx.est.nombre+", dato del "+dateLabel(aporteCtx.fecha)+"), ¿el agua llegó a tu lugar?";
+    var opc=$("aporteOpc"); opc.textContent="";
+    OPCIONES.forEach(function(o){ var b=document.createElement("button"); b.type="button"; b.className="zbtn"; var t=document.createElement("b"); t.textContent=o[1]; b.appendChild(t);
+      b.addEventListener("click",function(){ enviarAporte(o[0]); }); opc.appendChild(b); });
+    $("aportePaso").hidden=false;
+  },function(err){
+    msg.className="msg err"; msg.textContent= err.code===1 ? "Para aportar hace falta permitir la ubicación del celular." : "No se pudo obtener la ubicación. Probá de nuevo en un rato.";
+  },{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+}
+function enviarAporte(resp){
+  var msg=$("aporteMsg"); msg.className="msg"; msg.textContent="Enviando…";
+  Array.prototype.forEach.call($("aporteOpc").children,function(b){ b.disabled=true; });
+  var body=JSON.stringify({lat:+aporteCtx.lat.toFixed(6), lng:+aporteCtx.lng.toFixed(6), acc:aporteCtx.acc, resp:resp, est:aporteCtx.est.id, h:aporteCtx.h, hFecha:aporteCtx.fecha, did:celularId(), prueba:PRUEBA_APORTE});
+  var listo=function(r){
+    if(r && r.ok){ store.set("vigia.aporte",hoyLocal()); $("aportePaso").hidden=true; $("aporteBtn").hidden=true; msg.className="msg ok";
+      msg.textContent="¡Gracias por aportar! Tu dato quedó guardado y, sumado al de otros vecinos, ayuda a que en la próxima crecida tu barrio tenga avisos más precisos."+(PRUEBA_APORTE?" (Aporte de prueba: no se suma al mapa.)":""); vecinosPedido=false; vecinosData=null; renderVecinos(); return; }
+    var mot=r&&r.motivo;
+    Array.prototype.forEach.call($("aporteOpc").children,function(b){ b.disabled=false; });
+    msg.className="msg err";
+    msg.textContent = mot==="ya_aportaste" ? "Ya aportaste hoy desde este celular. ¡Gracias! Mañana podés volver a contar cómo sigue."
+      : mot==="precision" ? "La ubicación no fue lo bastante precisa. Probá al aire libre y volvé a intentar."
+      : mot==="fuera_de_zona" ? "Tu ubicación queda fuera de la zona que cubre la app."
+      : mot==="saturado" ? "Hay muchos aportes en este momento. Probá de nuevo en unos minutos."
+      : "No se pudo enviar el aporte. Revisá la conexión y probá de nuevo.";
+    if(mot==="ya_aportaste"){ store.set("vigia.aporte",hoyLocal()); $("aportePaso").hidden=true; $("aporteBtn").hidden=true; msg.className="msg ok"; }
+  };
+  if(!APORTES_URL){ setTimeout(function(){ listo({ok:true}); },400); return; } // modo prueba sin servidor
+  fetch(APORTES_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body,redirect:"follow"})
+    .then(function(r){ return r.json(); }).then(listo).catch(function(){ listo(null); });
+}
+function renderVecinos(){
+  var box=$("vecinosBox");
+  if(!APORTES_URL || !state.loc){ box.hidden=true; return; }
+  if(!vecinosData){
+    if(!vecinosPedido){ vecinosPedido=true;
+      fetch(APORTES_URL+"?accion=mapa").then(function(r){return r.json();}).then(function(d){ vecinosData=d&&d.ok?d:{celdas:[]}; renderVecinos(); }).catch(function(){ vecinosData={celdas:[]}; }); }
+    box.hidden=true; return;
+  }
+  var lat=state.loc.lat, lng=state.loc.lng;
+  var cerca=(vecinosData.celdas||[]).filter(function(c){ return km([lat,lng],[(c.s+c.n)/2,(c.w+c.e)/2])<=15; });
+  if(!cerca.length){ box.hidden=true; return; }
+  box.hidden=false;
+  if(!vecinosMap){
+    vecinosMap=L.map("mapaVecinos",{zoomControl:true,scrollWheelZoom:false}).setView([lat,lng],14);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"&copy; OpenStreetMap"}).addTo(vecinosMap);
+  } else vecinosMap.setView([lat,lng],14);
+  if(vecinosCapa) vecinosCapa.remove();
+  vecinosCapa=L.layerGroup().addTo(vecinosMap);
+  var cs=getComputedStyle(document.documentElement);
+  var col=function(r){ return (cs.getPropertyValue({no:"--ok",calle:"--warn",terreno:"--alarm",casa:"--crit"}[r])||"#888").trim(); };
+  cerca.forEach(function(c){
+    var est=estById(c.est), rango=c.hmin!=null?(Math.abs(c.hmax-c.hmin)<0.005?fmt(c.hmin)+" m":"entre "+fmt(c.hmin)+" y "+fmt(c.hmax)+" m"):"";
+    var tip=c.aportes+" aportes · lo más repetido: "+TXT_RESP[c.modo]+(rango?" · río "+rango+(est?" en el puerto de "+est.nombre:""):"")+" · "+(c.desde===c.hasta?"el "+dateLabel(c.desde):"del "+dateLabel(c.desde)+" al "+dateLabel(c.hasta));
+    L.rectangle([[c.s,c.w],[c.n,c.e]],{color:col(c.modo),weight:1,fillColor:col(c.modo),fillOpacity:.45}).bindTooltip(tip).addTo(vecinosCapa);
+  });
+  L.circleMarker([lat,lng],{radius:5,color:"#2C6B6E",fillOpacity:1}).bindTooltip("Tu ubicación").addTo(vecinosCapa);
+  setTimeout(function(){ vecinosMap.invalidateSize(); },50);
+  $("vecinosLeyenda").innerHTML=OPCIONES.map(function(o){ return '<span><i class="sq" style="background:'+COLOR_RESP[o[0]]+'"></i>'+o[1]+'</span>'; }).join("");
+  $("vecinosNota").textContent="Cada cuadrado reúne al menos "+(vecinosData.minimo||3)+" aportes de celulares distintos en una zona de unos "+(vecinosData.celda_m||250)+" m, y muestra lo que más se repitió. Tocá un cuadrado para ver con qué altura del río pasó. Nunca se muestra una casa.";
+}
+
 /* ---------- eventos ---------- */
 function bind(){
   $("btnGps").addEventListener("click",gps);
+  $("aporteBtn").addEventListener("click",pedirAporte);
   $("btnMapa").addEventListener("click",showMap);
   $("btnTexto").addEventListener("click",function(){ $("textoBox").hidden=false; $("mapaBox").hidden=true; $("textoIn").focus(); });
   $("mapaOk").addEventListener("click",function(){ if(mapPoint) proposeZone(mapPoint[0],mapPoint[1],"mapa"); });
   $("textoOk").addEventListener("click",fromText);
   $("textoIn").addEventListener("keydown",function(ev){ if(ev.key==="Enter"){ ev.preventDefault(); fromText(); } });
-  $("confirmOk").addEventListener("click",function(){ var p=state.pending; if(p) commitZone(p.zona,p.lat,p.lng); });
+  $("confirmOk").addEventListener("click",function(){ var p=state.pending; if(p) commitZone(p.zona,p.lat,p.lng,p.origen); });
   $("confirmNo").addEventListener("click",function(){
     var p=state.pending, box=$("confirmAlt"); box.textContent=""; box.hidden=false;
     altZones(p.lat,p.lng).forEach(function(z){ var b=document.createElement("button"); b.type="button"; b.className="zbtn";
       var n=document.createElement("b"); n.textContent=zoneLabel(z); b.appendChild(n); var r=document.createElement("span"); r.textContent=z.ref; b.appendChild(r);
-      b.addEventListener("click",function(){ commitZone(z,p.lat,p.lng); }); box.appendChild(b); });
+      b.addEventListener("click",function(){ commitZone(z,p.lat,p.lng,p.origen); }); box.appendChild(b); });
   });
   $("cambiarUbic").addEventListener("click",function(){ $("ubicBody").hidden=false; $("confirmBox").hidden=true; $("ubic").scrollIntoView({behavior:"smooth",block:"start"}); });
   $("repoLink").href=REPO;
