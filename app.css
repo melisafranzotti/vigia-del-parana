@@ -154,3 +154,12 @@ details.plegable[open]>summary{border-bottom:1px solid var(--line)}
 details.plegable>.hint{padding:12px 16px 0}
 details.plegable .tablewrap{padding:6px 16px 10px}
 @media (max-width:420px){details.plegable .tablewrap{padding:4px 10px 8px}}
+
+/* aportes de vecinos */
+.aporte{display:flex;flex-direction:column;gap:12px}
+.aporte p{margin:0}
+.aporte .btn{align-self:flex-start}
+.aporte-q{font-weight:600}
+#aporteOpc{margin-top:0}
+#mapaVecinos{height:300px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.legend i.sq{width:12px;height:12px;border-radius:3px;opacity:.75}

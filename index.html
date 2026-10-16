@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
-<link rel="stylesheet" href="app.css?v=dfc12a47">
+<link rel="stylesheet" href="app.css?v=0ae9366e">
 </head>
 <body>
 <a class="skip" href="#estado">Ir al estado</a>
@@ -97,6 +97,21 @@
       </div>
     </section>
 
+    <!-- Aportes de vecinos -->
+    <section class="block" id="aporteBox" hidden>
+      <h2>Aportá a tu comunidad</h2>
+      <div class="card aporte">
+        <p>Con el río en nivel de alerta o superior, lo que ves hoy vale mucho: nadie sabe mejor que vos hasta dónde llega el agua en tu lugar. Con tu aporte, la app aprende a qué altura del río llega el agua a cada parte del barrio, y en la próxima crecida los avisos van a ser más precisos para todos.</p>
+        <button class="btn" id="aporteBtn" type="button">Aportar datos a la comunidad</button>
+        <div id="aportePaso" hidden>
+          <p class="aporte-q" id="aporteQ"></p>
+          <div class="zones" id="aporteOpc" role="group" aria-label="Hasta dónde llegó el agua"></div>
+        </div>
+        <p class="msg" id="aporteMsg" role="status"></p>
+        <p class="hint small">Se guarda el punto de tu GPS, la altura del río y tu respuesta, en una planilla privada. No se guarda tu nombre ni tu teléfono, y en el mapa nunca se muestra una casa: solo zonas de varias manzanas, cuando hay al menos 3 aportes.</p>
+      </div>
+    </section>
+
     <!-- Gráfico -->
     <section class="block">
       <h2>Últimos días y próximas semanas</h2>
@@ -111,6 +126,16 @@
         <p class="actuar-lead" id="actuarLead"></p>
         <ul class="todo" id="todo"></ul>
         <p class="vigilar" id="vigilar"></p>
+      </div>
+    </section>
+
+    <!-- Mapa de vecinos -->
+    <section class="block" id="vecinosBox" hidden>
+      <h2>Lo que cuentan los vecinos</h2>
+      <div class="card">
+        <div id="mapaVecinos" aria-label="Mapa de aportes de vecinos"></div>
+        <div class="legend" id="vecinosLeyenda"></div>
+        <p class="hint" id="vecinosNota"></p>
       </div>
     </section>
 
@@ -158,11 +183,12 @@
       <li>Noticias: medios de la región, resumidas con enlace a la nota original.</li>
     </ul>
     <p id="como-proyecta"><b>* Cómo se calcula la Proyección Vigía.</b> No es un pronóstico oficial: es una estimación propia de esta app. La idea es simple: el agua que hoy pasa por un puerto de aguas arriba llega al tuyo unos días después. Para cada ciudad, la app revisó tres años de alturas del INA y encontró qué puerto de arriba y con cuántos días de retraso explica mejor sus subidas y bajadas (por ejemplo, Santa Fe sigue a Hernandarias con unos 2 días de diferencia). Con eso, la proyección toma lo que ya subió o bajó aguas arriba y lo traslada a tu puerto; para los días que todavía no tienen dato de arriba, prolonga la tendencia reciente, cada vez con menos peso. La banda de error no es un adorno: es el error real que ese mismo cálculo tuvo al ponerlo a prueba contra el pasado, a 1, 7 y 15 días. El modelo se recalibra solo cada lunes. No sabe de lluvias locales, del río Salado ni de maniobras nuevas en las represas, así que cuando hay pronóstico del INA, el del INA manda. Si arriba dice «Datos viejos», la actualización automática falló: no te guíes por esta página.</p>
+    <p id="privAportes" hidden><b>Aportes de vecinos.</b> Cuando el río está en alerta, quien usa la ubicación del celular puede contar hasta dónde llegó el agua. Se guarda el punto del GPS, su margen de error, la altura del río en ese momento, la respuesta y un código al azar del celular (para contar un aporte por día), en una planilla privada. No se guardan nombres, teléfonos ni ningún otro dato personal. Lo único que se publica es el resumen por zonas de unos 250 m, y solo cuando hay al menos 3 aportes de celulares distintos.</p>
     <p id="resumenFoot"></p>
     <p class="small">Diseñada y creada en Santa Fe por Melisa Franzotti con Claude (Anthropic) modelo Fable 5.1 · código abierto en <a id="repoLink" href="#" target="_blank" rel="noopener">GitHub</a>.</p>
   </footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
-<script src="app.js?v=dfc12a47"></script>
+<script src="app.js?v=0ae9366e"></script>
 </body>
 </html>
