@@ -1,6 +1,6 @@
 # Vigía del Paraná
 
-App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los ríos Paraná y Paraguay en Argentina y saber **cómo actuar hoy** según tu ubicación. Pensada para que la use cualquier persona desde el celular, sin cuenta ni instalación.
+App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los ríos Paraná y Paraguay en Argentina y saber **cómo prepararse con tiempo** según tu ubicación. Pensada para que la use cualquier persona desde el celular, sin cuenta ni instalación.
 
 **No es una aplicación oficial.** Reúne y ordena información publicada por organismos oficiales. Ante una emergencia, manda lo que indiquen Defensa Civil (103) y cada municipio.
 
@@ -8,8 +8,13 @@ App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los rí
 
 - Detecta tu zona por GPS, marcando tu casa en el mapa, escribiendo tu dirección o pegando lo que te da Google Maps.
 - Muestra la altura actual del puerto más cercano, el ritmo de subida, los niveles oficiales de alerta y evacuación, y un estado en cuatro niveles: **Normal, Atención, Preparación, Salida**.
-- En el Gran Santa Fe distingue zonas finas (dentro o fuera del terraplén, lado río o lado Setúbal) con umbrales y señales de vigilancia propias.
-- Lista qué hacer hoy según el nivel, qué pasa aguas arriba, el estado de Itaipú y Yacyretá, el pronóstico del INA y noticias de la cuenca con enlace a la fuente.
+- Tiene **zonas finas** en distintas ciudades de la cuenca, con umbrales propios armados a partir de lo que pasó en crecidas anteriores (dentro o fuera de las defensas, costa o ciudad alta, lado río o lado laguna):
+  - **Gran Santa Fe**: Colastiné Norte y Sur, La Guardia, Alto Verde, Arroyo Leyes, Santa Fe ciudad, Santo Tomé y Sauce Viejo, Coronda, Santa Rosa de Calchines, Cayastá y Helvecia, entre otras.
+  - **Paraná**: Bajada Grande, costanera baja, Puerto Sánchez, Toma Nueva y ciudad alta.
+  - **Corrientes, Barranqueras/Resistencia e Isla del Cerrito, Reconquista, Goya, Itatí y Paso de la Patria.**
+- En el resto de la cuenca usa el puerto más cercano **de la misma orilla del río**, con los niveles oficiales.
+- Incluye la **Proyección Vigía**: una estimación propia, con su banda de error, de cómo puede seguir el río según lo que ya se midió aguas arriba. No es un pronóstico oficial; cuando el INA publica el suyo, manda el del INA.
+- Explica cómo prepararse según el nivel, qué pasa aguas arriba, el estado de Itaipú y Yacyretá, el pronóstico del INA y noticias de la cuenca con enlace a la fuente.
 - Se instala como app (PWA) y abre sin conexión con los últimos datos vistos.
 
 ## De dónde salen los datos
@@ -24,21 +29,22 @@ App comunitaria, gratuita y sin fines de lucro para seguir la crecida de los rí
 
 ## Cómo se actualiza
 
-- `data/alturas.json`: un GitHub Action (`.github/workflows/alturas.yml`) descarga las alturas del INA dos veces por día (07:20 y 19:20 hora Argentina).
-- `data/contexto.json`: resumen del día, represas, pronósticos y noticias. Lo actualiza una tarea programada que revisa las fuentes y publica al repositorio dos veces por día.
+- `data/alturas.json`: un GitHub Action (`.github/workflows/alturas.yml`) descarga las alturas del INA cada hora; solo publica cuando hay datos nuevos.
+- `data/contexto.json`: resumen del día, represas, pronósticos y noticias. Lo actualiza una tarea programada que revisa las fuentes y publica al repositorio dos veces por día (07:45 y 19:45, hora Argentina).
 - `data/estaciones.json`: catálogo de estaciones (fijo).
-- `data/zonas.geojson`: zonas finas del Gran Santa Fe. **Los polígonos son aproximados**; se ajustan en [geojson.io](https://geojson.io) con conocimiento local.
+- `data/modelo.json`: parámetros de la Proyección Vigía. Un GitHub Action (`.github/workflows/modelo.yml`) los recalibra cada lunes con los últimos tres años de datos del INA.
+- `data/zonas.geojson`: zonas finas de las ciudades de la cuenca. **Los polígonos son aproximados**; se ajustan en [geojson.io](https://geojson.io) con conocimiento local. Las zonas armadas con registros públicos (municipios, INA, prensa) están marcadas como estimadas hasta que vecinos las validen.
 
 ## Cómo se calcula el estado
 
-- Para las zonas finas del Gran Santa Fe, cada zona tiene tres umbrales en la regla del puerto de Santa Fe (atención, preparación, salida) definidos con las crecidas anteriores y el estado de las defensas.
+- Para las zonas finas, cada zona tiene tres umbrales en la regla de su puerto de referencia (atención, preparación, salida), definidos con las crecidas anteriores y el estado de las defensas.
 - Para el resto de las ciudades: atención = alerta oficial − 1 m, preparación = alerta − 0,5 m, salida = alerta oficial. La evacuación oficial se muestra siempre.
-- La "tendencia" y los "días hasta cada umbral" prolongan el ritmo de la última semana. No son pronóstico oficial.
+- La **Proyección Vigía** traslada a tu puerto lo que ya subió o bajó aguas arriba, con el retraso que mejor explica cada tramo en los últimos tres años (por ejemplo, Santa Fe sigue a Hernandarias con unos 2 días). La banda de error es el error real del método al probarlo contra el pasado. Donde no hay un modelo que funcione mejor que suponer que el río no cambia, se muestra solo la tendencia de la última semana. Ninguna de las dos es pronóstico oficial.
 
 ## Limitaciones
 
 - El dato de altura es el diario de las 00 h; no es tiempo real.
-- Las zonas finas existen solo para el Gran Santa Fe. En las demás ciudades el estado es por ciudad, con los niveles oficiales.
+- Hay zonas finas solo en las ciudades con registros públicos de crecidas anteriores. En las demás el estado es por ciudad, con los niveles oficiales. Ciudades como Bella Vista, Esquina, La Paz o Diamante no tienen zonas finas por falta de datos.
 - Los links cortos de Google Maps (`maps.app.goo.gl`) no traen la ubicación. La app pide usar el GPS, el mapa o la dirección. Opcional: configurar `RESOLVER_URL` en `app.js` apuntando a un servicio que resuelva esos links.
 - Lo que no está en la app: el río Salado, el río Uruguay, y la situación cuadra por cuadra.
 
