@@ -48,4 +48,10 @@ Correcciones de zonas, umbrales, referencias o textos: abrí un issue o un pull 
 
 ## Licencia
 
-MIT. Hecho en Santa Fe, Argentina.
+[PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0) (ver [LICENSE](LICENSE)). El código es público para que cualquiera pueda ver y verificar cómo funciona la app. Vecinales, escuelas, universidades, organismos públicos y cualquier persona pueden usarlo, estudiarlo y adaptarlo sin fines de lucro, manteniendo el aviso de autoría. **No se permite el uso comercial.** Las versiones publicadas hasta el 16 de octubre de 2026 se distribuyeron bajo licencia MIT.
+
+Los datos hidrométricos son del INA y de Prefectura Naval Argentina, y se rigen por las condiciones de esas fuentes.
+
+Required Notice: Copyright (c) 2026 Melisa Franzotti — Vigía del Paraná
+
+Hecho en Santa Fe, Argentina.
