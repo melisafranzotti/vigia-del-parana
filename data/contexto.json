@@ -1,28 +1,28 @@
 {
- "actualizado": "2026-10-15T20:06:00-03:00",
- "resumen": "Itaipú sigue vertiendo por una sola canaleta (cerró la central el martes a la noche), con unos 9.200 m³/s por el vertedero según el INA, y el Paraná frente a Ciudad del Este llegó a 121,19 m sobre el nivel del mar este jueves, con máximos previstos de hasta 121,68 m en los próximos días; Yacyretá mantiene abiertos el brazo principal y Aña Cuá, recibía unos 37.300 m³/s el miércoles y la EBY espera el pico del caudal entrante este viernes 16 y el de la erogación el sábado 17. Donde más sube el río es en el Alto Paraná misionero y en el tramo correntino-chaqueño: Eldorado (25,30 m) y Libertad (31,80 m) cruzaron hoy sus niveles de evacuación, Ituzaingó (4,63 m) sigue por encima del suyo, Itatí (6,68 m) está a 12 cm de la alerta, Corrientes marcó 5,75 m (+25 cm en 24 h) y Barranqueras 5,61 m (+21 cm), ambas a menos de 75 cm de la alerta aunque por debajo de lo que proyectaba el INA para hoy; la Isla del Cerrito quedó sin conexión terrestre. En Santa Fe el puerto marca 3,62 m (+5 cm en 24 h), a 1,68 m de la alerta; el INA prevé para la semana un rango probable de 3,55 a 4,35 m y sigue vigente el pronóstico del martes 13 (4,05 m el 20/10 y 5,16 m el 27/10), que se actualiza este viernes 16; no hay reportes de filtraciones ni obras de urgencia en los terraplenes de la Costa.",
+ "actualizado": "2026-10-16T08:02:00-03:00",
+ "resumen": "Itaipú volvió a verter por dos canaletas (izquierda y central) y descargaba unos 12.600 m³/s por el vertedero el jueves a la noche, con el Paraná frente a Ciudad del Este estable en torno a los 121 m sobre el nivel del mar y un leve descenso previsto recién para el sábado; Yacyretá recibía 40.000 m³/s y erogaba 38.700 m³/s según el reporte del INA del jueves 15, con el pico del caudal entrante previsto entre hoy viernes 16 y el sábado 17. Donde más sube el río es en el Alto Paraná misionero y en el tramo correntino-chaqueño: Libertad, Eldorado, Libertador, Santa Ana e Ituzaingó siguen por encima de sus niveles de evacuación, Itatí cruzó la alerta (7,02 m a la noche del jueves según Defensa Civil de Corrientes), la capital correntina pasó los 6 m (6,03 m, a 47 cm de la alerta), Barranqueras marcó 5,61 m y la provincia de Corrientes duplicó sus evacuados a 222 personas en un día. En Santa Fe el puerto marca 3,62 m (+5 cm en 24 h), a 1,68 m de la alerta; sigue vigente el pronóstico del INA del martes 13 (4,05 m el 20/10 y 5,16 m el 27/10) porque el instituto retiró la tabla de su sitio y anunció que durante este viernes 16 publica los pronósticos nuevos a 4 y 11 días, que a primera hora de la mañana todavía no estaban disponibles; no hay reportes de filtraciones ni obras de urgencia en los terraplenes de la Costa.",
  "represas": [
   {
    "nombre": "Itaipú",
    "estado": "Vertedero abierto",
-   "valor": "≈ 9.200",
+   "valor": "≈ 12.600",
    "unidad": "m³/s",
-   "valorNota": "Caudal vertido por el vertedero con una sola canaleta abierta, según el Informe Semanal del INA del 14/10; el reporte diario del INA del 14/10 registra 20.400 m³/s de descarga total de la represa (vertedero más turbinas), y el informe semanal un rango probable de 14.500 a 21.700 m³/s para los próximos días",
-   "detalle": "Itaipú abrió la canaleta central el martes 13 y llegó a verter 11.300 m³/s, pero la cerró esa misma noche y desde entonces libera por una sola vía; la binacional lo confirmó este jueves 15 al informar que ya reubicó a 183 familias del barrio San Rafael de Ciudad del Este. En la estación del Puente de la Amistad el Paraná marcó 121,19 m sobre el nivel del mar el jueves (la cota normal ronda los 105,6 m), en la franja de inundaciones moderadas, y las perspectivas de Itaipú ubican los máximos de los próximos días entre 121,39 y 121,68 m; medios paraguayos citaron a técnicos de la represa que esperan que el río empiece a bajar desde el fin de semana si se cumple la pausa de lluvias. El INA describe la erogación como alta y sostenida por maniobras de control del embalse.",
-   "fecha": "2026-10-15",
-   "fuente": "INA (Informe Semanal 14/10) / Itaipú Binacional / La Nación (Paraguay)",
-   "url": "https://www.lanacion.com.py/pais/2026/10/15/crecida-del-parana-itaipu-ya-evacuo-a-183-familias-del-barrio-san-rafael/"
+   "valorNota": "Caudal vertido por las canaletas izquierda y central del vertedero el jueves 15 a la noche, según Última Hora; el reporte diario del INA del 15/10 registra 20.100 m³/s de descarga total de la represa (vertedero más turbinas), 868 m³/s menos que el día anterior",
+   "detalle": "Itaipú reabrió el canal central del vertedero por cuestiones operativas y volvió a verter por dos de sus tres canaletas, después de haber cerrado la central el martes 13 a la noche. En la estación del Puente de la Amistad el Paraná tocó 120,81 m el jueves y se mantenía estable en torno a los 121 m sobre el nivel del mar este viernes a la mañana, en la franja de inundaciones moderadas; la Comisión Especial de Crecidas prevé un leve descenso del caudal a partir del sábado 17, aunque advierte que las lluvias esperadas para mediados de la semana próxima pueden cambiar esa tendencia. La binacional, la Secretaría de Emergencia Nacional y las fuerzas de seguridad asistieron a unas 230 familias de Ciudad del Este, sobre todo de los barrios San Rafael y San Agustín. El INA describe la erogación como un incremento en punta en aguas altas, que se prevé sostener en el corto plazo.",
+   "fecha": "2026-10-16",
+   "fuente": "Última Hora / La Nación (Paraguay) / INA (reporte diario 15/10)",
+   "url": "https://www.ultimahora.com/rio-parana-alcanza-los-120-81-metros-en-la-estacion-puente-de-la-amistad-y-esperan-una-leve-bajante"
   },
   {
    "nombre": "Yacyretá",
    "estado": "Vertedero principal y Aña Cuá abiertos",
-   "valor": "≈ 37.300",
+   "valor": "≈ 40.000",
    "unidad": "m³/s",
-   "valorNota": "Caudal afluente del miércoles 14 según el Alerta Hidrológico N° 06 de la EBY y el reporte diario del INA (que registra 38.500 m³/s erogados); la EBY prevé entre 37.000 y 40.500 m³/s hasta el viernes 16 y el INA un rango probable de 23.000 a 41.100 m³/s. Hasta la noche del jueves 15 la EBY no había publicado el Resumen Ejecutivo del 15/10",
-   "detalle": "El último Resumen Ejecutivo disponible (N° 6111, del 14/10) informa 12.500 m³/s vertidos por el brazo principal y 12.000 m³/s por Aña Cuá, con las 18 compuertas abiertas, embalse en cota 82,85 msnm, Ayolas en 5,02 m e Ituzaingó en 4,48 m a las 13. La EBY espera que el caudal entrante siga subiendo hasta el viernes 16 y se estabilice o baje levemente desde el sábado 17 porque no se prevén lluvias importantes; el INA ubica el pico de la erogación hacia el 17/10 y prevé un descenso gradual en 7 a 15 días. Para Ituzaingó la EBY proyecta entre 4,80 y 5 m (hoy marcó 4,63 m) y para Ayolas entre 6,20 y 6,60 m, muy por encima del nivel de inundación de la ciudad (4,50 m). El paso Ayolas–Ituzaingó sigue cerrado al menos hasta el sábado. La entidad advierte que el alivio sería transitorio y que son muy probables nuevos episodios de aguas altas entre octubre y diciembre.",
-   "fecha": "2026-10-14",
-   "fuente": "EBY – Alerta Hidrológico N° 06 y Resumen Ejecutivo N° 6111 / INA",
-   "url": "https://www.eby.gov.py/alerta-hidrologico-n06-octubre/"
+   "valorNota": "Caudal afluente del jueves 15 según el reporte diario del INA (+2.800 m³/s en un día), que registra 38.700 m³/s erogados (+600); la EBY preveía entre 37.000 y 40.500 m³/s de ingreso hasta el viernes 16. Hasta la mañana del viernes 16 la EBY no había publicado el Resumen Ejecutivo del 15/10 ni un Alerta Hidrológico nuevo",
+   "detalle": "El último Resumen Ejecutivo disponible (N° 6111, del 14/10) informa 12.500 m³/s vertidos por el brazo principal y 12.000 m³/s por Aña Cuá, con las 18 compuertas abiertas, embalse en cota 82,85 msnm, Ayolas en 5,02 m e Ituzaingó en 4,48 m. El INA indica que el caudal entrante sigue en ascenso franco en aguas altas, que seguiría oscilando en punta unos cuatro días y después tendería a descender; la EBY espera que el ingreso se estabilice o baje levemente desde el sábado 17 porque no se prevén lluvias importantes. Para Ituzaingó la EBY proyecta entre 4,80 y 5 m (marcó 4,70 m el jueves a la noche, por encima de la evacuación de 4 m) y para Ayolas entre 6,20 y 6,60 m, muy por encima del nivel de inundación de la ciudad (4,50 m); el paso Ayolas–Ituzaingó sigue cerrado. La entidad advierte que el alivio sería transitorio y que son muy probables nuevos episodios de aguas altas entre octubre y diciembre.",
+   "fecha": "2026-10-15",
+   "fuente": "INA (reporte diario 15/10) / EBY – Alerta Hidrológico N° 06 y Resumen Ejecutivo N° 6111",
+   "url": "https://alerta.ina.gob.ar/a5/diario/reporte_diario"
   }
  ],
  "pronosticos": {
@@ -35,7 +35,7 @@
     {"fecha": "2026-10-20", "central": 7.31, "min": 6.75, "max": 7.55},
     {"fecha": "2026-10-27", "central": 6.38, "min": 5.8, "max": 6.6}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. El INA indicaba que Corrientes superaría la alerta (6,50 m) desde el 15/10 y la evacuación (7,00 m) desde el 17/10 (los dos primeros puntos son esos umbrales), pero la escala marcó 5,75 m el jueves 15, por debajo de lo previsto. Los valores del 20/10 (7,31 m, rango 6,75–7,55) y del 27/10 (6,38 m, rango 5,80–6,60) son los de la tabla del INA del 13/10 según la reprodujo Aire de Santa Fe; el Informe Semanal del INA del 14/10 da un rango probable de 5,50 a 7,70 m para los próximos días. Defensa Civil de Corrientes espera que la capital pase el nivel de evacuación alrededor del 20 o 21/10."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA retiró la tabla de su sitio y anunció que la publica durante el día; a primera hora de la mañana todavía no estaba). El reporte diario del 15/10 mantiene que Corrientes superaría la alerta (6,50 m) desde el 15/10 y la evacuación (7,00 m) desde el 17/10 (los dos primeros puntos son esos umbrales), aunque la escala marcó 5,75 m el jueves 15 según el INA y 6,03 m a la noche según Defensa Civil, por debajo de lo previsto. Los valores del 20/10 (7,31 m, rango 6,75–7,55) y del 27/10 (6,38 m, rango 5,80–6,60) son los de la tabla del INA del 13/10 según la reprodujo Aire de Santa Fe; el Informe Semanal del INA del 14/10 da un rango probable de 5,50 a 7,70 m para los próximos días. El INA advierte que los tiempos de traslado de la onda podrían alargarse por el gran volumen de agua en tránsito."
   },
   "20": {
    "emitido": "2026-10-13",
@@ -44,7 +44,7 @@
     {"fecha": "2026-10-15", "central": 6.0, "min": null, "max": null},
     {"fecha": "2026-10-17", "central": 6.5, "min": 6.5, "max": null}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. El INA preveía cerca de 6 m (nivel de alerta) para el jueves 15 y superar la evacuación (6,50 m) desde el sábado 17; el segundo punto es ese umbral, no una cifra puntual. La escala marcó 5,61 m el jueves 15 (+21 cm en 24 h), por debajo de lo previsto. Analistas locales citados por EsChaco ubican el pico de la semana próxima entre 6,00 y 6,50 m."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día). El reporte diario del 15/10 mantiene cerca de 6 m (nivel de alerta) para el jueves 15 y superar la evacuación (6,50 m) desde el sábado 17; el segundo punto es ese umbral, no una cifra puntual. La escala marcó 5,61 m el jueves 15, por debajo de lo previsto. Analistas locales citados por EsChaco ubican el pico de la semana próxima entre 6,00 y 6,50 m; hay 71 personas en módulos temporales."
   },
   "23": {
    "emitido": "2026-10-13",
@@ -54,7 +54,7 @@
     {"fecha": "2026-10-17", "central": 5.7, "min": 5.7, "max": null},
     {"fecha": "2026-10-27", "central": 6.64, "min": null, "max": null}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. El INA indicaba que Goya superaría la alerta (5,20 m) desde el 15/10 y la evacuación (5,70 m) desde el 17/10 (esos dos puntos son los umbrales), pero la escala marcó 4,86 m el jueves 15. El valor de 6,64 m para el 27/10 es el pronóstico central de la tabla del INA del 13/10 según lo reprodujo Radio Amanecer (Reconquista); el Informe Semanal del INA del 14/10 da un rango probable de 4,80 a 6,90 m para los próximos días."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día). El reporte diario del 15/10 mantiene que Goya superaría la alerta (5,20 m) desde el 15/10 y la evacuación (5,70 m) desde el 17/10 (esos dos puntos son los umbrales), pero la escala marcó 4,86 m el jueves 15. El valor de 6,64 m para el 27/10 es el pronóstico central de la tabla del INA del 13/10 según lo reprodujo Radio Amanecer (Reconquista); el Informe Semanal del INA del 14/10 da un rango probable de 4,80 a 6,90 m para los próximos días."
   },
   "24": {
    "emitido": "2026-10-13",
@@ -65,7 +65,7 @@
     {"fecha": "2026-10-20", "central": 6.09, "min": null, "max": 6.5},
     {"fecha": "2026-10-27", "central": 6.38, "min": 6.0, "max": 6.8}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. El reporte diario del INA del 14/10 indica que Reconquista superaría la alerta (5,10 m) desde el 16/10 y la evacuación (5,30 m) desde el 18/10 (los dos primeros puntos son esos umbrales); la escala marcó 4,42 m el jueves 15. Los valores del 20/10 (6,09 m, máximo 6,50) y del 27/10 (6,38 m, rango 6,00–6,80) son los de la tabla del INA del 13/10 según los reprodujeron Radio Amanecer y Aire de Santa Fe; el PDF del INA no estuvo accesible para contrastarlos."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día). El reporte diario del 15/10 mantiene que Reconquista superaría la alerta (5,10 m) desde el 16/10 y la evacuación (5,30 m) desde el 18/10 (los dos primeros puntos son esos umbrales); la escala marcó 4,42 m el jueves 15 según el INA y 4,46 m según Prefectura. Los valores del 20/10 (6,09 m, máximo 6,50) y del 27/10 (6,38 m, rango 6,00–6,80) son los de la tabla del INA del 13/10 según los reprodujeron Radio Amanecer, RTS Medios y Aire de Santa Fe; con 6,38 m el agua superaría el playón del puerto. Los productores siguen sacando hacienda de las islas."
   },
   "26": {
    "emitido": "2026-10-13",
@@ -74,7 +74,7 @@
     {"fecha": "2026-10-19", "central": 5.8, "min": 5.8, "max": null},
     {"fecha": "2026-10-21", "central": 6.15, "min": 6.15, "max": null}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. El reporte diario y el Informe Semanal del INA del 14/10 indican alta probabilidad de superar la alerta (5,80 m) desde el 19/10 y la evacuación (6,15 m) desde el 21/10; los puntos son esos umbrales, no cifras puntuales, y el rango probable para los próximos días es de 4,80 a 6,60 m. La escala marcó 4,88 m el jueves 15. El municipio sigue a 36 familias isleñas y calcula que unas 40 familias podrían necesitar evacuarse; el intendente habló de hasta 7 m hacia fin de mes, pero esa cifra no es del INA."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día). El reporte diario del 15/10 y el Informe Semanal del 14/10 indican alta probabilidad de superar la alerta (5,80 m) desde el 19/10 y la evacuación (6,15 m) desde el 21/10; los puntos son esos umbrales, no cifras puntuales, y el rango probable para los próximos días es de 4,80 a 6,60 m. La escala marcó 4,88 m el jueves 15. El municipio sigue a 36 familias isleñas y calcula que unas 40 familias podrían necesitar evacuarse; el intendente habló de hasta 7 m hacia fin de mes, pero esa cifra no es del INA."
   },
   "29": {
    "emitido": "2026-10-13",
@@ -83,7 +83,7 @@
     {"fecha": "2026-10-20", "central": 4.0, "min": null, "max": null},
     {"fecha": "2026-10-27", "central": 5.12, "min": null, "max": null}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16: cerca de 4 m para el 20/10 (cifra redondeada, como la publican El Once y el municipio) y 5,12 m para el 27/10, 42 cm sobre la alerta (4,70 m) y 12 cm sobre la evacuación (5,00 m). El Informe Semanal del INA del 14/10 da un rango probable de 3,50 a 4,30 m para los próximos días y mantiene que Paraná podría acercarse o superar la alerta en la última década de octubre; la escala marcó 3,54 m el jueves 15. El municipio prevé las primeras evacuaciones hacia fin de mes en Bajada Grande. Borús (INA) habló de un máximo de 5,40 a 5,50 m en 15 a 18 días."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día): cerca de 4 m para el 20/10 (cifra redondeada, como la publican El Once y el municipio) y 5,12 m para el 27/10, 42 cm sobre la alerta (4,70 m) y 12 cm sobre la evacuación (5,00 m). El reporte diario del 15/10 repite que Paraná podría acercarse o superar la alerta en la última década de octubre y el Informe Semanal del 14/10 da un rango probable de 3,50 a 4,30 m para los próximos días; la escala marcó 3,54 m el jueves 15. El municipio prevé las primeras evacuaciones hacia fin de mes en Bajada Grande. Borús (INA) habló de un máximo de 5,40 a 5,50 m en 15 a 18 días."
   },
   "30": {
    "emitido": "2026-10-13",
@@ -92,7 +92,7 @@
     {"fecha": "2026-10-20", "central": 4.05, "min": null, "max": null},
     {"fecha": "2026-10-27", "central": 5.16, "min": 4.7, "max": 5.5}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16: 4,05 m el 20/10 y 5,16 m el 27/10 (rango 4,70–5,50 según la tabla del INA reproducida por Aire de Santa Fe), a 14 cm de la alerta (5,30 m); el extremo alto del rango la superaría por 20 cm. El Informe Semanal del INA del 14/10 da un rango probable de 3,55 a 4,35 m para los próximos días y repite que Santa Fe podría acercarse o superar la alerta en los últimos diez días de octubre; la escala marcó 3,62 m el jueves 15 (+5 cm en 24 h). La suba prevista de 1,50 m en menos de dos semanas depende de las lluvias en la alta cuenca."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día): 4,05 m el 20/10 y 5,16 m el 27/10 (rango 4,70–5,50 según la tabla del INA reproducida por Aire de Santa Fe), a 14 cm de la alerta (5,30 m); el extremo alto del rango la superaría por 20 cm. El reporte diario del 15/10 repite que Santa Fe podría acercarse o superar la alerta en los últimos diez días de octubre y el Informe Semanal del 14/10 da un rango probable de 3,55 a 4,35 m para los próximos días; la escala marcó 3,62 m el jueves 15 (+5 cm en 24 h). El secretario de Recursos Hídricos de la provincia aclaró que son proyecciones que pueden cambiar si sigue lloviendo en el norte argentino y el sur de Brasil, y comparó la situación con la crecida de 2015-2016."
   },
   "34": {
    "emitido": "2026-10-13",
@@ -101,80 +101,79 @@
     {"fecha": "2026-10-28", "central": 5.0, "min": null, "max": null},
     {"fecha": "2026-10-31", "central": 5.25, "min": 5.2, "max": 5.3}
    ],
-   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16. Valores dados por Juan Borús (INA) a La Capital y LT3, no de la tabla publicada: Rosario llegaría a la alerta (5,00 m) hacia el 28/10 y terminaría octubre entre 5,20 y 5,30 m, con un pico cercano a 5,50 m en los primeros diez días de noviembre (evacuación: 5,25 m). El Informe Semanal del INA del 14/10 da un rango probable de 3,20 a 4,00 m para los próximos días y habla de ascenso gradual a sostenido en aguas medias, sin fecha fijada para la alerta; la escala marcó 3,34 m el jueves 15."
+   "nota": "Pronóstico del martes 13; pendiente la actualización del viernes 16 (el INA anunció que la publica durante el día). Valores dados por Juan Borús (INA) a La Capital y LT3, no de la tabla publicada: Rosario llegaría a la alerta (5,00 m) hacia el 28/10 y terminaría octubre entre 5,20 y 5,30 m, con un pico cercano a 5,50 m en los primeros diez días de noviembre (evacuación: 5,25 m). El reporte diario del 15/10 no fija fecha para la alerta en Rosario; el Informe Semanal del 14/10 da un rango probable de 3,20 a 4,00 m para los próximos días. La escala marcó 3,34 m el jueves 15 y subió 74 cm en un mes; Protección Civil municipal pidió extremar cuidados al navegar y en las playas por la mayor velocidad de la corriente y los camalotes."
   }
  },
  "noticias": [
+  {
+   "titulo": "Corrientes duplicó sus evacuados en un día: ya son 222 personas fuera de sus casas y el Paraná pasó los 6 m frente a la capital",
+   "fuente": "El Litoral (Corrientes)",
+   "fecha": "2026-10-15",
+   "url": "https://www.ellitoral.com.ar/sociedad/2026-10-15-21-30-0-el-numero-de-evacuados-se-duplico-en-corrientes-ya-hay-222-personas-fuera-de-sus-hogares",
+   "resumen": "El parte de Defensa Civil del jueves a la noche cuenta 151 personas en refugios y 71 autoevacuadas en la capital, con los mayores grupos en Itatí (55 personas, casi cuatro veces más que el día anterior), la isla Apipé (44), Paso de los Libres (31) e Ituzaingó (19). El Paraná marcaba 6,03 m en Corrientes, a 47 cm de la alerta, 7,02 m en Itatí (ya sobre la alerta de 6,80 m) y 4,70 m en Ituzaingó, mientras el Uruguay sigue estacionado en niveles de alerta en Alvear, La Cruz, Yapeyú y Bonpland y de evacuación en Paso de los Libres."
+  },
+  {
+   "titulo": "Misiones: 19 evacuados, siete pasos fronterizos cerrados y los puentes de la ruta 12 habilitados solo hasta 20 toneladas",
+   "fuente": "Infobae",
+   "fecha": "2026-10-16",
+   "url": "https://www.infobae.com/sociedad/2026/10/16/continua-el-alerta-por-el-nino-evacuaron-a-19-personas-en-misiones-por-la-crecida-de-rios/",
+   "resumen": "El relevamiento policial de la tarde del jueves contabiliza 19 personas evacuadas en casas de familiares en Puerto Rico, Puerto Iguazú y Santa Ana; los puentes sobre el Piray Guazú y el Paranay en la ruta nacional 12 pasan vehículos de hasta 20 toneladas, el puente del Yabebiry sigue clausurado y la ruta provincial 103 a Puerto Santa Ana está cortada por agua sobre la calzada. Siguen cerrados siete cruces en balsa a Paraguay (entre ellos Eldorado, Libertador, Puerto Maní y Colonia Oasis) y el Paraná sigue subiendo en Eldorado (25,30 m), Puerto Leoni y Santa Ana, aunque ya está estable en Puerto Iguazú."
+  },
+  {
+   "titulo": "Itaipú reabrió la canaleta central y vierte unos 12.600 m³/s; el río tocó 120,81 m en Ciudad del Este y recién bajaría el sábado",
+   "fuente": "Última Hora / La Nación (Paraguay)",
+   "fecha": "2026-10-16",
+   "url": "https://www.lanacion.com.py/pais/2026/10/16/el-nivel-del-rio-parana-se-mantiene-estable-y-el-sabado-se-espera-un-leve-descenso/",
+   "resumen": "La binacional volvió a abrir el canal central del vertedero por cuestiones operativas y descarga por dos canaletas, mientras el Paraná en la estación del Puente de la Amistad se mantiene estable en torno a los 121 m sobre el nivel del mar, el pico previsto para esta etapa de la crecida. La Comisión Especial de Crecidas espera un leve descenso del caudal a partir del sábado, pero pide esperar las lluvias de mediados de la semana próxima antes de hablar de bajante; Itaipú y la Secretaría de Emergencia Nacional ya asistieron a unas 230 familias de los barrios San Rafael y San Agustín de Ciudad del Este, y en la margen brasileña cinco familias dejaron sus casas en Vila Bancária."
+  },
   {
    "titulo": "Chaco: la Isla del Cerrito quedó sin conexión terrestre por el agua sobre la ruta 63 y se habilitó una salida en lancha hacia Paso de la Patria",
    "fuente": "Diario Norte",
    "fecha": "2026-10-15",
    "url": "https://www.diarionorte.com/334934-isla-del-cerrito-quedo-aislada-por-tierra-y-habilitan-salida-fluvial-por-paso-de-la-patria",
-   "resumen": "El Paraná cubrió la calzada de la ruta provincial 63 en Palo Blanco, entre el puente San Pedro y Antequera, y cortó la conexión habitual con el continente; las autoridades abrieron una alternativa fluvial de unos 5 km que cruza el cauce principal hasta Paso de la Patria y apostaron una ambulancia del lado correntino. Hasta la mañana del jueves la comisaría no registraba evacuados, y el municipio, que ya declaró la emergencia, espera que el río llegue a 7,50 m."
+   "resumen": "El Paraná cubrió la calzada de la ruta provincial 63 en Palo Blanco, entre el puente San Pedro y Antequera, y cortó la conexión habitual con el continente; las autoridades abrieron una alternativa fluvial de unos 5 km que cruza el cauce principal hasta Paso de la Patria y apostaron una ambulancia del lado correntino. El municipio, que ya declaró la emergencia, espera que el río llegue a 7,50 m; en Barranqueras hay 71 personas de 21 familias en módulos temporales y el río marcó 5,61 m."
   },
   {
-   "titulo": "Balance de la cuenca: 108 evacuados en Corrientes, 71 en Barranqueras, 28 en Misiones y las primeras familias reubicadas en Concordia",
-   "fuente": "La Nación",
+   "titulo": "Productores de San Javier, Reconquista y la isla Apipé sacan la hacienda de las islas: en San Javier calculan hasta 15.000 cabezas por mover",
+   "fuente": "BAE Negocios",
    "fecha": "2026-10-15",
-   "url": "https://www.lanacion.com.ar/sociedad/crecidas-del-parana-y-del-uruguay-zonas-criticas-evacuados-rutas-cortadas-y-fechas-que-inquietan-nid15102026/",
-   "resumen": "Defensa Civil de Corrientes contabiliza 108 personas fuera de sus casas entre la isla Apipé, Paso de los Libres, Ituzaingó, Itatí y Yahapé, mientras el municipio de Itatí habla de 70 autoevacuados; en Chaco hay 71 personas en módulos temporales de Barranqueras y en Misiones 28 evacuados entre Puerto Rico y Puerto Iguazú. En el Alto Paraná misionero Libertad, Eldorado, Libertador y Santa Ana están por encima de la cota de evacuación, el paso Ituzaingó–Ayolas sigue cerrado y en Entre Ríos ya se reubicaron siete familias en Concordia por el río Uruguay."
+   "url": "https://www.baenegocios.com/sociedad/la-crecida-del-parana-ya-obliga-a-evacuar-familias-y-ganado/",
+   "resumen": "La Sociedad Rural de San Javier estima que entre 10.000 y 15.000 animales tendrán que salir de las islas hacia campos altos por la ruta provincial 1, y en la isla Apipé ya se trasladaron unas 500 de las 2.000 cabezas previstas; en Reconquista los camiones llevan 38 a 40 animales por viaje hacia la zona de El Timbó. Juan Borús (INA) dijo que la situación es para seguirla de cerca más que para alarmarse, y Confederaciones Rurales Argentinas releva necesidades sin estimar pérdidas todavía."
   },
   {
-   "titulo": "Misiones: los puentes de la ruta 12 sobre el Paranay y el Piray Guazú siguieron restringidos y hay ocho cruces fluviales a Paraguay suspendidos",
-   "fuente": "Radio Cataratas",
+   "titulo": "Santa Fe: la Provincia proyecta 5,16 m en el puerto para el 27 de octubre y dice que reforzó las defensas del Gran Santa Fe antes de la crecida",
+   "fuente": "El Litoral (Santa Fe)",
    "fecha": "2026-10-15",
-   "url": "https://radiocataratas.com/2026/10/15/crecida-de-rios-en-misiones-28-evacuados-dos-puentes-de-la-ruta-12-clausurados-y-ocho-cruces-fluviales-suspendidos/",
-   "resumen": "Según el relevamiento policial de la mañana, el puente del arroyo Paranay (El Alcázar–Caraguatay) y el puente Banana sobre el Piray Guazú (Puerto Piray–Eldorado) solo dejaban pasar vehículos de emergencia, pacientes oncológicos y peatones, con el agua todavía subiendo y a 70 cm de la carpeta asfáltica en el Paranay; medios locales informaron más tarde una habilitación parcial para vehículos livianos y camiones de abastecimiento de hasta 15 toneladas. Siguen suspendidos ocho cruces en balsa hacia Paraguay, entre ellos Eldorado, Puerto Libertador, Puerto Maní, Colonia Oasis y Puerto Iguazú, y la provincia cuenta 28 evacuados."
-  },
-  {
-   "titulo": "Itaipú ya reubicó a 183 familias de Ciudad del Este, cerró la canaleta central del vertedero y prevé que el Paraná llegue a 121,68 m",
-   "fuente": "La Nación (Paraguay)",
-   "fecha": "2026-10-15",
-   "url": "https://www.lanacion.com.py/pais/2026/10/15/crecida-del-parana-itaipu-ya-evacuo-a-183-familias-del-barrio-san-rafael/",
-   "resumen": "La binacional informó que asistió y trasladó a 183 familias del barrio San Rafael y apoya a otras 30 de San Agustín, mientras el río frente al Puente de la Amistad superó los 121 m sobre el nivel del mar. El segundo canal del vertedero se abrió solo de forma temporal y la descarga volvió a hacerse por una sola vía; las perspectivas de Itaipú ubican los máximos de los próximos días entre 121,39 y 121,68 m, en la franja de inundaciones moderadas, y la Municipalidad de Ciudad del Este cuenta 650 familias afectadas en toda la ciudad."
-  },
-  {
-   "titulo": "Paso de la Patria se prepara para autoevacuaciones: el municipio espera que el río pase los 7 metros entre el viernes y el martes",
-   "fuente": "Chaco Día por Día",
-   "fecha": "2026-10-15",
-   "url": "https://chacodiapordia.com/el-avance-del-parana-obliga-a-preparar-evacuaciones-en-paso-de-la-patria/",
-   "resumen": "El agua ya alcanzó el anfiteatro y podría superar la costanera General San Martín en los próximos días; sectores bajos del pueblo quedan comprometidos con cotas de 6,30 a 6,50 m y a partir de los 7 m empieza el proceso de autoevacuación de las familias de las zonas vulnerables. El municipio montó una guardia permanente para orientar a los vecinos y aclara que la evolución dependerá de las lluvias; la escala de Prefectura marcó 5,92 m el jueves."
-  },
-  {
-   "titulo": "Paraná se organiza con carpas móviles en zonas altas y prevé las primeras evacuaciones en Bajada Grande hacia fin de mes",
-   "fuente": "Análisis Digital",
-   "fecha": "2026-10-15",
-   "url": "https://www.analisisdigital.com.ar/locales/2026/10/15/fenomeno-de-el-nino-parana-se-prepara-con-carpas-moviles-y-preve-evacuaciones-en-bajada-grande-fin-de-mes",
-   "resumen": "El municipio entrerriano tomó el pronóstico del INA de 4 m para el 20 de octubre y la posibilidad de superar los 5 m a fin de mes para definir un esquema de carpas portátiles con asistencia alimentaria, sanitaria y psicológica en lugares altos, en vez de centros fijos. Las zonas que primero se verían afectadas son la costa de Bajada Grande, Arenales, Toma Vieja y partes de Puerto Sánchez y Puerto Viejo, con agua que podría entrar por el río o por las lagunas; se prevé que la crecida condicione la ciudad entre noviembre y marzo o abril."
+   "url": "https://www.ellitoral.com/informacion-general/rioparana-santafe-institutonacionaldelagua-crecida-nicolasmijich-recursoshidricos-puertodesantafe-precipitaciones-maximilianopullaro-proteccioncivil-elnino_0_jI8Yzt8xgN.html",
+   "resumen": "El secretario de Recursos Hídricos, Nicolás Mijich, tomó la proyección del INA del 13 de octubre (5,16 m el 27/10, con alerta en 5,30 m, evacuación en 5,70 m y 6,61 m como referencia de 2016) y aclaró que puede cambiar si sigue lloviendo en el norte argentino y el sur de Brasil. La Provincia enumera unas 600 intervenciones hídricas desde 2023, con readecuación de terraplenes, limpieza de canales y recuperación de estaciones de bombeo en el área metropolitana, y arma planes de contingencia con Protección Civil, municipios y comunas para identificar sectores vulnerables y lugares de evacuación."
   }
  ],
  "fuentes_consultadas": [
   "https://alerta.ina.gob.ar/a5/diario/reporte_diario",
-  "https://alerta.ina.gob.ar/a5/diario/pdf/reporte_diario_2026-10-14.pdf",
-  "https://www.ina.gob.ar/alerta/index.php?seccion=6",
-  "https://www.ina.gob.ar/archivos/alerta/TabProno20261013.pdf",
-  "https://www.ina.gob.ar/archivos/alerta/2026Oct14_10475a.pdf",
+  "https://alerta.ina.gob.ar/a5/diario/pdf/reporte_diario_2026-10-15.pdf",
+  "https://www.ina.gov.ar/alerta/",
+  "https://www.ina.gov.ar/archivos/alerta/TabProno20261013.pdf",
+  "https://www.ina.gov.ar/archivos/alerta/2026Oct14_10475a.pdf",
   "https://www.eby.gov.py/alerta-hidrologico-n06-octubre/",
   "https://www.eby.gov.py/cota-82-85-msnm-resumen-ejecutivo-n-6111-14-10-2026/",
   "https://www.eby.gov.py/category/nivelembalse/",
-  "https://www.itaipu.gov.py/noticias/responsabilidad-social/itaipu-continua-con-tareas-de-marcacion-referencias-de-cotas-ante-el-aumento-del-parana",
-  "https://www.itaipu.gov.py/noticias/responsabilidad-social/itaipu-informa-que-nivel-del-rio-parana-podria-alcanzar-los-121-metros-este-miercoles",
+  "https://www.eby.org.ar/informe-hidrologico",
+  "https://www.itaipu.gov.py/noticias/energia/el-vertedero-de-itaipu-seguira-abierto-segun-las-previsiones-hidrologicas-y-de-operacion",
+  "https://www.ultimahora.com/rio-parana-alcanza-los-120-81-metros-en-la-estacion-puente-de-la-amistad-y-esperan-una-leve-bajante",
+  "https://www.lanacion.com.py/pais/2026/10/16/el-nivel-del-rio-parana-se-mantiene-estable-y-el-sabado-se-espera-un-leve-descenso/",
+  "https://www.laclave.com.py/2026/10/14/la-itaipu-abre-otra-canaleta-pero-el-caudal-vertido-registra-leve-variacion/",
+  "https://www.primeraedicion.com.ar/nota/101151163/crecida-rio-parana-yacyreta-caudales-alerta-octubre-2026/",
+  "https://www.ellitoral.com.ar/sociedad/2026-10-15-21-30-0-el-numero-de-evacuados-se-duplico-en-corrientes-ya-hay-222-personas-fuera-de-sus-hogares",
+  "https://www.infobae.com/sociedad/2026/10/16/continua-el-alerta-por-el-nino-evacuaron-a-19-personas-en-misiones-por-la-crecida-de-rios/",
+  "https://www.airedesantafe.com.ar/santa-fe/el-nino-impulsa-la-crecida-del-rio-parana-que-apunta-al-sur-y-ya-gana-altura-corrientes-como-evoluciona-santa-fe-n673352",
   "https://www.airedesantafe.com.ar/santa-fe/una-nueva-proyeccion-ubica-al-rio-parana-santa-fe-encima-los-cinco-metros-antes-noviembre-n673245",
-  "https://radioamanecer.com.ar/el-rio-parana-seguira-en-ascenso-y-podria-superar-niveles-de-alerta-en-los-proximos-dias/",
-  "https://www.lanacion.com.ar/sociedad/crecidas-del-parana-y-del-uruguay-zonas-criticas-evacuados-rutas-cortadas-y-fechas-que-inquietan-nid15102026/",
-  "https://www.lanacion.com.ar/sociedad/altura-de-los-rios-en-la-argentina-esta-es-la-situacion-en-el-parana-hoy-jueves-15-de-octubre-nid15102026/",
-  "https://www.lanacion.com.py/pais/2026/10/15/crecida-del-parana-itaipu-ya-evacuo-a-183-familias-del-barrio-san-rafael/",
-  "https://www.lanacion.com.py/pais/2026/10/15/crecida-del-rio-parana-roza-los-121-metros-en-el-puente-de-la-amistad/",
-  "https://www.abc.com.py/este/2026/10/14/cde-suman-650-las-familias-afectadas-por-las-inundaciones-y-el-parana-roza-los-121-metros/",
-  "https://www.infobae.com/sociedad/2026/10/15/el-nino-las-crecidas-de-los-rios-parana-y-uruguay-podrian-tener-un-alivio-temporal-aunque-el-escenario-seguira-complejo/",
-  "https://agendarweb.com.ar/2026/10/15/yacyreta-preve-que-la-crecida-siga-y-alerta-por-el-ascenso-del-parana-aguas-abajo/",
+  "https://www.ellitoral.com/informacion-general/rioparana-santafe-institutonacionaldelagua-crecida-nicolasmijich-recursoshidricos-puertodesantafe-precipitaciones-maximilianopullaro-proteccioncivil-elnino_0_jI8Yzt8xgN.html",
+  "https://www.lacapital.com.ar/la-ciudad/el-rio-parana-sigue-creciendo-y-piden-extremar-los-cuidados-al-navegar-o-usar-las-playas-n10286834.html",
+  "https://www.lacapital.com.ar/la-ciudad/el-nino-la-onda-crecida-se-empieza-mover-el-norte-santafesino-y-se-dispone-bajar-n10286849.html",
+  "https://www.baenegocios.com/sociedad/la-crecida-del-parana-ya-obliga-a-evacuar-familias-y-ganado/",
+  "https://www.eschaco.com/vernota.asp?id_noticia=133786",
+  "https://rtsmedios.com.ar/crecida-del-parana-evacuan-ganado-de-las-islas-en-reconquista/",
   "https://www.diarionorte.com/334934-isla-del-cerrito-quedo-aislada-por-tierra-y-habilitan-salida-fluvial-por-paso-de-la-patria",
-  "https://radiocataratas.com/2026/10/15/crecida-de-rios-en-misiones-28-evacuados-dos-puentes-de-la-ruta-12-clausurados-y-ocho-cruces-fluviales-suspendidos/",
-  "https://chacodiapordia.com/el-avance-del-parana-obliga-a-preparar-evacuaciones-en-paso-de-la-patria/",
-  "https://www.analisisdigital.com.ar/locales/2026/10/15/fenomeno-de-el-nino-parana-se-prepara-con-carpas-moviles-y-preve-evacuaciones-en-bajada-grande-fin-de-mes",
-  "https://agencia.farco.org.ar/2026/10/15/entre-rios-alerta-por-la-crecida-de-los-rios-parana-y-uruguay-que-ya-dejo-evacuados-en-concordia/",
-  "https://www.elonce.com/sociedad/la-paz-se-prepara-para-la-crecida-del-rio-parana-unas-40-familias-podrian-necesitar-evacuacion.htm",
-  "https://www.ellitoral.com.ar/sociedad/2026-10-14-20-6-0-corrientes-llego-a-los-108-evacuados-en-cinco-localidades-por-las-crecidas-de-los-rios",
-  "https://www.perfil.com/noticias/nea/crecida-del-parana-en-chaco-hay-evacuados-y-la-isla-del-cerrito-podria-quedar-sin-acceso-terrestre.phtml"
+  "https://radioamanecer.com.ar/el-rio-parana-seguira-en-ascenso-y-podria-superar-niveles-de-alerta-en-los-proximos-dias/"
  ]
 }
