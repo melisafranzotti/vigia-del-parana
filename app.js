@@ -3,7 +3,7 @@
 "use strict";
 var REPO = "https://github.com/vigia-del-parana/vigia-del-parana.github.io";
 var APORTES_URL = "https://script.google.com/macros/s/AKfycbyNFAWRS9io1DKh00aJ34yvv56rjYuYz_XBcNwHi1bpB0IfxkXDS0uecLGOKVff6k3sMQ/exec"; // receptor de aportes de vecinos (Google Apps Script, ver aportes/)
-var APORTES_ACTIVO = false; // false: solo visible con ?aportar=prueba, para probar antes de abrirlo a todos
+var APORTES_ACTIVO = true;  // false: solo visible con ?aportar=prueba (para pruebas)
 var RESOLVER_URL = ""; // opcional: servicio que resuelve links cortos maps.app.goo.gl (ver README)
 var COBERTURA_KM = 45;  // distancia máxima a una estación para considerar la ubicación cubierta
 var HORIZONTE = 20;     // días de proyección de tendencia
