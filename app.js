@@ -2,7 +2,8 @@
 (function(){
 "use strict";
 var REPO = "https://github.com/vigia-del-parana/vigia-del-parana.github.io";
-var APORTES_URL = ""; // aplicación web de Google Apps Script que recibe los aportes de vecinos (ver aportes/)
+var APORTES_URL = "https://script.google.com/macros/s/AKfycbyNFAWRS9io1DKh00aJ34yvv56rjYuYz_XBcNwHi1bpB0IfxkXDS0uecLGOKVff6k3sMQ/exec"; // receptor de aportes de vecinos (Google Apps Script, ver aportes/)
+var APORTES_ACTIVO = false; // false: solo visible con ?aportar=prueba, para probar antes de abrirlo a todos
 var RESOLVER_URL = ""; // opcional: servicio que resuelve links cortos maps.app.goo.gl (ver README)
 var COBERTURA_KM = 45;  // distancia máxima a una estación para considerar la ubicación cubierta
 var HORIZONTE = 20;     // días de proyección de tendencia
@@ -480,7 +481,7 @@ function celularId(){
 }
 function renderAportes(z,e,h,fechaDato){
   var box=$("aporteBox");
-  var activo = !!APORTES_URL || PRUEBA_APORTE;
+  var activo = !!APORTES_URL && (APORTES_ACTIVO || PRUEBA_APORTE);
   var conGps = state.loc && state.loc.origen==="gps";
   var enAlerta = h!=null && h>=e.alerta;
   box.hidden = !(activo && conGps && h!=null && (enAlerta || PRUEBA_APORTE));
@@ -532,7 +533,7 @@ function enviarAporte(resp){
 }
 function renderVecinos(){
   var box=$("vecinosBox");
-  if(!APORTES_URL || !state.loc){ box.hidden=true; return; }
+  if(!APORTES_URL || !(APORTES_ACTIVO || PRUEBA_APORTE) || !state.loc){ box.hidden=true; return; }
   if(!vecinosData){
     if(!vecinosPedido){ vecinosPedido=true;
       fetch(APORTES_URL+"?accion=mapa").then(function(r){return r.json();}).then(function(d){ vecinosData=d&&d.ok?d:{celdas:[]}; renderVecinos(); }).catch(function(){ vecinosData={celdas:[]}; }); }
