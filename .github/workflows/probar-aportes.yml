@@ -1,0 +1,28 @@
+name: probar-aportes
+on:
+  push:
+    branches: [aportes]
+permissions:
+  contents: write
+jobs:
+  t:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probar receptor
+        run: |
+          U="https://script.google.com/macros/s/AKfycbyNFAWRS9io1DKh00aJ34yvv56rjYuYz_XBcNwHi1bpB0IfxkXDS0uecLGOKVff6k3sMQ/exec"
+          {
+          echo "== GET inicial"; curl -s -L -m 60 "$U?accion=mapa"; echo
+          echo "== GET sin accion"; curl -s -L -m 60 "$U"; echo
+          echo "== POST valido (prueba)"; curl -s -L -m 60 -H "Content-Type: text/plain;charset=utf-8" --data '{"lat":-31.6181,"lng":-60.6012,"acc":10,"resp":"no","est":30,"h":3.6,"hFecha":"2026-10-16","did":"prueba-claude-0001","prueba":true}' "$U"; echo
+          echo "== POST impreciso"; curl -s -L -m 60 -H "Content-Type: text/plain;charset=utf-8" --data '{"lat":-31.6181,"lng":-60.6012,"acc":200,"resp":"no","est":30,"h":3.6,"hFecha":"2026-10-16","did":"prueba-claude-0001","prueba":true}' "$U"; echo
+          echo "== POST fuera de zona"; curl -s -L -m 60 -H "Content-Type: text/plain;charset=utf-8" --data '{"lat":-40,"lng":-60,"acc":10,"resp":"no","est":30,"h":3.6,"hFecha":"2026-10-16","did":"prueba-claude-0001","prueba":true}' "$U"; echo
+          echo "== GET final"; curl -s -L -m 60 "$U?accion=mapa"; echo
+          echo "== CORS GET"; curl -s -L -m 60 -D - -o /dev/null -H "Origin: https://vigia-del-parana.github.io" "$U?accion=mapa" | grep -i "access-control\|^HTTP"
+          } > aportes/prueba-resultado.txt 2>&1
+      - name: Guardar
+        run: |
+          git config user.name vigia-bot; git config user.email vigia-bot@users.noreply.github.com
+          git add aportes/prueba-resultado.txt && git commit -m "resultado prueba receptor [skip ci]" && git push origin aportes
